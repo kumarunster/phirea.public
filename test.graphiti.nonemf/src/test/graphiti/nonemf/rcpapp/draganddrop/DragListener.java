@@ -33,23 +33,7 @@ public class DragListener implements DragSourceListener
     // Here you do the convertion to the type which is expected.
     IStructuredSelection selection = (IStructuredSelection) this.treeViewer.getSelection();
     Object firstElement = selection.getFirstElement();
-
-    if(firstElement instanceof MyModel)
-    {
-      MyModel myData = (MyModel) firstElement;
-      if (TextTransfer.getInstance().isSupportedType(event.dataType)) {
-//        event.data = myData;
-        event.data = myData.getName() + "," + myData.getDescription();
-      }
-      if(MyModelTransfer.getInstance().isSupportedType(event.dataType))
-        event.data = myData;
-      if(LocalSelectionTransfer.getTransfer().isSupportedType(event.dataType))
-      {
-    	LocalSelectionTransfer.getTransfer().setSelection(selection);
-    	System.out.println("dragSetData, data set to " + LocalSelectionTransfer.getTransfer());
-      }
-    }
-    
+       
     if(firstElement instanceof INonEmfDomainObject)
     {
       INonEmfDomainObject myData = (INonEmfDomainObject) firstElement;
@@ -57,8 +41,6 @@ public class DragListener implements DragSourceListener
 //        event.data = myData;
         event.data = myData.getId();
       }
-      if(MyModelTransfer.getInstance().isSupportedType(event.dataType))
-        event.data = myData;
       if(LocalSelectionTransfer.getTransfer().isSupportedType(event.dataType))
       {
     	LocalSelectionTransfer.getTransfer().setSelection(selection);

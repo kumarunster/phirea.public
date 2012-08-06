@@ -1,17 +1,17 @@
 <test.graphiti.nonemf.diagram.POJOIndependenceSolver>
   <objectMap>
     <entry>
-      <string>6804c43c-28e2-4f02-80d5-ee6958beecc8</string>
+      <string>b32b1eb9-b32d-4797-9eaf-5d61e7c44843</string>
       <test.graphiti.nonemf.domainmodel.StatementRule>
-        <id>6804c43c-28e2-4f02-80d5-ee6958beecc8</id>
+        <id>b32b1eb9-b32d-4797-9eaf-5d61e7c44843</id>
         <name>xxx</name>
         <fromClass>
           <id>8c1f54c0-e66b-49c9-8aab-18901ac46dec</id>
           <name>3.3.1</name>
         </fromClass>
         <toClass>
-          <id>94b98ba7-a9ac-4fd8-bb23-f9bd2bd7ef13</id>
-          <name>3.2</name>
+          <id>e230eb90-f866-4523-a056-dc0ec1f0d3b0</id>
+          <name>kolja</name>
         </toClass>
         <predicate>
           <id>90882fb1-265b-4284-9c56-f9551ea4eede</id>
@@ -20,65 +20,15 @@
       </test.graphiti.nonemf.domainmodel.StatementRule>
     </entry>
     <entry>
-      <string>d4223dc7-2f11-464c-bfbc-8081801a8d69</string>
+      <string>bb14fff8-eb34-4d02-a67f-ea2d6d4c6aab</string>
       <test.graphiti.nonemf.domainmodel.TermClass>
-        <id>d4223dc7-2f11-464c-bfbc-8081801a8d69</id>
-        <name>3.3</name>
+        <id>bb14fff8-eb34-4d02-a67f-ea2d6d4c6aab</id>
+        <name>3</name>
       </test.graphiti.nonemf.domainmodel.TermClass>
     </entry>
     <entry>
-      <string>9a7a000e-1adb-41cd-87f4-1d92db6bc04e</string>
-      <test.graphiti.nonemf.domainmodel.StatementRule>
-        <id>9a7a000e-1adb-41cd-87f4-1d92db6bc04e</id>
-        <name>xxx</name>
-        <fromClass>
-          <id>bb14fff8-eb34-4d02-a67f-ea2d6d4c6aab</id>
-          <name>3</name>
-        </fromClass>
-        <toClass reference="../../../entry[2]/test.graphiti.nonemf.domainmodel.TermClass"/>
-        <predicate reference="../../../entry/test.graphiti.nonemf.domainmodel.StatementRule/predicate"/>
-      </test.graphiti.nonemf.domainmodel.StatementRule>
-    </entry>
-    <entry>
-      <string>df233478-670b-43ca-8a8a-11ed0a537d93</string>
-      <test.graphiti.nonemf.domainmodel.StatementRule>
-        <id>df233478-670b-43ca-8a8a-11ed0a537d93</id>
-        <name>xxx</name>
-        <fromClass>
-          <id>e230eb90-f866-4523-a056-dc0ec1f0d3b0</id>
-          <name>kolja</name>
-        </fromClass>
-        <toClass reference="../../../entry[2]/test.graphiti.nonemf.domainmodel.TermClass"/>
-        <predicate reference="../../../entry/test.graphiti.nonemf.domainmodel.StatementRule/predicate"/>
-      </test.graphiti.nonemf.domainmodel.StatementRule>
-    </entry>
-    <entry>
-      <string>4c57e943-d61a-4167-864f-e38b189aad6f</string>
-      <test.graphiti.nonemf.domainmodel.StatementRule>
-        <id>4c57e943-d61a-4167-864f-e38b189aad6f</id>
-        <name>xxx</name>
-        <fromClass reference="../../../entry[3]/test.graphiti.nonemf.domainmodel.StatementRule/fromClass"/>
-        <toClass reference="../../../entry/test.graphiti.nonemf.domainmodel.StatementRule/toClass"/>
-        <predicate reference="../../../entry/test.graphiti.nonemf.domainmodel.StatementRule/predicate"/>
-      </test.graphiti.nonemf.domainmodel.StatementRule>
-    </entry>
-    <entry>
-      <string>b32b1eb9-b32d-4797-9eaf-5d61e7c44843</string>
-      <test.graphiti.nonemf.domainmodel.StatementRule>
-        <id>b32b1eb9-b32d-4797-9eaf-5d61e7c44843</id>
-        <name>xxx</name>
-        <fromClass reference="../../../entry/test.graphiti.nonemf.domainmodel.StatementRule/fromClass"/>
-        <toClass reference="../../../entry[4]/test.graphiti.nonemf.domainmodel.StatementRule/fromClass"/>
-        <predicate reference="../../../entry/test.graphiti.nonemf.domainmodel.StatementRule/predicate"/>
-      </test.graphiti.nonemf.domainmodel.StatementRule>
-    </entry>
-    <entry>
-      <string>bb14fff8-eb34-4d02-a67f-ea2d6d4c6aab</string>
-      <test.graphiti.nonemf.domainmodel.TermClass reference="../../entry[3]/test.graphiti.nonemf.domainmodel.StatementRule/fromClass"/>
-    </entry>
-    <entry>
       <string>e230eb90-f866-4523-a056-dc0ec1f0d3b0</string>
-      <test.graphiti.nonemf.domainmodel.TermClass reference="../../entry[4]/test.graphiti.nonemf.domainmodel.StatementRule/fromClass"/>
+      <test.graphiti.nonemf.domainmodel.TermClass reference="../../entry/test.graphiti.nonemf.domainmodel.StatementRule/toClass"/>
     </entry>
     <entry>
       <string>8c1f54c0-e66b-49c9-8aab-18901ac46dec</string>
@@ -92,47 +42,16 @@
       </test.graphiti.nonemf.domainmodel.TermClass>
     </entry>
     <entry>
-      <string>9277bb53-6858-461d-add1-8f9bed925eda</string>
-      <test.graphiti.nonemf.domainmodel.TermClass>
-        <id>9277bb53-6858-461d-add1-8f9bed925eda</id>
-        <name>3.1</name>
-      </test.graphiti.nonemf.domainmodel.TermClass>
-    </entry>
-    <entry>
-      <string>94b98ba7-a9ac-4fd8-bb23-f9bd2bd7ef13</string>
-      <test.graphiti.nonemf.domainmodel.TermClass reference="../../entry/test.graphiti.nonemf.domainmodel.StatementRule/toClass"/>
-    </entry>
-    <entry>
       <string>b4f6bf0e-2457-487c-afe4-2a35fd970d39</string>
       <test.graphiti.nonemf.domainmodel.StatementRule>
         <id>b4f6bf0e-2457-487c-afe4-2a35fd970d39</id>
         <name>xxx</name>
-        <fromClass reference="../../../entry[10]/test.graphiti.nonemf.domainmodel.TermClass"/>
-        <toClass reference="../../../entry[3]/test.graphiti.nonemf.domainmodel.StatementRule/fromClass"/>
+        <fromClass reference="../../../entry[5]/test.graphiti.nonemf.domainmodel.TermClass"/>
+        <toClass reference="../../../entry[2]/test.graphiti.nonemf.domainmodel.TermClass"/>
         <predicate>
           <id>e7171542-5d51-422b-9c7f-6299c4827ebc</id>
           <name>1 mag 3</name>
         </predicate>
-      </test.graphiti.nonemf.domainmodel.StatementRule>
-    </entry>
-    <entry>
-      <string>88ddd82b-d11d-466d-a1e9-61e354c355f8</string>
-      <test.graphiti.nonemf.domainmodel.StatementRule>
-        <id>88ddd82b-d11d-466d-a1e9-61e354c355f8</id>
-        <name>xxx</name>
-        <fromClass reference="../../../entry[3]/test.graphiti.nonemf.domainmodel.StatementRule/fromClass"/>
-        <toClass reference="../../../entry[11]/test.graphiti.nonemf.domainmodel.TermClass"/>
-        <predicate reference="../../../entry/test.graphiti.nonemf.domainmodel.StatementRule/predicate"/>
-      </test.graphiti.nonemf.domainmodel.StatementRule>
-    </entry>
-    <entry>
-      <string>0a83aa05-6acc-4994-9208-dfc157a2a068</string>
-      <test.graphiti.nonemf.domainmodel.StatementRule>
-        <id>0a83aa05-6acc-4994-9208-dfc157a2a068</id>
-        <name>xxx</name>
-        <fromClass reference="../../../entry[2]/test.graphiti.nonemf.domainmodel.TermClass"/>
-        <toClass reference="../../../entry/test.graphiti.nonemf.domainmodel.StatementRule/fromClass"/>
-        <predicate reference="../../../entry/test.graphiti.nonemf.domainmodel.StatementRule/predicate"/>
       </test.graphiti.nonemf.domainmodel.StatementRule>
     </entry>
   </objectMap>
@@ -145,17 +64,17 @@
       </test.graphiti.nonemf.domainmodel.Predicate>
     </entry>
     <entry>
-      <string>2cd46ce4-23e9-4a40-ac42-62796b3b6a3e</string>
-      <test.graphiti.nonemf.domainmodel.Predicate>
-        <id>2cd46ce4-23e9-4a40-ac42-62796b3b6a3e</id>
-        <name>hat Interesse an</name>
-      </test.graphiti.nonemf.domainmodel.Predicate>
-    </entry>
-    <entry>
       <string>ed325cab-3825-4b84-94a3-7fceeb7ad4dd</string>
       <test.graphiti.nonemf.domainmodel.Predicate>
         <id>ed325cab-3825-4b84-94a3-7fceeb7ad4dd</id>
         <name>1 mag 2</name>
+      </test.graphiti.nonemf.domainmodel.Predicate>
+    </entry>
+    <entry>
+      <string>2cd46ce4-23e9-4a40-ac42-62796b3b6a3e</string>
+      <test.graphiti.nonemf.domainmodel.Predicate>
+        <id>2cd46ce4-23e9-4a40-ac42-62796b3b6a3e</id>
+        <name>hat Interesse an</name>
       </test.graphiti.nonemf.domainmodel.Predicate>
     </entry>
     <entry>
@@ -174,7 +93,7 @@
     </entry>
     <entry>
       <string>e7171542-5d51-422b-9c7f-6299c4827ebc</string>
-      <test.graphiti.nonemf.domainmodel.Predicate reference="../../../objectMap/entry[13]/test.graphiti.nonemf.domainmodel.StatementRule/predicate"/>
+      <test.graphiti.nonemf.domainmodel.Predicate reference="../../../objectMap/entry[6]/test.graphiti.nonemf.domainmodel.StatementRule/predicate"/>
     </entry>
     <entry>
       <string>a0f23060-7854-4737-a172-a48a05448d00</string>

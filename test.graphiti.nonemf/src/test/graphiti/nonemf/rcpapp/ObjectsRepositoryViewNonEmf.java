@@ -16,7 +16,6 @@ import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.part.ViewPart;
 
-import test.graphiti.nonemf.rcpapp.draganddrop.DataModelProvider;
 import test.graphiti.nonemf.rcpapp.draganddrop.DragListener;
 import test.graphiti.nonemf.rcpapp.draganddrop.NonEmfTreeContentProvider;
 import test.graphiti.nonemf.rcpapp.draganddrop.NonEmfTreeLabelProvider;

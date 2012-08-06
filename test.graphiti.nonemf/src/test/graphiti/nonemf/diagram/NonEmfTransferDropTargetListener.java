@@ -1,6 +1,5 @@
 package test.graphiti.nonemf.diagram;
 
-import org.eclipse.graphiti.datatypes.ILocation;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
@@ -17,7 +16,6 @@ import org.eclipse.ui.PlatformUI;
 
 import test.graphiti.nonemf.diagram.features.CreateTermClassFeature;
 import test.graphiti.nonemf.domainmodel.TermClass;
-import test.graphiti.nonemf.rcpapp.draganddrop.MyModel;
 
 public class NonEmfTransferDropTargetListener implements
 		TransferDropTargetListener {
@@ -71,7 +69,7 @@ public class NonEmfTransferDropTargetListener implements
 		
 		if(event.data instanceof IStructuredSelection)
 		{
-			MyModel myModel = (MyModel) ((IStructuredSelection) event.data).getFirstElement();
+//			MyModel myModel = (MyModel) ((IStructuredSelection) event.data).getFirstElement();
 			System.out.println("drop instance is IStructuredSelection" );
 //			ILocation currentMouseLocation = this.nonEmfDiagramEditor.getCurrentMouseLocation();
 			
@@ -100,7 +98,7 @@ public class NonEmfTransferDropTargetListener implements
 						createContext.setTargetContainer(diagram);
 						
 						Object[] createdObj = ((CreateTermClassFeature) createFeature)
-								.create((ICreateContext) createContext, myModel.getName());
+								.create((ICreateContext) createContext, "");
 						TermClass target = (TermClass) createdObj[0];
 	        			
 	        			System.out.println("created TermClass " + target.getName());
