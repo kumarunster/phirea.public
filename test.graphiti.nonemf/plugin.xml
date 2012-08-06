@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypeProviders">
+      <diagramTypeProvider
+            class="test.graphiti.nonemf.diagram.DiagramTypeProvider"
+            description="Non-EMF Diagram Type Provider"
+            id="test.graphiti.nonemf.diagram.DiagramTypeProvider"
+            name="test.graphiti.nonemf.diagram.DiagramTypeProvider">
+         <diagramType
+               id="test.graphiti.nonemf.diagram.DiagramType">
+         </diagramType>
+         <imageProvider
+               id="test.graphiti.nonemf.diagram.tools.NonEmfImageProvider">
+         </imageProvider>
+      </diagramTypeProvider>
+   </extension>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypes">
+      <diagramType
+            description="Test Non-EMF Diagramm Type"
+            id="test.graphiti.nonemf.diagram.DiagramType"
+            name="test.graphiti.nonemf.diagram.DiagramType"
+            type="test.graphiti.nonemf.diagram.DiagramType">
+      </diagramType>
+   </extension>
+   
+      <extension
+         point="org.eclipse.ui.editors">
+ 	  <editor
+          class="test.graphiti.nonemf.diagram.NonEmfDiagramEditor"
+          contributorClass="org.eclipse.graphiti.ui.editor.DiagramEditorActionBarContributor"
+          default="true"
+          extensions="diagramNonEmf"
+          icon="icons/diagram.gif"
+          id="test.graphiti.nonemf.diagram.NonEmfDiagramEditor"
+          matchingStrategy="org.eclipse.graphiti.ui.editor.DiagramEditorMatchingStrategy"
+          name="%_diagram_editor_name">
+       <contentTypeBinding
+             contentTypeId="org.eclipse.graphiti.content.diagram">
+       </contentTypeBinding>
+      </editor>
+   </extension>
+      <extension
+            point="org.eclipse.graphiti.ui.imageProviders">
+         <imageProvider
+               class="test.graphiti.nonemf.diagram.tools.NonEmfImageProvider"
+               id="test.graphiti.nonemf.diagram.tools.NonEmfImageProvider">
+         </imageProvider>
+      </extension>
+      
+      
+     <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="test.graphiti.nonemf.rcpapp.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RCP Perspective"
+            class="test.graphiti.nonemf.rcpapp.Perspective"
+            id="test.graphiti.nonemf.rcpapp.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="test.graphiti.nonemf.rcpapp.ObjectsRepositoryViewDnD"
+            id="test.graphiti.nonemf.rcpapp.ObjectsRepositoryViewDnD"
+            name="New ViewPart DnD">
+      </view>
+      <view
+            class="test.graphiti.nonemf.rcpapp.ObjectsRepositoryView"
+            id="test.graphiti.nonemf.rcpapp.ObjectsRepositoryView"
+            name="New ViewPart">
+      </view>
+      <view
+            class="test.graphiti.nonemf.rcpapp.ObjectsRepositoryViewNonEmf"
+            id="test.graphiti.nonemf.rcpapp.ObjectsRepositoryViewNonEmf"
+            name="ObjectsRepo">
+      </view>
+   </extension>
+
+</plugin>
