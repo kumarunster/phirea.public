@@ -1,6 +1,5 @@
-package test.graphiti.nonemf.rcpapp;
+package test.graphiti.nonemf.rcpapp.objectsrepository;
 
-import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -17,8 +16,6 @@ import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.part.ViewPart;
 
-import test.graphiti.nonemf.rcpapp.objectsrepository.NonEmfTreeContentProvider;
-import test.graphiti.nonemf.rcpapp.objectsrepository.NonEmfTreeLabelProvider;
 import test.graphiti.nonemf.rcpapp.objectsrepository.dnd.DragListener;
 import test.graphiti.nonemf.utils.RepositoryUtils;
 
@@ -89,23 +86,6 @@ public class ObjectsRepositoryViewNonEmf extends ViewPart {
 	 */
 	private void initializeToolBar() {
 		IToolBarManager tbm = getViewSite().getActionBars().getToolBarManager();
-		
-		Action createNew = new Action() {
-			
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				super.run();
-				
-				System.out.println("Run Action!");
-			}
-			
-		};
-		String text = "Create New Item in Repository";
-		createNew.setText(text);
-		createNew.setToolTipText(text);
-		
-		tbm.add(createNew);
 	}
 
 	/**

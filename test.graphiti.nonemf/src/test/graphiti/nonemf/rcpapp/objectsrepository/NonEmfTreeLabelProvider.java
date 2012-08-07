@@ -1,4 +1,4 @@
-package test.graphiti.nonemf.rcpapp.draganddrop;
+package test.graphiti.nonemf.rcpapp.objectsrepository;
 
 import java.util.Map;
 import java.util.Map.Entry;
