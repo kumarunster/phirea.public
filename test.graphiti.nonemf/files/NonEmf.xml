@@ -1,25 +1,6 @@
 <test.graphiti.nonemf.diagram.POJOIndependenceSolver>
   <objectMap>
     <entry>
-      <string>b32b1eb9-b32d-4797-9eaf-5d61e7c44843</string>
-      <test.graphiti.nonemf.domainmodel.StatementRule>
-        <id>b32b1eb9-b32d-4797-9eaf-5d61e7c44843</id>
-        <name>xxx</name>
-        <fromClass>
-          <id>8c1f54c0-e66b-49c9-8aab-18901ac46dec</id>
-          <name>3.3.1</name>
-        </fromClass>
-        <toClass>
-          <id>e230eb90-f866-4523-a056-dc0ec1f0d3b0</id>
-          <name>kolja</name>
-        </toClass>
-        <predicate>
-          <id>90882fb1-265b-4284-9c56-f9551ea4eede</id>
-          <name>Aggregation: enth?lt</name>
-        </predicate>
-      </test.graphiti.nonemf.domainmodel.StatementRule>
-    </entry>
-    <entry>
       <string>bb14fff8-eb34-4d02-a67f-ea2d6d4c6aab</string>
       <test.graphiti.nonemf.domainmodel.TermClass>
         <id>bb14fff8-eb34-4d02-a67f-ea2d6d4c6aab</id>
@@ -28,11 +9,10 @@
     </entry>
     <entry>
       <string>e230eb90-f866-4523-a056-dc0ec1f0d3b0</string>
-      <test.graphiti.nonemf.domainmodel.TermClass reference="../../entry/test.graphiti.nonemf.domainmodel.StatementRule/toClass"/>
-    </entry>
-    <entry>
-      <string>8c1f54c0-e66b-49c9-8aab-18901ac46dec</string>
-      <test.graphiti.nonemf.domainmodel.TermClass reference="../../entry/test.graphiti.nonemf.domainmodel.StatementRule/fromClass"/>
+      <test.graphiti.nonemf.domainmodel.TermClass>
+        <id>e230eb90-f866-4523-a056-dc0ec1f0d3b0</id>
+        <name>kolja</name>
+      </test.graphiti.nonemf.domainmodel.TermClass>
     </entry>
     <entry>
       <string>2cbf90ee-a125-4ee1-bbc0-25f7b22cee18</string>
@@ -42,17 +22,51 @@
       </test.graphiti.nonemf.domainmodel.TermClass>
     </entry>
     <entry>
+      <string>8c1f54c0-e66b-49c9-8aab-18901ac46dec</string>
+      <test.graphiti.nonemf.domainmodel.TermClass>
+        <id>8c1f54c0-e66b-49c9-8aab-18901ac46dec</id>
+        <name>3.3.1</name>
+      </test.graphiti.nonemf.domainmodel.TermClass>
+    </entry>
+    <entry>
+      <string>f37dd366-8ebc-47cc-8b50-89a25c79af7f</string>
+      <test.graphiti.nonemf.domainmodel.TermClass>
+        <id>f37dd366-8ebc-47cc-8b50-89a25c79af7f</id>
+        <name>Kolja2</name>
+      </test.graphiti.nonemf.domainmodel.TermClass>
+    </entry>
+    <entry>
       <string>b4f6bf0e-2457-487c-afe4-2a35fd970d39</string>
       <test.graphiti.nonemf.domainmodel.StatementRule>
         <id>b4f6bf0e-2457-487c-afe4-2a35fd970d39</id>
         <name>xxx</name>
-        <fromClass reference="../../../entry[5]/test.graphiti.nonemf.domainmodel.TermClass"/>
-        <toClass reference="../../../entry[2]/test.graphiti.nonemf.domainmodel.TermClass"/>
+        <fromClass reference="../../../entry[3]/test.graphiti.nonemf.domainmodel.TermClass"/>
+        <toClass reference="../../../entry/test.graphiti.nonemf.domainmodel.TermClass"/>
         <predicate>
           <id>e7171542-5d51-422b-9c7f-6299c4827ebc</id>
           <name>1 mag 3</name>
         </predicate>
       </test.graphiti.nonemf.domainmodel.StatementRule>
+    </entry>
+    <entry>
+      <string>b32b1eb9-b32d-4797-9eaf-5d61e7c44843</string>
+      <test.graphiti.nonemf.domainmodel.StatementRule>
+        <id>b32b1eb9-b32d-4797-9eaf-5d61e7c44843</id>
+        <name>xxx</name>
+        <fromClass reference="../../../entry[4]/test.graphiti.nonemf.domainmodel.TermClass"/>
+        <toClass reference="../../../entry[2]/test.graphiti.nonemf.domainmodel.TermClass"/>
+        <predicate>
+          <id>90882fb1-265b-4284-9c56-f9551ea4eede</id>
+          <name>Aggregation: enth?lt</name>
+        </predicate>
+      </test.graphiti.nonemf.domainmodel.StatementRule>
+    </entry>
+    <entry>
+      <string>944af110-029f-41b7-982b-63d504ec92f1</string>
+      <test.graphiti.nonemf.domainmodel.TermClass>
+        <id>944af110-029f-41b7-982b-63d504ec92f1</id>
+        <name>give me a name!</name>
+      </test.graphiti.nonemf.domainmodel.TermClass>
     </entry>
   </objectMap>
   <predicatesMap>
@@ -64,17 +78,17 @@
       </test.graphiti.nonemf.domainmodel.Predicate>
     </entry>
     <entry>
-      <string>ed325cab-3825-4b84-94a3-7fceeb7ad4dd</string>
-      <test.graphiti.nonemf.domainmodel.Predicate>
-        <id>ed325cab-3825-4b84-94a3-7fceeb7ad4dd</id>
-        <name>1 mag 2</name>
-      </test.graphiti.nonemf.domainmodel.Predicate>
-    </entry>
-    <entry>
       <string>2cd46ce4-23e9-4a40-ac42-62796b3b6a3e</string>
       <test.graphiti.nonemf.domainmodel.Predicate>
         <id>2cd46ce4-23e9-4a40-ac42-62796b3b6a3e</id>
         <name>hat Interesse an</name>
+      </test.graphiti.nonemf.domainmodel.Predicate>
+    </entry>
+    <entry>
+      <string>ed325cab-3825-4b84-94a3-7fceeb7ad4dd</string>
+      <test.graphiti.nonemf.domainmodel.Predicate>
+        <id>ed325cab-3825-4b84-94a3-7fceeb7ad4dd</id>
+        <name>1 mag 2</name>
       </test.graphiti.nonemf.domainmodel.Predicate>
     </entry>
     <entry>
@@ -111,7 +125,7 @@
     </entry>
     <entry>
       <string>90882fb1-265b-4284-9c56-f9551ea4eede</string>
-      <test.graphiti.nonemf.domainmodel.Predicate reference="../../../objectMap/entry/test.graphiti.nonemf.domainmodel.StatementRule/predicate"/>
+      <test.graphiti.nonemf.domainmodel.Predicate reference="../../../objectMap/entry[7]/test.graphiti.nonemf.domainmodel.StatementRule/predicate"/>
     </entry>
   </predicatesMap>
 </test.graphiti.nonemf.diagram.POJOIndependenceSolver>
