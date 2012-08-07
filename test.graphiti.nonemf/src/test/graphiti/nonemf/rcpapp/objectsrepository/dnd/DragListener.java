@@ -1,4 +1,4 @@
-package test.graphiti.nonemf.rcpapp.draganddrop;
+package test.graphiti.nonemf.rcpapp.objectsrepository.dnd;
 
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.IStructuredSelection;

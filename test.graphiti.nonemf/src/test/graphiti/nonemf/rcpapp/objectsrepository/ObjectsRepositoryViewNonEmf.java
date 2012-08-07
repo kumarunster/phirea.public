@@ -1,4 +1,4 @@
-package test.graphiti.nonemf.rcpapp;
+package test.graphiti.nonemf.rcpapp.objectsrepository;
 
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
@@ -16,9 +16,7 @@ import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.part.ViewPart;
 
-import test.graphiti.nonemf.rcpapp.draganddrop.DragListener;
-import test.graphiti.nonemf.rcpapp.draganddrop.NonEmfTreeContentProvider;
-import test.graphiti.nonemf.rcpapp.draganddrop.NonEmfTreeLabelProvider;
+import test.graphiti.nonemf.rcpapp.objectsrepository.dnd.DragListener;
 import test.graphiti.nonemf.utils.RepositoryUtils;
 
 public class ObjectsRepositoryViewNonEmf extends ViewPart {

@@ -1,4 +1,4 @@
-package test.graphiti.nonemf.diagram;
+package test.graphiti.nonemf.diagram.dnd;
 
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -14,6 +14,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
+import test.graphiti.nonemf.diagram.NonEmfDiagramEditor;
 import test.graphiti.nonemf.diagram.features.CreateTermClassFeature;
 import test.graphiti.nonemf.domainmodel.TermClass;
 

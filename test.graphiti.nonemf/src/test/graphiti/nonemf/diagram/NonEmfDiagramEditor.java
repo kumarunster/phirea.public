@@ -10,6 +10,7 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 
+import test.graphiti.nonemf.diagram.dnd.NonEmfTransferDropTargetListener;
 import test.graphiti.nonemf.utils.RepositoryUtils;
 
 /**
@@ -70,7 +71,6 @@ public class NonEmfDiagramEditor extends DiagramEditor {
 		
 	}
 
-	@SuppressWarnings("restriction")
 	@Override
 	public void createPartControl(Composite parent) {
 		super.createPartControl(parent);

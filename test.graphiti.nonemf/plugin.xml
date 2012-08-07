@@ -81,7 +81,7 @@
             name="New ViewPart">
       </view>
       <view
-            class="test.graphiti.nonemf.rcpapp.ObjectsRepositoryViewNonEmf"
+            class="test.graphiti.nonemf.rcpapp.objectsrepository.ObjectsRepositoryViewNonEmf"
             id="test.graphiti.nonemf.rcpapp.ObjectsRepositoryViewNonEmf"
             name="ObjectsRepo">
       </view>

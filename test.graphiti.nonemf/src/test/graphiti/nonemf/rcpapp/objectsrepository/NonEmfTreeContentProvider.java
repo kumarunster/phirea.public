@@ -1,4 +1,4 @@
-package test.graphiti.nonemf.rcpapp.draganddrop;
+package test.graphiti.nonemf.rcpapp.objectsrepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
