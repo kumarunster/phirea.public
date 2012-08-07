@@ -71,18 +71,8 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="test.graphiti.nonemf.rcpapp.ObjectsRepositoryViewDnD"
-            id="test.graphiti.nonemf.rcpapp.ObjectsRepositoryViewDnD"
-            name="New ViewPart DnD">
-      </view>
-      <view
-            class="test.graphiti.nonemf.rcpapp.ObjectsRepositoryView"
-            id="test.graphiti.nonemf.rcpapp.ObjectsRepositoryView"
-            name="New ViewPart">
-      </view>
-      <view
             class="test.graphiti.nonemf.rcpapp.objectsrepository.ObjectsRepositoryViewNonEmf"
-            id="test.graphiti.nonemf.rcpapp.ObjectsRepositoryViewNonEmf"
+            id="test.graphiti.nonemf.rcpapp.objectsrepository.ObjectsRepositoryViewNonEmf"
             name="ObjectsRepo">
       </view>
    </extension>

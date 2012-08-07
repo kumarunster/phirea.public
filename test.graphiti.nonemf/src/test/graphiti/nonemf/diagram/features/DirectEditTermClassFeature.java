@@ -1,5 +1,8 @@
 package test.graphiti.nonemf.diagram.features;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature;
@@ -7,8 +10,15 @@ import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
+import org.osgi.service.event.Event;
+import org.osgi.service.event.EventAdmin;
 
 import test.graphiti.nonemf.domainmodel.TermClass;
+import test.graphiti.nonemf.rcpapp.objectsrepository.ObjectsRepositoryViewNonEmf;
+import test.graphiti.nonemf.utils.EventCommunicationConstants;
 
 /**
  * @author Nikolai Raitsev
@@ -81,7 +91,22 @@ public class DirectEditTermClassFeature extends AbstractDirectEditingFeature {
         // we know, that pe is the Shape of the Text, so its container is the
         // main shape of the EClass
         updatePictogramElement(((Shape) pe).getContainer());
-
+        
+        publishViewUpdateEvent(bc);
     }
+
+	private void publishViewUpdateEvent(TermClass bc) {
+		BundleContext bundleContext = FrameworkUtil.getBundle(ObjectsRepositoryViewNonEmf.class).getBundleContext();
+		ServiceReference<EventAdmin> srEventAdmin = bundleContext.getServiceReference(EventAdmin.class);
+		EventAdmin eventAdmin = bundleContext.getService(srEventAdmin);
+		
+		Map<String,Object> properties = new HashMap<String, Object>();
+		properties.put(EventCommunicationConstants.DATA, bc);
+
+		
+		Event event = new Event(EventCommunicationConstants.VIEWCOMMUNICATION + "/updatetermclass", properties);
+		eventAdmin.postEvent(event);
+		
+	}
 
 }
