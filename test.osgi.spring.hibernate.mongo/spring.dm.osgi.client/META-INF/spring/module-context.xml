@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+	default-autowire="byName">
+
+
+	<!-- Activates annotation-based bean configuration -->
+	<context:spring-configured />
+	
+	<context:annotation-config/>
+	
+<!-- 	 aspectj-weaving="on" -->
+<!-- 	weaver-class="org.eclipse.equinox.weaving.springweaver.EquinoxAspectsLoadTimeWeaver" -->
+	<context:load-time-weaver
+	weaver-class="org.eclipse.equinox.weaving.springweaver.EquinoxAspectsLoadTimeWeaver"
+	/>
+
+	<!-- Scans for application @Components to deploy -->
+	<context:component-scan base-package="phirea.hibernate.ogm"/>
+
+	 
+	 <bean id="entityManagerFactory"
+	  class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	  <property name="persistenceUnitName" value="MyPersistenceUnit" />
+<!-- 	  <property name="persistenceXmlLocation" value="file:///home/nikolai/workspace_eclipse_4.2/spring.dm.osgi.client/META-INF/persistence.xml" /> -->
+	 </bean>
+	 
+<!-- 	 <bean id="transactionManager" -->
+<!-- 	  class="org.springframework.transaction.jta.JtaTransactionManager"> -->
+<!-- 	  <property name="transactionManagerName" value="java:/TransactionManager" /> -->
+<!-- 	  <property name="userTransactionName" value="UserTransaction" /> -->
+<!-- 	 </bean> -->
+
+<!-- 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">  -->
+<!--     	<property name="entityManagerFactory" ref="entityManagerFactory" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager"> -->
+<!-- 	    <property name="transactionManager"> -->
+<!-- 	        <bean class="com.arjuna.ats.jta.TransactionManager" factory-method="transactionManager"/> -->
+<!-- 	    </property> -->
+<!-- 	    <property name="userTransaction"> -->
+<!-- 	        <bean class="com.arjuna.ats.jta.UserTransaction" factory-method="userTransaction"/> -->
+<!-- 	    </property> -->
+<!-- 	</bean> -->
+
+	 <bean id="jbossTransactionManager"
+  class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple">
+ </bean>
+ 
+ <bean id="jbossUserTransaction"
+  class="com.arjuna.ats.internal.jta.transaction.arjunacore.UserTransactionImple"/>
+ 
+ <bean id="transactionManager"  class="org.springframework.transaction.jta.JtaTransactionManager">
+  <property name="transactionManager">
+   <ref bean="jbossTransactionManager" />
+  </property>
+  <property name="userTransaction">
+   <ref bean="jbossUserTransaction" />
+  </property>
+ </bean>
+	
+	<!-- Instructs Spring to perfrom declarative transaction managemenet on annotated classes -->
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" mode="aspectj"/>
+
+	<!-- Beans -->
+	<bean id="agencyService" class="spring.dm.osgi.hibernate.ogm.services.AgencyServiceImpl" />	
+	
+
+</beans>
