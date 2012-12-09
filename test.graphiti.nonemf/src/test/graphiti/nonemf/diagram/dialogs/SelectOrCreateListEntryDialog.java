@@ -12,6 +12,7 @@ import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
@@ -28,6 +29,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableItem;
 
 
 public class SelectOrCreateListEntryDialog extends Dialog {
@@ -55,6 +57,8 @@ public class SelectOrCreateListEntryDialog extends Dialog {
 	private ILabelProvider labelProvider;
 	
 	private IChangeValueCallBack changeValueCallBack;
+
+	protected Object[] dialogSelection;
 
 	/**
 	 * Create the dialog.
@@ -86,6 +90,18 @@ public class SelectOrCreateListEntryDialog extends Dialog {
 		
 		if(this.contentProvider != null && this.labelProvider != null)
 		{
+			
+			TableViewerColumn tableViewerColumnSelection = new TableViewerColumn(tableViewer, SWT.NONE );
+			tableViewerColumnSelection.getColumn().setWidth(20);
+			tableViewerColumnSelection.setLabelProvider(new ColumnLabelProvider(){
+
+				@Override
+				public String getText(Object element) {
+					return "";
+				}
+			});	
+			
+			
 			
 			TableViewerColumn tableViewerColumn = new TableViewerColumn(tableViewer, SWT.NONE);
 			
@@ -126,8 +142,33 @@ public class SelectOrCreateListEntryDialog extends Dialog {
 			});	
 						
 			
-			tableViewer.setContentProvider(this.contentProvider);			
+			tableViewer.setContentProvider(this.contentProvider);	
 			tableViewer.setInput(input);
+			
+			tableViewer.getTable().addSelectionListener(new SelectionAdapter() {
+
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					super.widgetSelected(e);
+					
+					
+					TableItem[] selection = tableViewer.getTable().getSelection();
+					if(selection != null && selection.length > 0)
+					{
+						dialogSelection = new Object[selection.length];
+						
+						for (int i = 0; i<selection.length; i++) {
+							dialogSelection[i] = selection[i].getData();
+						}
+					}
+					
+					
+					
+				}
+				
+			});
+			
+			
 		}
 
 		return container;
@@ -221,6 +262,10 @@ public class SelectOrCreateListEntryDialog extends Dialog {
 	
 
 	
+	public Object[] getResult() {
+		return dialogSelection;
+	}
+	
 	
 	public static void main(String[] args)
 	{
@@ -266,13 +311,6 @@ public class SelectOrCreateListEntryDialog extends Dialog {
 	}
 
 
-
-	public Object[] getResult() {
-		
-		List list = ((IStructuredSelection) tableViewer.getSelection()).toList();
-		
-		return list.toArray();
-	}
 
 	
 

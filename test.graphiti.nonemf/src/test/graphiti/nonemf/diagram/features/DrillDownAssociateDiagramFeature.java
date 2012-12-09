@@ -1,6 +1,7 @@
 package test.graphiti.nonemf.diagram.features;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -28,6 +29,7 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.platform.IPlatformImageConstants;
 import org.eclipse.graphiti.ui.services.GraphitiUi;
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -47,6 +49,7 @@ import org.eclipse.ui.dialogs.ListDialog;
 import test.graphiti.nonemf.diagram.dialogs.IChangeValueCallBack;
 import test.graphiti.nonemf.diagram.dialogs.SelectOrCreateListEntryDialog;
 import test.graphiti.nonemf.domainmodel.TermClass;
+import test.graphiti.nonemf.utils.DiagramUtils;
 import test.graphiti.nonemf.utils.RepositoryUtils;
 
 public class DrillDownAssociateDiagramFeature extends AbstractCustomFeature {
@@ -178,8 +181,12 @@ public class DrillDownAssociateDiagramFeature extends AbstractCustomFeature {
 						
 						if(element instanceof Diagram && value instanceof String)
 						{
-							((Diagram)element).setName(value.toString());
-							RepositoryUtils.saveDiagramToFile((Diagram)element);
+							String oldName = ((Diagram)element).getName();
+							if(!oldName.equals(value))
+							{
+								((Diagram)element).setName(value.toString());
+								RepositoryUtils.saveDiagramToFile((Diagram)element);
+							}
 						}
 					}
 
@@ -224,12 +231,15 @@ public class DrillDownAssociateDiagramFeature extends AbstractCustomFeature {
 				
 				newDialog.open();
 				
-				Object[] result = newDialog.getResult();
 				
-				if (result != null) {
-					for (int i = 0; i < result.length; i++) {
-						diagram = (Diagram) result[i];
-						System.out.println("Result: " + diagram.getName());
+				if(newDialog.getReturnCode() == Dialog.OK) {
+					Object[] result = newDialog.getResult();
+					
+					if (result != null) {
+						for (int i = 0; i < result.length; i++) {
+							diagram = (Diagram) result[i];
+							System.out.println("Result: " + diagram.getName());
+						}
 					}
 				}
 			}
@@ -238,6 +248,13 @@ public class DrillDownAssociateDiagramFeature extends AbstractCustomFeature {
 				// associate selected EClass with diagram
 				System.out.println("associate with: " + diagram.getName());
 				link(diagram, eClasses);
+				
+				try {
+					diagram.eResource().save(Collections.EMPTY_MAP);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		
@@ -254,84 +271,13 @@ public class DrillDownAssociateDiagramFeature extends AbstractCustomFeature {
 			IResource fileResource = ResourcesPlugin.getWorkspace().getRoot().findMember(platformString);
 			if (fileResource != null){
 				IProject project = fileResource.getProject();
-				result = getDiagrams(project);
+				result = DiagramUtils.getDiagrams(project);
 			}
 			
 		}
 		return result;
 	}
 	
-	public static List<Diagram> getDiagrams(IProject p) {
-		final List<IFile> files = getDiagramFiles(p);
-		final List<Diagram> diagramList = new ArrayList<Diagram>();
-		final ResourceSet rSet = new ResourceSetImpl();
-		for (final IFile file : files) {
-			final Diagram diagram = getDiagramFromFile(file, rSet);
-			if (diagram != null) {
-				diagramList.add(diagram);
-			}
-		}
-		return diagramList;
-	}
-	
-
-	private static List<IFile> getDiagramFiles(IContainer folder) {
-		final List<IFile> ret = new ArrayList<IFile>();
-		try {
-			final IResource[] members = folder.members();
-			for (final IResource resource : members) {
-				if (resource instanceof IContainer) {
-					ret.addAll(getDiagramFiles((IContainer) resource));
-				} else if (resource instanceof IFile) {
-					final IFile file = (IFile) resource;
-					System.out.println("Location: " + file.getLocation().toString() );
-					System.out.println("Location: " + file.getLocation().toFile().getAbsolutePath() );
-					if (file.getName().endsWith(".diagram")) { //$NON-NLS-1$
-						ret.add(file);
-					}
-				}
-			}
-		} catch (final CoreException e) {
-			e.printStackTrace();
-		}
-		return ret;
-	}
-
-	private static Diagram getDiagramFromFile(IFile file, ResourceSet resourceSet) {
-		// Get the URI of the model file.
-		final URI resourceURI = getFileURI(file, resourceSet);
-
-		// Demand load the resource for this file.
-		Resource resource;
-		try {
-			System.out.println("Has absolute path: "+ resourceURI.hasAbsolutePath());
-			System.out.println(file.getLocation().toFile().getAbsolutePath());
-			System.out.println("File URI: " + resourceURI.toString());
-			resource = resourceSet.getResource(resourceURI, true);
-			if (resource != null) {
-				// does resource contain a diagram as root object?
-				final EList<EObject> contents = resource.getContents();
-				for (final EObject object : contents) {
-					if (object instanceof Diagram) {
-						return (Diagram) object;
-					}
-				}
-			}
-		} catch (final WrappedException e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
-	private static URI getFileURI(IFile file, ResourceSet resourceSet) {
-		final String pathName = file.getLocation().toFile().getAbsolutePath();
-		URI resourceURI = URI.createFileURI(pathName);
-		resourceURI = resourceSet.getURIConverter().normalize(resourceURI);
-		
-		System.out.println("getFileURI: " + pathName + "; resourceURI: " + resourceURI.toString());
-		return resourceURI;
-	}
 	
 	
 	

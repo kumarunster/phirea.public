@@ -125,17 +125,17 @@
       </test.graphiti.nonemf.domainmodel.Predicate>
     </entry>
     <entry>
-      <string>2cd46ce4-23e9-4a40-ac42-62796b3b6a3e</string>
-      <test.graphiti.nonemf.domainmodel.Predicate>
-        <id>2cd46ce4-23e9-4a40-ac42-62796b3b6a3e</id>
-        <name>hat Interesse an</name>
-      </test.graphiti.nonemf.domainmodel.Predicate>
-    </entry>
-    <entry>
       <string>ed325cab-3825-4b84-94a3-7fceeb7ad4dd</string>
       <test.graphiti.nonemf.domainmodel.Predicate>
         <id>ed325cab-3825-4b84-94a3-7fceeb7ad4dd</id>
         <name>1 mag 2</name>
+      </test.graphiti.nonemf.domainmodel.Predicate>
+    </entry>
+    <entry>
+      <string>2cd46ce4-23e9-4a40-ac42-62796b3b6a3e</string>
+      <test.graphiti.nonemf.domainmodel.Predicate>
+        <id>2cd46ce4-23e9-4a40-ac42-62796b3b6a3e</id>
+        <name>hat Interesse an</name>
       </test.graphiti.nonemf.domainmodel.Predicate>
     </entry>
     <entry>

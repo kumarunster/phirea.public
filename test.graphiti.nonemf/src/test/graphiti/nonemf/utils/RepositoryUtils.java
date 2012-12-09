@@ -388,14 +388,60 @@ public class RepositoryUtils {
 			
 			if(file.exists())
 			{
-				file.delete();
+				boolean deleted = file.delete();
+				System.out.println("file ['" + file.getAbsolutePath() + "'] deleted: " + deleted);
 			}
+			
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
+	}
+
+
+	public static IEditorInput getEditorInput(Diagram diagram) {
+		NonEmfDiagramEditorInput result = null;
+		
+		try {
+			URI diagramUri = diagram.eResource().getURI();
+			
+			URL diagramFileURL = new URL("file:" + diagramUri.path());
+			File file = URIUtil.toFile(diagramFileURL.toURI());
+			
+			
+			String diagramFileName = "";
+			String dataFileName = file.getAbsolutePath();
+			
+			URL entry = Activator.getDefault().getBundle().getEntry("");
+			if (entry != null)
+			{
+				URLConnection connection = entry.openConnection();
+				if (connection instanceof BundleURLConnection)
+				{
+					URL fileURL = ((BundleURLConnection) connection).getFileURL();
+					java.net.URI uri = new java.net.URI(fileURL.toString());
+					String basePath = new File(uri).getAbsolutePath();
+					dataFileName = basePath + STANDALONE_DATA_FILE_PATH ;
+				}
+			}
+			
+			if (diagramUri != null) {
+
+				result = new NonEmfDiagramEditorInput(diagramUri, null);
+				result.setDataFileName(dataFileName);
+				result.setDiagramFileName(diagramFileName);
+			}
+			
+			return result;
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 }
