@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pi:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms" visible="true" gridUnit="10" diagramTypeId="test.graphiti.nonemf.diagram.DiagramType" name="3" snapToGrid="true" showGuides="true" version="0.9.1">
+  <properties key="independentObject" value="bb14fff8-eb34-4d02-a67f-ea2d6d4c6aab"/>
+  <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.1" foreground="//@colors.0" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="independentObject" value="bb14fff8-eb34-4d02-a67f-ea2d6d4c6aab"/>
+    <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="//@colors.3" foreground="//@colors.2" lineWidth="2" transparency="0.0" width="100" height="50" x="190" y="50" cornerHeight="5" cornerWidth="5"/>
+    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.0 //@connections.1"/>
+    <children visible="true">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.2" lineWidth="2" filled="false" transparency="0.0">
+        <points y="20"/>
+        <points x="100" y="20"/>
+      </graphicsAlgorithm>
+    </children>
+    <children visible="true">
+      <properties key="independentObject" value="bb14fff8-eb34-4d02-a67f-ea2d6d4c6aab"/>
+      <graphicsAlgorithm xsi:type="al:Text" foreground="//@colors.4" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="3"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="independentObject" value="e230eb90-f866-4523-a056-dc0ec1f0d3b0"/>
+    <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="//@colors.3" foreground="//@colors.2" lineWidth="2" transparency="0.0" width="100" height="50" x="340" y="160" cornerHeight="5" cornerWidth="5"/>
+    <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="//@connections.1"/>
+    <children visible="true">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.2" lineWidth="2" filled="false" transparency="0.0">
+        <points y="20"/>
+        <points x="100" y="20"/>
+      </graphicsAlgorithm>
+    </children>
+    <children visible="true">
+      <properties key="independentObject" value="e230eb90-f866-4523-a056-dc0ec1f0d3b0"/>
+      <graphicsAlgorithm xsi:type="al:Text" foreground="//@colors.4" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="kolja"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="independentObject" value="f37dd366-8ebc-47cc-8b50-89a25c79af7f"/>
+    <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="//@colors.3" foreground="//@colors.2" lineWidth="2" transparency="0.0" width="100" height="50" x="60" y="176" cornerHeight="5" cornerWidth="5"/>
+    <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="//@connections.0"/>
+    <children visible="true">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.2" lineWidth="2" filled="false" transparency="0.0">
+        <points y="20"/>
+        <points x="100" y="20"/>
+      </graphicsAlgorithm>
+    </children>
+    <children visible="true">
+      <properties key="independentObject" value="f37dd366-8ebc-47cc-8b50-89a25c79af7f"/>
+      <graphicsAlgorithm xsi:type="al:Text" foreground="//@colors.4" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="Kolja2"/>
+    </children>
+  </children>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@anchors.0" end="//@children.2/@anchors.0">
+    <properties key="independentObject" value="d8af6365-baf5-47b9-8d4b-2a4855ada971"/>
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.5" lineWidth="2" filled="false" transparency="0.0"/>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" x="10" font="//@fonts.0" value="Aggregation: enth?lt"/>
+    </connectionDecorators>
+    <connectionDecorators visible="true" locationRelative="true" location="1.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.5" lineWidth="2" filled="false" transparency="0.0">
+        <points x="-12" y="7"/>
+        <points/>
+        <points x="-12" y="-7"/>
+      </graphicsAlgorithm>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@anchors.0" end="//@children.1/@anchors.0">
+    <properties key="independentObject" value="e3a7c749-b57b-41e1-a627-9e0b1006b3ec"/>
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.5" lineWidth="2" filled="false" transparency="0.0"/>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" x="10" font="//@fonts.0" value="Aggregation: enth?lt"/>
+    </connectionDecorators>
+    <connectionDecorators visible="true" locationRelative="true" location="1.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.5" lineWidth="2" filled="false" transparency="0.0">
+        <points x="-12" y="7"/>
+        <points/>
+        <points x="-12" y="-7"/>
+      </graphicsAlgorithm>
+    </connectionDecorators>
+  </connections>
+  <colors red="227" green="238" blue="249"/>
+  <colors red="255" green="255" blue="255"/>
+  <colors red="255" green="102"/>
+  <colors red="255" green="204" blue="153"/>
+  <colors red="51" green="51" blue="153"/>
+  <colors/>
+  <fonts name="Arial" size="8"/>
+  <fonts name="Arial" size="8" bold="true"/>
+</pi:Diagram>
