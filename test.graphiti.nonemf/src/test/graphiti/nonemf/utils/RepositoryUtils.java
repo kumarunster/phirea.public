@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.FileChannel;
@@ -21,6 +22,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
@@ -347,10 +349,51 @@ public class RepositoryUtils {
 
 	public static void saveDiagramToFile(Diagram diagram) {
 		System.out.println(" ***** ");
-		System.out.println(" ***** Diagrom to Save URI: " + diagram.eResource().getURI() );
+		if(diagram == null || diagram.eResource() == null) {
+			System.out.println("cannot save, diagram or diagram resource is null");
+			return;
+		}
+		System.out.println(" ***** Diagram to Save URI: " + diagram.eResource().getURI() );
 		try {
+			URI oldUri = diagram.eResource().getURI();
+			
+			
+			String oldPath = oldUri.path();
+			
+			String newFileName = diagram.getName() + DIAGRAM_EXTENSION;
+			
+			System.out.println("Path separator: " + File.separator);
+			int lastIndex = oldPath.lastIndexOf(File.separator);
+			oldPath = oldPath.substring(0, lastIndex + 1);
+			
+			String newPath = oldPath + newFileName;
+			
+			URI newUri = URI.createFileURI(newPath);
+			
+			
+			System.out.println("set new URI: " + newUri.toString());
+			diagram.eResource().setURI(newUri);
+			
+			System.out.println(" ***** Diagram to Save URI: " + diagram.eResource().getURI() );
 			diagram.eResource().save(Collections.EMPTY_MAP);
+			
+//			oldUri.
+			System.out.println("old uri path: " + oldUri.path());
+			
+			URL fileURL = new URL("file:" + oldUri.path());
+						
+			File file = URIUtil.toFile(fileURL.toURI());
+			
+//			File file = new File(fileURL.getFile());
+			
+			if(file.exists())
+			{
+				file.delete();
+			}
+			
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
 	}
