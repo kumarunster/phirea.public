@@ -32,6 +32,8 @@ import test.graphiti.nonemf.diagram.features.CreateTermClassFeature;
 import test.graphiti.nonemf.diagram.features.DeleteFeature;
 import test.graphiti.nonemf.diagram.features.DirectEditStatementRuleFeature;
 import test.graphiti.nonemf.diagram.features.DirectEditTermClassFeature;
+import test.graphiti.nonemf.diagram.features.DrillDownAssociateDiagramFeature;
+import test.graphiti.nonemf.diagram.features.DrillDownTermClassFeature;
 import test.graphiti.nonemf.diagram.features.GEFLayoutDiagramFeature;
 import test.graphiti.nonemf.diagram.features.LayoutTermClassFeature;
 import test.graphiti.nonemf.diagram.features.UpdateTermClassFeature;
@@ -140,6 +142,9 @@ public class DiagramFeatureProvider extends DefaultFeatureProvider {
         GEFLayoutDiagramFeature gefLayoutFeature = new GEFLayoutDiagramFeature(this);
         if(gefLayoutFeature.canExecute(context))
         	features.add(gefLayoutFeature);
+        
+        features.add(new DrillDownTermClassFeature(this));
+        features.add(new DrillDownAssociateDiagramFeature(this));
         
 		return features.toArray(new ICustomFeature[0]);
 	}
