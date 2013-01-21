@@ -56,15 +56,16 @@ public class NonEmfTreeLabelProvider extends LabelProvider implements ITableLabe
     {
     	switch (paramInt) {
 		case 0:
-			Entry<?, ?> firstElement = ((Map<?, ?>) paramObject).entrySet().iterator().next();
-			Object value = firstElement.getValue();
-			if(value instanceof TermClass || value instanceof StatementRule)
-				result = "TermClasses and StatementRules";
-			
-			if(value instanceof Predicate)
-				result = "Predicates";
-			
-			
+			Map<?, ?> repository = (Map<?, ?>) paramObject;
+			if(repository != null && !repository.isEmpty()) {
+				Entry<?, ?> firstElement = repository.entrySet().iterator().next();
+				Object value = firstElement.getValue();
+				if(value instanceof TermClass || value instanceof StatementRule)
+					result = "TermClasses and StatementRules";
+				
+				if(value instanceof Predicate)
+					result = "Predicates";
+			}
 			break;
 
 		default:
