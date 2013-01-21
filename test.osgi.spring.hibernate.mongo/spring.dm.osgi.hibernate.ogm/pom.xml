@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>test.phirea</groupId>
+  <artifactId>spring.dm.osgi.hibernate.ogm</artifactId>
+  <packaging>eclipse-plugin</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>phirea.hibernate.ogm Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+	<build>
+		<finalName>spring.dm.osgi.hibernate.ogm</finalName>
+
+
+		<plugins>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 				<artifactId>maven-dependency-plugin</artifactId> -->
+<!-- 				<version>2.1</version> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>copy-dependencies</id> -->
+<!-- 						<phase>process-resources</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>copy-dependencies</goal> -->
+<!-- 						</goals> -->
+<!-- 						<configuration> -->
+<!-- 							<outputDirectory>lib</outputDirectory> -->
+<!-- 							<overWriteReleases>true</overWriteReleases> -->
+<!-- 							<overWriteSnapshots>true</overWriteSnapshots> -->
+<!-- 							<overWriteIfNewer>true</overWriteIfNewer> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
+
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+
+			
+		</plugins>
+
+	</build>
+  <dependencies>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.10</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.hibernate.ogm</groupId>
+  		<artifactId>hibernate-ogm-mongodb</artifactId>
+  		<version>4.0.0-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>cglib</groupId>
+  		<artifactId>cglib</artifactId>
+  		<version>2.2.2</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>jboss.jbossts</groupId>
+  		<artifactId>jbossjta</artifactId>
+  		<version>4.9.0.GA</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.hibernate</groupId>
+  		<artifactId>hibernate-search</artifactId>
+  		<version>4.2.0.Beta1</version>
+  	</dependency>
+  </dependencies>
+  <properties>
+  	<tycho-version>0.15.0</tycho-version>
+  </properties>
+  <repositories>
+  	<repository>
+			<id>juno</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/juno</url>
+		</repository>
+  </repositories>
+</project>

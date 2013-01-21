@@ -52,6 +52,7 @@ public class RepositoryUtils {
 	
 	private final static String EXTENSION = ".xml";
 	public final static String DIAGRAM_EXTENSION = ".diagramNonEmf";
+
 	private final static String STANDALONE_DIAGRAM_FILE_PATH = File.separator + "files" + File.separator + "NonEmf.diagramNonEmf";
 	private final static String TEMPLATE_DIAGRAM_FILE_PATH = File.separator + "files" + File.separator +  "template.diagramNonEmf.xml";
 	private final static String TEMPLATE_DIAGRAM_FILES_BASEPATH = File.separator + "files" + File.separator;

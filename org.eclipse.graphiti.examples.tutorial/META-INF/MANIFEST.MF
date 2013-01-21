@@ -1,0 +1,175 @@
+Manifest-Version: 1.0
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-SymbolicName: org.eclipse.graphiti.examples.tutorial;singleton:
+ =true
+Require-Bundle: org.eclipse.graphiti;bundle-version="0.9.0",org.eclips
+ e.graphiti.ui;bundle-version="0.9.0",org.eclipse.graphiti.examples.co
+ mmon;bundle-version="0.9.0",org.eclipse.core.resources;bundle-version
+ ="[3.7.100,4.0.0)",org.eclipse.core.runtime;bundle-version="[3.7.0,4.
+ 0.0)",org.eclipse.emf.transaction;bundle-version="[1.4.0,2.0.0)",org.
+ eclipse.ui.views.properties.tabbed;bundle-version="[3.5.200,4.0.0)",o
+ rg.eclipse.ui.ide;bundle-version="[3.7.0,4.0.0)",org.eclipse.gef;bund
+ le-version="[3.7.0,4.0.0)"
+Bundle-Version: 0.9.0.v20120613-0805
+Export-Package: org.eclipse.graphiti.examples.tutorial,org.eclipse.gra
+ phiti.examples.tutorial.diagram,org.eclipse.graphiti.examples.tutoria
+ l.features,org.eclipse.graphiti.examples.tutorial.property
+Ant-Version: Apache Ant 1.8.2
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Name: %pluginName
+Created-By: 1.5.0_16-b02 (Sun Microsystems Inc.)
+Bundle-ManifestVersion: 2
+
+Name: org/eclipse/graphiti/examples/tutorial/TutorialImageProvider.cla
+ ss
+SHA1-Digest: kANT5QisqkYhAbDyQpMZT5RHTzw=
+
+Name: org/eclipse/graphiti/examples/tutorial/TutorialColoredAreas.clas
+ s
+SHA1-Digest: O58Nh9hZ7LeCO9BHD+PllZAqn90=
+
+Name: org/eclipse/graphiti/examples/tutorial/property/TutorialEReferen
+ ceFilter.class
+SHA1-Digest: SHzrTEEKg0Bc21Mz7UFy0N1kRRY=
+
+Name: plugin.properties
+SHA1-Digest: IsHALyo/UEch6QyYX6M/oi25GWs=
+
+Name: org/eclipse/graphiti/examples/tutorial/property/GraphitiEditPart
+ ToIPropertySourceAdapterFactory.class
+SHA1-Digest: aZtIp4xjKcJu0fEUblWL8tMwEOk=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialRenameEC
+ lassFeature.class
+SHA1-Digest: LoetU9VP94hZYxgiPYYDF9T/8CU=
+
+Name: org/eclipse/graphiti/examples/tutorial/diagram/TutorialDiagramTy
+ peProvider.class
+SHA1-Digest: PUJxh0XUr5G7OtnMGdMGtaGsGiY=
+
+Name: org/eclipse/graphiti/examples/tutorial/PropertyUtil.class
+SHA1-Digest: MSQOUv9ukkfIi7HN6UbG0mUQxcE=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialCreateEC
+ lassFeature.class
+SHA1-Digest: XcsIbO0gzznyipQChdLvgOKKR6k=
+
+Name: plugin.xml
+SHA1-Digest: lIVOLxxgc0jR1MthuX2DEbrFKSQ=
+
+Name: org/eclipse/graphiti/examples/tutorial/handlers/AddAllClassesCom
+ mand.class
+SHA1-Digest: 2Z1MKtDWkpizYHVyGagOJRVTTqY=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialCollapse
+ DummyFeature.class
+SHA1-Digest: xmEo+n0Ml6OnGqDFJjCAam2GRCA=
+
+Name: org/eclipse/graphiti/examples/tutorial/ITutorialRenderingStyle.c
+ lass
+SHA1-Digest: e+mrlr3/Py0Etj0RRqwLYZjldfg=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialAssociat
+ eDiagramEClassFeature.class
+SHA1-Digest: OgaiwbCLIhIlkFJkbxS2HCGOE7k=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialResizeEC
+ lassFeature.class
+SHA1-Digest: Y9AjgehWl7copIAiA7MqLvRAvLo=
+
+Name: org/eclipse/graphiti/examples/tutorial/diagram/TutorialFeaturePr
+ ovider.class
+SHA1-Digest: NqXPeJJZYvwAeC2J+7B43IraRWw=
+
+Name: org/eclipse/graphiti/examples/tutorial/handlers/CreateDiagramWit
+ hAllClassesHandler.class
+SHA1-Digest: zkB4ZdsM4XjNWsJXUUSJp04IO/g=
+
+Name: org/eclipse/graphiti/examples/tutorial/TutorialUtil.class
+SHA1-Digest: EXhbuUpxuKpfPb3OVbENKIjddrY=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialDirectEd
+ itEClassFeature.class
+SHA1-Digest: g8PFEtmzwxaq7AYS5ERpnGBiL7w=
+
+Name: org/eclipse/graphiti/examples/tutorial/property/EReferenceProper
+ tySource.class
+SHA1-Digest: Bolkq+mW2HkIuUAVpbBYy0nTN9k=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialMoveECla
+ ssFeature.class
+SHA1-Digest: PhJIXGFvhz/2LeWvebh99gkpjSU=
+
+Name: META-INF/eclipse.inf
+SHA1-Digest: KyT9FF7C7t86NoBoa2kZT3ZJBfw=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialAddEClas
+ sFeature.class
+SHA1-Digest: HAWBBQNZDTpsOmJMqBmwV0I9NGc=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialCreateER
+ eferenceFeature.class
+SHA1-Digest: aU/z0WVJkOFPrCc4nMm1bs6BU+U=
+
+Name: org/eclipse/graphiti/examples/tutorial/StyleUtil.class
+SHA1-Digest: pLu2ld6CDauAUc03YO1y6FydXl0=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialDrillDow
+ nEClassFeature.class
+SHA1-Digest: lOMzmvi5kZkeApriQp1k25rGeZ8=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialLayoutEC
+ lassFeature.class
+SHA1-Digest: PhDa/ut8DvL4SAHP/0bdO1/k340=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialUpdateEC
+ lassFeature.class
+SHA1-Digest: +Wcj1bkNsr/lKPoXEDwGF7O7eUw=
+
+Name: about.html
+SHA1-Digest: sAXgWZYB7tT9O9w6pl6VraWFVhk=
+
+Name: org/eclipse/graphiti/examples/tutorial/Messages.class
+SHA1-Digest: liX/30cyMo+UURLv+JIeNLn1dEc=
+
+Name: icons/ereference.gif
+SHA1-Digest: nyWHtfKoZtVBgrU0rER1qYlTMrs=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialAddERefe
+ renceFeature.class
+SHA1-Digest: ZntBUeFKzVB/LwEVIk//CcBIiQE=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialChangeCo
+ lorEClassFeature.class
+SHA1-Digest: 1UR6AMTOK+FrcZNl6xTUoGEc7b4=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialPasteECl
+ assFeature.class
+SHA1-Digest: 5Xdxje0n/hCd/D6CU1BuBbwX48Q=
+
+Name: org/eclipse/graphiti/examples/tutorial/property/TutorialEClassFi
+ lter.class
+SHA1-Digest: QUqQma++a+oiSQyH1mRXLyGFiyQ=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialReconnec
+ tionFeature.class
+SHA1-Digest: HWDCgSKMId4t0YgTnKGH7sDb/5I=
+
+Name: org/eclipse/graphiti/examples/tutorial/diagram/TutorialToolBehav
+ iorProvider.class
+SHA1-Digest: F2CJzXVjoiaw33UlsPMGcnylfhE=
+
+Name: org/eclipse/graphiti/examples/tutorial/property/TutorialEClassSe
+ ction.class
+SHA1-Digest: 9pznxjvnui5ynxpsvPbv08SQt8M=
+
+Name: org/eclipse/graphiti/examples/tutorial/messages.properties
+SHA1-Digest: SfBdJ2ariFntcsEz3RW0tO3Ntbw=
+
+Name: org/eclipse/graphiti/examples/tutorial/features/TutorialCopyECla
+ ssFeature.class
+SHA1-Digest: TMd1Vob8pMGAwFelRGfJRKd7/LY=
+

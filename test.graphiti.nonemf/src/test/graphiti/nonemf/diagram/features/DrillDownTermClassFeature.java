@@ -23,6 +23,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 import test.graphiti.nonemf.diagram.NonEmfDiagramEditor;
+
 import test.graphiti.nonemf.diagram.NonEmfDiagramEditorInput;
 import test.graphiti.nonemf.domainmodel.TermClass;
 import test.graphiti.nonemf.utils.RepositoryUtils;
@@ -171,6 +172,7 @@ public class DrillDownTermClassFeature extends AbstractDrillDownFeature {
 						System.out.println("open editor with diagram: " + nonEmfDiagramEditorInput.getDiagramFileName());
 						IEditorPart openEditor = page.openEditor(editorInput, NonEmfDiagramEditor.DIAGRAM_EDITOR_ID, true);
 						openEditor.setFocus();
+
 					} catch (PartInitException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

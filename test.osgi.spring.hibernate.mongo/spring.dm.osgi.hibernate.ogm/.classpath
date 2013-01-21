@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="lib/antlr-2.7.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/antlr-3.4.1-preview-jbossorg-0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/antlr-runtime-3.4.1-preview-jbossorg-0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/asm-3.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/avro-1.6.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cglib-2.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-codec-1.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-io-2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-lang-2.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/dom4j-1.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/guava-r05.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hamcrest-core-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate-commons-annotations-4.0.1.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate-core-4.1.4.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate-entitymanager-4.1.4.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate-jpql-parser-1.0.0.Alpha1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate-ogm-core-4.0.0-SNAPSHOT.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate-ogm-mongodb-4.0.0-SNAPSHOT.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate-search-4.2.0.Beta1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate-search-analyzers-4.2.0.Beta1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate-search-engine-4.2.0.Beta1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate-search-orm-4.2.0.Beta1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-core-asl-1.8.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-mapper-asl-1.8.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/javassist-3.15.0-GA.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jboss-logging-3.1.0.GA.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jboss-transaction-api_1.1_spec-1.0.0.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jbossjta-4.9.0.GA.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/junit-4.10.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene-analyzers-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene-core-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene-grouping-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene-highlighter-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene-kuromoji-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene-memory-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene-misc-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene-phonetic-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene-smartcn-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene-spatial-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene-spellchecker-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lucene-stempel-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/mongo-java-driver-2.8.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/paranamer-2.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/slf4j-api-1.6.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/snappy-java-1.0.4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/solr-analysis-extras-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/solr-core-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/solr-solrj-3.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ST4-4.0.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/stringtemplate-3.2.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
