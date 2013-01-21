@@ -52,10 +52,10 @@ public class RepositoryUtils {
 	
 	private final static String EXTENSION = ".xml";
 	public final static String DIAGRAM_EXTENSION = ".diagramNonEmf";
-	private final static String STANDALONE_DIAGRAM_FILE_PATH = "/files/NonEmf.diagramNonEmf";
-	private final static String TEMPLATE_DIAGRAM_FILE_PATH = "/files/template.diagramNonEmf.xml";
-	private final static String TEMPLATE_DIAGRAM_FILES_BASEPATH = "/files/";
-	private final static String STANDALONE_DATA_FILE_PATH = "/files/NonEmf.xml";
+	private final static String STANDALONE_DIAGRAM_FILE_PATH = File.separator + "files" + File.separator + "NonEmf.diagramNonEmf";
+	private final static String TEMPLATE_DIAGRAM_FILE_PATH = File.separator + "files" + File.separator +  "template.diagramNonEmf.xml";
+	private final static String TEMPLATE_DIAGRAM_FILES_BASEPATH = File.separator + "files" + File.separator;
+	private final static String STANDALONE_DATA_FILE_PATH = File.separator + "files" + File.separator + "NonEmf.xml";
 	public static POJOIndependenceSolver pojoIndependenceSolverStatic;
 	
 	/**
@@ -94,10 +94,12 @@ public class RepositoryUtils {
 		
 		try {
 			
-			String dataFilePath = getDataFilePath(editorInput);
+//			String dataFilePath = getDataFilePath(editorInput);
 			
-			POJOIndependenceSolver loadedPOJOs = loadPOJOs(dataFilePath);
-			dfp.setPojoIndependenceSolver(loadedPOJOs);
+//			POJOIndependenceSolver loadedPOJOs = loadPOJOs(dataFilePath);
+			
+			
+			dfp.setPojoIndependenceSolver(pojoIndependenceSolverStatic);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -411,8 +413,8 @@ public class RepositoryUtils {
 			File file = URIUtil.toFile(diagramFileURL.toURI());
 			
 			
-			String diagramFileName = "";
-			String dataFileName = file.getAbsolutePath();
+			String dataFileName = "";
+			String diagramFileName = file.getAbsolutePath();
 			
 			URL entry = Activator.getDefault().getBundle().getEntry("");
 			if (entry != null)
