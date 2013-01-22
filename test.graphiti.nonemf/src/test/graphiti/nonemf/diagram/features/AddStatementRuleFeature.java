@@ -1,5 +1,6 @@
 package test.graphiti.nonemf.diagram.features;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;
 import org.eclipse.graphiti.features.context.IAddContext;
@@ -61,15 +62,33 @@ public class AddStatementRuleFeature extends AbstractAddFeature{
         link(connection, addedStatementRule);
         
         
+        ConnectionDecorator fromCardinaltiyConnDecorator = 
+        			peCreateService.createConnectionDecorator(connection, true, 0.05, true);
+        
+        Text fromCardinalityText = gaService.createDefaultText(this.getDiagram(), fromCardinaltiyConnDecorator);
+        fromCardinalityText.setForeground(manageColor(IColorConstant.BLACK));
+        gaService.setLocation(fromCardinalityText, 10, 0);
+        fromCardinalityText.setValue(addedStatementRule.getFromCardinality().getCardinalityName());
+        
+        
         // add dynamic text decorator for the association name
         ConnectionDecorator textDecorator = peCreateService.createConnectionDecorator(connection, true, 0.5, true);
 
         Text text = gaService.createDefaultText(this.getDiagram(), textDecorator);
         text.setForeground(manageColor(IColorConstant.BLACK));
-        gaService.setLocation(text, 10, 0);
-
-        // set reference name in the text decorator
+        gaService.setLocation(text, 5, 5);
         text.setValue(addedStatementRule.getPredicate().getName());
+        
+        
+        ConnectionDecorator toCardinaltiyConnDecorator = 
+    			peCreateService.createConnectionDecorator(connection, true, 0.95, true);
+    
+	    Text toCardinalityText = gaService.createDefaultText(this.getDiagram(), toCardinaltiyConnDecorator);
+	    toCardinalityText.setForeground(manageColor(IColorConstant.BLACK));
+	    gaService.setLocation(toCardinalityText, 0, -10);
+	    toCardinalityText.setValue(addedStatementRule.getToCardinality().getCardinalityName());
+        
+        
 
         // add static graphical decorator (composition and navigable)
         ConnectionDecorator cd;
