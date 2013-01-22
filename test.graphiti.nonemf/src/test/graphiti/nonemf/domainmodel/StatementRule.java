@@ -8,6 +8,21 @@ public class StatementRule extends NonEmfDomainObject {
 	
 	private Predicate predicate;
 	
+	private CardinalityType fromCardinality;
+	
+	private CardinalityType toCardinality;
+	
+	Object readResolve() {
+		if(this.fromCardinality == null)
+			this.fromCardinality = CardinalityType.ONE;
+		
+		if(this.toCardinality == null)
+			this.toCardinality = CardinalityType.ZERO_OR_MANY;
+		
+		return this;
+	}
+	
+	
 	public TermClass getFromClass() {
 		return fromClass;
 	}
@@ -31,4 +46,22 @@ public class StatementRule extends NonEmfDomainObject {
 	public void setPredicate(Predicate predicate) {
 		this.predicate = predicate;
 	}
+
+	public CardinalityType getFromCardinality() {
+		return fromCardinality;
+	}
+
+	public void setFromCardinality(CardinalityType fromCardinality) {
+		this.fromCardinality = fromCardinality;
+	}
+
+	public CardinalityType getToCardinality() {
+		return toCardinality;
+	}
+
+	public void setToCardinality(CardinalityType toCardinality) {
+		this.toCardinality = toCardinality;
+	}
+	
+	
 }

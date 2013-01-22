@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
 import test.graphiti.nonemf.diagram.POJOIndependenceSolver;
+import test.graphiti.nonemf.domainmodel.CardinalityType;
 import test.graphiti.nonemf.domainmodel.Predicate;
 import test.graphiti.nonemf.domainmodel.StatementRule;
 
@@ -32,6 +33,8 @@ public class StatementRulePropertiesDialog extends Dialog {
 	private StatementRule statementRule;
 	private List<String> predicateNames;
 	protected Combo comboPredicates;
+	protected Combo comboFromCardinality;
+	protected Combo comboToCardinality;
 	private POJOIndependenceSolver pojoIndependeceSolver; 
 
 	/**
@@ -81,8 +84,10 @@ public class StatementRulePropertiesDialog extends Dialog {
 		lblFromCardinality.setBounds(0, 0, 58, 14);
 		lblFromCardinality.setText("From Cardinality");
 		
-		Combo comboFromCardinality = new Combo(shell, SWT.NONE);
+		comboFromCardinality = new Combo(shell, SWT.NONE);
 		comboFromCardinality.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		comboFromCardinality.setItems(CardinalityType.getCardinalities());		
+		comboFromCardinality.setText(statementRule.getFromCardinality().getCardinalityName());
 		
 		Label lblPredicate = new Label(shell, SWT.NONE);
 		lblPredicate.setText("Predicate");
@@ -90,14 +95,19 @@ public class StatementRulePropertiesDialog extends Dialog {
 		comboPredicates = new Combo(shell, SWT.NONE);
 		comboPredicates.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
+		
 		for(String predicate: predicateNames)
 			comboPredicates.add(predicate);
+		
+		comboPredicates.setText(statementRule.getPredicate().getName());
 		
 		Label lblToCardinality = new Label(shell, SWT.NONE);
 		lblToCardinality.setText("To Cardinality");
 		
-		Combo comboToCardinality = new Combo(shell, SWT.NONE);
+		comboToCardinality = new Combo(shell, SWT.NONE);
 		comboToCardinality.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		comboToCardinality.setItems(CardinalityType.getCardinalities());
+		comboToCardinality.setText(statementRule.getToCardinality().getCardinalityName());
 		
 		Composite composite = new Composite(shell, SWT.NONE);
 		RowLayout rl_composite = new RowLayout(SWT.HORIZONTAL);
@@ -131,6 +141,15 @@ public class StatementRulePropertiesDialog extends Dialog {
 				}
 					
 				statementRule.setPredicate(foundPredicate);
+				
+				String selectedFromCardinality = comboFromCardinality.getText();
+				String selectedToCardinality = comboToCardinality.getText();
+				
+				CardinalityType fromCardinality = CardinalityType.findForName(selectedFromCardinality);
+				CardinalityType toCardinality = CardinalityType.findForName(selectedToCardinality);
+				
+				statementRule.setFromCardinality(fromCardinality);
+				statementRule.setToCardinality(toCardinality);
 				
 				btnOkPressed = true;
 				shell.dispose();

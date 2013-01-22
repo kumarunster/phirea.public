@@ -15,6 +15,7 @@ import org.eclipse.graphiti.mm.pictograms.Connection;
 
 import test.graphiti.nonemf.diagram.DiagramFeatureProvider;
 import test.graphiti.nonemf.diagram.POJOIndependenceSolver;
+import test.graphiti.nonemf.domainmodel.CardinalityType;
 import test.graphiti.nonemf.domainmodel.StatementRule;
 import test.graphiti.nonemf.domainmodel.TermClass;
 import test.graphiti.nonemf.utils.PredicatesUtil;
@@ -151,6 +152,8 @@ public class CreateStatementRuleFeature extends AbstractCreateConnectionFeature 
         statementRule.setPredicate(PredicatesUtil.getStandardPredicate());
         statementRule.setFromClass(source);
         statementRule.setToClass(target);
+        statementRule.setFromCardinality(CardinalityType.ZERO_OR_ONE);
+        statementRule.setToCardinality(CardinalityType.ZERO_OR_MANY);
         return statementRule;
    }
 

@@ -1,11 +1,12 @@
 package test.graphiti.nonemf.diagram.features;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
-import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
@@ -83,22 +84,40 @@ public class DoubleClickStatementRuleFeature extends AbstractCustomFeature {
 					statementRule = stRulePropertiesDialog.getModifiedStatementRule();
 					this.hasDoneChanges = true;
 					
+					List<Text> connectionTextElements = new ArrayList<Text>(); 
+					
 					// we know, that pe is the Shape of the Text, so its container is the
 			        // main shape of the EClass
+					// we know also the sequence of the text elements, according to Texts in StatementRule. 
+					// See also AddStatementRuleFeature
 					for( EObject eObj : pe.eContents()) {
 						if(eObj instanceof ConnectionDecorator && 
 								((ConnectionDecorator) eObj)
 								.getGraphicsAlgorithm() instanceof Text ) {
 							
 							System.out.println(eObj);
-							((Text) ((ConnectionDecorator) eObj)
-									.getGraphicsAlgorithm())
-									.setValue(statementRule.getPredicate().getName());
-							updatePictogramElement((ConnectionDecorator) eObj);
+							connectionTextElements.add(((Text) ((ConnectionDecorator) eObj)
+									.getGraphicsAlgorithm()));
+							
 						}
 					}
-			        	
-			        
+					
+					String value = statementRule.getFromCardinality().getCardinalityName();
+					Text text = connectionTextElements.get(0);
+					text.setValue(value);
+					updatePictogramElement(text.getPictogramElement());
+					
+					
+					value = statementRule.getPredicate().getName();
+					text = connectionTextElements.get(1);
+					text.setValue(value);
+					updatePictogramElement(text.getPictogramElement());
+					
+					
+					value = statementRule.getToCardinality().getCardinalityName();
+					text = connectionTextElements.get(2);
+					text.setValue(value);
+					updatePictogramElement(text.getPictogramElement());
 				}
 			}
 		}
