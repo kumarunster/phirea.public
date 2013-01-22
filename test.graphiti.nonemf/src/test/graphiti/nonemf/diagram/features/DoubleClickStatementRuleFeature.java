@@ -102,22 +102,33 @@ public class DoubleClickStatementRuleFeature extends AbstractCustomFeature {
 						}
 					}
 					
-					String value = statementRule.getFromCardinality().getCardinalityName();
-					Text text = connectionTextElements.get(0);
-					text.setValue(value);
-					updatePictogramElement(text.getPictogramElement());
-					
-					
-					value = statementRule.getPredicate().getName();
-					text = connectionTextElements.get(1);
-					text.setValue(value);
-					updatePictogramElement(text.getPictogramElement());
-					
-					
-					value = statementRule.getToCardinality().getCardinalityName();
-					text = connectionTextElements.get(2);
-					text.setValue(value);
-					updatePictogramElement(text.getPictogramElement());
+					if(connectionTextElements.size() == 3) {
+						String value = statementRule.getFromCardinality().getCardinalityName();
+						Text text = connectionTextElements.get(0);
+						text.setValue(value);
+						updatePictogramElement(text.getPictogramElement());
+						
+						
+						value = statementRule.getPredicate().getName();
+						text = connectionTextElements.get(1);
+						text.setValue(value);
+						updatePictogramElement(text.getPictogramElement());
+						
+						
+						value = statementRule.getToCardinality().getCardinalityName();
+						text = connectionTextElements.get(2);
+						text.setValue(value);
+						updatePictogramElement(text.getPictogramElement());
+					}
+					else if(connectionTextElements.size() == 1) {
+						String value = statementRule.getPredicate().getName();
+						Text text = connectionTextElements.get(0);
+						text.setValue(value);
+						updatePictogramElement(text.getPictogramElement());
+						
+					}
+					else
+						System.out.println("Connection without text decorator. Impossible, nothing to do...");
 				}
 			}
 		}
