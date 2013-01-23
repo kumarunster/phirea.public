@@ -11,11 +11,14 @@ import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.services.Graphiti;
+import org.eclipse.graphiti.services.IPeService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 
 import test.graphiti.nonemf.diagram.DiagramFeatureProvider;
 import test.graphiti.nonemf.diagram.POJOIndependenceSolver;
+import test.graphiti.nonemf.diagram.utils.GraphitiPictogramElementProperties.StatementRulePropertyType;
 import test.graphiti.nonemf.dialogs.StatementRulePropertiesDialog;
 import test.graphiti.nonemf.domainmodel.StatementRule;
 
@@ -61,74 +64,68 @@ public class DoubleClickStatementRuleFeature extends AbstractCustomFeature {
 	@Override
 	public void execute(ICustomContext context) {
 		PictogramElement[] pes = context.getPictogramElements();
-		if (pes != null && pes.length == 1) {
+		
+		//Check context, if no data available -> so break this method
+		if(pes == null)
+			return;
+		if(pes.length != 1)
+			return;
 			
-			PictogramElement pe = pes[0];
+		PictogramElement pe = pes[0];
+		StatementRule statementRule = getStatementRuleFromPictogramm(pe);
+		
+		if(statementRule == null)
+			return;
 			
-			StatementRule statementRule = getStatementRuleFromPictogramm(pe);
+		StatementRulePropertiesDialog stRulePropertiesDialog = new StatementRulePropertiesDialog(
+																	Display.getCurrent().getActiveShell(), SWT.NONE);
+		POJOIndependenceSolver pojoIndependenceSolver = ((DiagramFeatureProvider) getFeatureProvider()).getPojoIndependenceSolver();
+		stRulePropertiesDialog.init(statementRule, pojoIndependenceSolver);
+		stRulePropertiesDialog.open();
+		
+		if(stRulePropertiesDialog.isBtnOkPressed()) {
+			System.out.println("Yeppie, OK is pressed!");
+			statementRule = stRulePropertiesDialog.getModifiedStatementRule();
+			this.hasDoneChanges = true;
 			
-	        // support direct editing, if it is a EClass, and the user clicked
-	        // directly on the text and not somewhere else in the rectangle
-	        if (statementRule != null && (
-	        		statementRule instanceof StatementRule) ) {
-				// ask user for a new class name
-				
-				StatementRulePropertiesDialog stRulePropertiesDialog = new StatementRulePropertiesDialog(
-						Display.getCurrent().getActiveShell(), SWT.NONE);
-				POJOIndependenceSolver pojoIndependenceSolver = ((DiagramFeatureProvider) getFeatureProvider()).getPojoIndependenceSolver();
-				stRulePropertiesDialog.init(statementRule, pojoIndependenceSolver);
-				stRulePropertiesDialog.open();
-				
-				if(stRulePropertiesDialog.isBtnOkPressed()) {
-					System.out.println("Yeppie, OK is pressed!");
-					statementRule = stRulePropertiesDialog.getModifiedStatementRule();
-					this.hasDoneChanges = true;
+			IPeService peService = Graphiti.getPeService();
+			
+			// we know, that pe is the Shape of the Text, so its container is the
+	        // main shape of the EClass
+			// we know also the sequence of the text elements, according to Texts in StatementRule. 
+			// See also AddStatementRuleFeature
+			for( EObject eObj : pe.eContents()) {
+				if(eObj instanceof ConnectionDecorator && 
+						((ConnectionDecorator) eObj)
+						.getGraphicsAlgorithm() instanceof Text ) {
 					
-					List<Text> connectionTextElements = new ArrayList<Text>(); 
+					System.out.println(eObj);
 					
-					// we know, that pe is the Shape of the Text, so its container is the
-			        // main shape of the EClass
-					// we know also the sequence of the text elements, according to Texts in StatementRule. 
-					// See also AddStatementRuleFeature
-					for( EObject eObj : pe.eContents()) {
-						if(eObj instanceof ConnectionDecorator && 
-								((ConnectionDecorator) eObj)
-								.getGraphicsAlgorithm() instanceof Text ) {
-							
-							System.out.println(eObj);
-							connectionTextElements.add(((Text) ((ConnectionDecorator) eObj)
-									.getGraphicsAlgorithm()));
-							
+					Text text = (Text) ((ConnectionDecorator) eObj).getGraphicsAlgorithm();
+					
+					String propertyValue = peService.getPropertyValue(text, StatementRulePropertyType.StatementRulePropertyKey);
+					StatementRulePropertyType propertyType = StatementRulePropertyType.findByValue(propertyValue);
+					
+					String value = text.getValue();
+					
+					if(propertyType != null) {
+						switch(propertyType) {
+						case FROM:
+							value = statementRule.getFromCardinality().getCardinalityName();
+							break;
+						case TO:
+							value = statementRule.getToCardinality().getCardinalityName();
+							break;
+						case PREDICATE_NAME:
+							value = statementRule.getPredicate().getName();
+							break;
+						default:
+							break;
 						}
 					}
 					
-					if(connectionTextElements.size() == 3) {
-						String value = statementRule.getFromCardinality().getCardinalityName();
-						Text text = connectionTextElements.get(0);
-						text.setValue(value);
-						updatePictogramElement(text.getPictogramElement());
-						
-						
-						value = statementRule.getPredicate().getName();
-						text = connectionTextElements.get(1);
-						text.setValue(value);
-						updatePictogramElement(text.getPictogramElement());
-						
-						
-						value = statementRule.getToCardinality().getCardinalityName();
-						text = connectionTextElements.get(2);
-						text.setValue(value);
-						updatePictogramElement(text.getPictogramElement());
-					}
-					else if(connectionTextElements.size() == 1) {
-						String value = statementRule.getPredicate().getName();
-						Text text = connectionTextElements.get(0);
-						text.setValue(value);
-						updatePictogramElement(text.getPictogramElement());
-						
-					}
-					else
-						System.out.println("Connection without text decorator. Impossible, nothing to do...");
+					text.setValue(value);
+					updatePictogramElement(text.getPictogramElement());
 				}
 			}
 		}
