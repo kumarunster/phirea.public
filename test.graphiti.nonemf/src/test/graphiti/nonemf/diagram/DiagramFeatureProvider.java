@@ -21,6 +21,7 @@ import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.pictograms.Connection;
+import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
@@ -36,6 +37,8 @@ import test.graphiti.nonemf.diagram.features.DrillDownAssociateDiagramFeature;
 import test.graphiti.nonemf.diagram.features.DrillDownTermClassFeature;
 import test.graphiti.nonemf.diagram.features.GEFLayoutDiagramFeature;
 import test.graphiti.nonemf.diagram.features.LayoutTermClassFeature;
+import test.graphiti.nonemf.diagram.features.NonEmfDefaultUpdateDiagramFeature;
+import test.graphiti.nonemf.diagram.features.UpdateStatementRuleFeature;
 import test.graphiti.nonemf.diagram.features.UpdateTermClassFeature;
 import test.graphiti.nonemf.diagram.features.ZestLayoutDiagramFeature;
 import test.graphiti.nonemf.domainmodel.StatementRule;
@@ -118,11 +121,21 @@ public class DiagramFeatureProvider extends DefaultFeatureProvider {
 	@Override
 	public IUpdateFeature getUpdateFeature(IUpdateContext context) {
 		
+		//Overwrites default Graphiti diagram feature, updates connections...
+		if (context.getPictogramElement() instanceof Diagram) {
+			return new NonEmfDefaultUpdateDiagramFeature(this);
+		}
+				
+		
 		PictogramElement pe = context.getPictogramElement();
 		Object bo = getBusinessObjectForPictogramElement(pe);
 		
 		if(bo instanceof TermClass) {
 			return new UpdateTermClassFeature(this);
+		}
+		
+		if(bo instanceof StatementRule) {
+			return new UpdateStatementRuleFeature(this);
 		}
 		
 		return super.getUpdateFeature(context);

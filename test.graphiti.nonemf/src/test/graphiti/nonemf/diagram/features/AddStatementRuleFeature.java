@@ -7,8 +7,10 @@ import org.eclipse.graphiti.features.impl.AbstractAddFeature;
 import org.eclipse.graphiti.mm.GraphicsAlgorithmContainer;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.Text;
+import org.eclipse.graphiti.mm.algorithms.styles.Color;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
+import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
@@ -65,36 +67,9 @@ public class AddStatementRuleFeature extends AbstractAddFeature{
         link(connection, addedStatementRule);
         
         
-        ConnectionDecorator fromCardinaltiyConnDecorator = 
-        			peCreateService.createConnectionDecorator(connection, true, 0.05, true);
-        
-        Text txtFromCardinality = gaService.createDefaultText(this.getDiagram(), fromCardinaltiyConnDecorator);
-        txtFromCardinality.setForeground(manageColor(IColorConstant.BLACK));
-        gaService.setLocation(txtFromCardinality, 10, 0);
-        txtFromCardinality.setValue(addedStatementRule.getFromCardinality().getCardinalityName());
-        
-        // add dynamic text decorator for the association name
-        ConnectionDecorator textDecorator = peCreateService.createConnectionDecorator(connection, true, 0.5, true);
-
-        Text txtPredicateName = gaService.createDefaultText(this.getDiagram(), textDecorator);
-        txtPredicateName.setForeground(manageColor(IColorConstant.BLACK));
-        gaService.setLocation(txtPredicateName, 5, 5);
-        txtPredicateName.setValue(addedStatementRule.getPredicate().getName());
-        
-        
-        ConnectionDecorator toCardinaltiyConnDecorator = 
-    			peCreateService.createConnectionDecorator(connection, true, 0.95, true);
-    
-	    Text txtToCardinality = gaService.createDefaultText(this.getDiagram(), toCardinaltiyConnDecorator);
-	    txtToCardinality.setForeground(manageColor(IColorConstant.BLACK));
-	    gaService.setLocation(txtToCardinality, 0, -10);
-	    txtToCardinality.setValue(addedStatementRule.getToCardinality().getCardinalityName());
-        
+        createStetementRuleTextDecorators(addedStatementRule, connection, getDiagram());
         
 	    
-	    peService.setPropertyValue(txtFromCardinality, StatementRulePropertyType.StatementRulePropertyKey, StatementRulePropertyType.FROM.getPropertyValue());
-	    peService.setPropertyValue(txtToCardinality, StatementRulePropertyType.StatementRulePropertyKey, StatementRulePropertyType.TO.getPropertyValue());
-	    peService.setPropertyValue(txtPredicateName, StatementRulePropertyType.StatementRulePropertyKey, StatementRulePropertyType.PREDICATE_NAME.getPropertyValue());
 
         // add static graphical decorator (composition and navigable)
         ConnectionDecorator cd;
@@ -103,6 +78,46 @@ public class AddStatementRuleFeature extends AbstractAddFeature{
         createArrow(cd);
         
         return connection;
+	}
+
+	public static void createStetementRuleTextDecorators(StatementRule addedStatementRule,
+														Connection connection,
+														Diagram diagram) {
+		
+		IPeCreateService peCreateService = Graphiti.getPeCreateService();
+		IPeService peService = Graphiti.getPeService();
+		IGaService gaService = Graphiti.getGaService();
+		
+		
+		ConnectionDecorator fromCardinaltiyConnDecorator = 
+        			peCreateService.createConnectionDecorator(connection, true, 0.05, true);
+        
+        Text txtFromCardinality = gaService.createDefaultText(diagram, fromCardinaltiyConnDecorator);
+        Color color = Graphiti.getGaService().manageColor(diagram, IColorConstant.BLACK);
+        txtFromCardinality.setForeground(color);
+        gaService.setLocation(txtFromCardinality, 10, 0);
+        txtFromCardinality.setValue(addedStatementRule.getFromCardinality().getCardinalityName());
+        
+        // add dynamic text decorator for the association name
+        ConnectionDecorator textDecorator = peCreateService.createConnectionDecorator(connection, true, 0.5, true);
+
+        Text txtPredicateName = gaService.createDefaultText(diagram, textDecorator);
+        txtPredicateName.setForeground(color);
+        gaService.setLocation(txtPredicateName, 5, 5);
+        txtPredicateName.setValue(addedStatementRule.getPredicate().getName());
+        
+        
+        ConnectionDecorator toCardinaltiyConnDecorator = 
+    			peCreateService.createConnectionDecorator(connection, true, 0.95, true);
+    
+	    Text txtToCardinality = gaService.createDefaultText(diagram, toCardinaltiyConnDecorator);
+	    txtToCardinality.setForeground(color);
+	    gaService.setLocation(txtToCardinality, 0, -10);
+	    txtToCardinality.setValue(addedStatementRule.getToCardinality().getCardinalityName());
+        
+	    peService.setPropertyValue(txtFromCardinality, StatementRulePropertyType.StatementRulePropertyKey, StatementRulePropertyType.FROM.getPropertyValue());
+	    peService.setPropertyValue(txtToCardinality, StatementRulePropertyType.StatementRulePropertyKey, StatementRulePropertyType.TO.getPropertyValue());
+	    peService.setPropertyValue(txtPredicateName, StatementRulePropertyType.StatementRulePropertyKey, StatementRulePropertyType.PREDICATE_NAME.getPropertyValue());
 	}
 	
 	

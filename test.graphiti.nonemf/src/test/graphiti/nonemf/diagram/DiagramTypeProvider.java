@@ -57,9 +57,12 @@ public class DiagramTypeProvider extends AbstractDiagramTypeProvider {
 			RepositoryUtils.loadPOJOObjects(editorInput, dfp);
 		}
 	}
-	
 
-	
+
+	@Override
+	public boolean isAutoUpdateAtStartup() {
+		return true;
+	}
 	
 
 //	@Override
@@ -73,6 +76,7 @@ public class DiagramTypeProvider extends AbstractDiagramTypeProvider {
 //		
 //		return nonEmfDiagramEditor;
 //	}
+	
 	
 	
 	
