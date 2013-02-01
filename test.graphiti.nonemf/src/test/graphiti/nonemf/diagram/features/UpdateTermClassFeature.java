@@ -37,17 +37,25 @@ public class UpdateTermClassFeature extends AbstractUpdateFeature {
         // retrieve name from pictogram model
         String pictogramName = null;
         PictogramElement pictogramElement = context.getPictogramElement();
-
-        if (pictogramElement instanceof ContainerShape) {
-            ContainerShape cs = (ContainerShape) pictogramElement;
-            for (Shape shape : cs.getChildren()) {
+        
+        if (pictogramElement instanceof Shape) {
+            Shape shape = (Shape) pictogramElement;
                 if (shape.getGraphicsAlgorithm() instanceof Text) {
                     Text text = (Text) shape.getGraphicsAlgorithm();
                     pictogramName = text.getValue();
-                }
             }
         }
-
+        
+        if (pictogramElement instanceof ContainerShape) {
+            for(Shape shape: ((ContainerShape) pictogramElement).getChildren() ) {
+	            if (shape.getGraphicsAlgorithm() instanceof Text) {
+	                Text text = (Text) shape.getGraphicsAlgorithm();
+	                pictogramName = text.getValue();
+	                
+	                break;
+	            }
+            }
+        }
  
         // retrieve name from business model
         String businessName = null;
@@ -62,6 +70,9 @@ public class UpdateTermClassFeature extends AbstractUpdateFeature {
         		(pictogramName != null && !pictogramName.equals(businessName)));
 
         if (updateNameNeeded) {
+        	
+        	System.out.println("****** need update on pictogram name: " + pictogramName + "; businessName: " + businessName);
+        	
             return Reason.createTrueReason("Name is out of date");
 
         } else {
