@@ -53,8 +53,9 @@ public class AddStatementRuleFeature extends AbstractAddFeature{
         
 
         // CONNECTION WITH POLYLINE
-        Connection connection = peCreateService
-            .createFreeFormConnection(getDiagram());
+//        Connection connection = peCreateService
+//            .createFreeFormConnection(getDiagram());
+        Connection connection = peCreateService.createManhattanConnection(getDiagram());
         connection.setStart(addConContext.getSourceAnchor());
         connection.setEnd(addConContext.getTargetAnchor());
 
