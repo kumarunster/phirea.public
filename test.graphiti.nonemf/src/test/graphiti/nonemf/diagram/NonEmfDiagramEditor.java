@@ -30,8 +30,7 @@ public class NonEmfDiagramEditor extends DiagramEditor {
 	
 	public NonEmfDiagramEditor(TransactionalEditingDomain transactionalEditingDomain) {
 		super();
-		this.transactionalEditingDomain = transactionalEditingDomain;
-		
+		this.transactionalEditingDomain = transactionalEditingDomain;		
 	}
 
 	protected void registerBOListener() {
@@ -76,6 +75,8 @@ public class NonEmfDiagramEditor extends DiagramEditor {
 		super.createPartControl(parent);
 		
 		this.getGraphicalViewer().addDropTargetListener(new NonEmfTransferDropTargetListener(this));
+		
+		getRefreshBehavior().refresh();
 	}
 	
 	
