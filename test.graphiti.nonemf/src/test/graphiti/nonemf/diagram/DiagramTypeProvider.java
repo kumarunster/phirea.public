@@ -5,6 +5,7 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.notification.INotificationService;
 import org.eclipse.graphiti.platform.IDiagramEditor;
 import org.eclipse.graphiti.tb.IToolBehaviorProvider;
+import org.eclipse.graphiti.ui.editor.DefaultRefreshBehavior;
 import org.eclipse.graphiti.ui.editor.DiagramEditorInput;
 
 import test.graphiti.nonemf.diagram.tools.ToolBehaviorProvider;
@@ -55,11 +56,17 @@ public class DiagramTypeProvider extends AbstractDiagramTypeProvider {
 			DiagramFeatureProvider dfp = (DiagramFeatureProvider) getFeatureProvider();
 			
 			RepositoryUtils.loadPOJOObjects(editorInput, dfp);
+			
+			DefaultRefreshBehavior refreshBehavior = ((NonEmfDiagramEditor) diagramEditor).getRefreshBehavior();
+			refreshBehavior.refreshRenderingDecorators(diagram);
 		}
 	}
-	
 
-	
+
+	@Override
+	public boolean isAutoUpdateAtStartup() {
+		return true;
+	}
 	
 
 //	@Override
@@ -73,6 +80,7 @@ public class DiagramTypeProvider extends AbstractDiagramTypeProvider {
 //		
 //		return nonEmfDiagramEditor;
 //	}
+	
 	
 	
 	
