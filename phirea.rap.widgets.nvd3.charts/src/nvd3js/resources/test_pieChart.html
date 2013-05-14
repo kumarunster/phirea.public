@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="nv.d3.css" rel="stylesheet">
+
+    <script src="../../../../../git/nvd3/lib/d3.v2.js"></script>
+    <script src="../../../../../git/nvd3/nv.d3.js"></script>
+
+  </head>
+
+  <body>
+
+
+    <div id="pieChart">
+    	<svg></svg>
+    </div>
+    
+    <script type="text/javascript">
+    
+    nv.addGraph(function() {
+    	  var chart = nv.models.pieChart()
+    	      .x(function(d) { return d.label })
+    	      .y(function(d) { return d.value })
+    	      .showLabels(true);
+
+    	    var svg = d3.select("#pieChart svg");
+    	    svg.datum([
+    	                {
+    	                    "key": "Cumulative Return",
+    	                    "values": [
+    	                      { 
+    	                        "label": "One",
+    	                        "value" : 29.765957771107
+    	                      } , 
+    	                      { 
+    	                        "label": "Two",
+    	                        "value" : 0
+    	                      } , 
+    	                      { 
+    	                        "label": "Three",
+    	                        "value" : 32.807804682612
+    	                      } , 
+    	                      { 
+    	                        "label": "Four",
+    	                        "value" : 196.45946739256
+    	                      } , 
+    	                      { 
+    	                        "label": "Five",
+    	                        "value" : 0.19434030906893
+    	                      } , 
+    	                      { 
+    	                        "label": "Six",
+    	                        "value" : 98.079782601442
+    	                      } , 
+    	                      { 
+    	                        "label": "Seven",
+    	                        "value" : 13.925743130903
+    	                      } , 
+    	                      { 
+    	                        "label": "Eight",
+    	                        "value" : 5.1387322875705
+    	                      }
+    	                    ]
+    	                  }
+    	                ])
+    	      .transition().duration(1500)
+    	        .call(chart);
+    	    
+    	    
+    	  return chart;
+    	});
+    
+    </script>
+</body>
+</html>
