@@ -1,4 +1,4 @@
 {
   "main": "GroovyExample.groovy",
-  "includes": "com.jetdrone~yoke~1.0.0-beta2"
+  "auto-redeploy":true
 }
