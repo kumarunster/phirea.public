@@ -1,14 +1,9 @@
-import java.util.Map;
+import javax.crypto.Mac
 
-import javax.crypto.Mac;
-
-import org.vertx.groovy.core.file.FileSystem;
-
-import com.jetdrone.vertx.yoke.middleware.*
-import com.jetdrone.vertx.yoke.util.Utils;
 import com.jetdrone.vertx.yoke.GYoke
 import com.jetdrone.vertx.yoke.engine.GroovyTemplateEngine
-
+import com.jetdrone.vertx.yoke.middleware.*
+import com.jetdrone.vertx.yoke.util.Utils
 
 
 
@@ -27,9 +22,10 @@ Mac mac = Utils.newHmacSHA256("SecretPassword");
 
 new GYoke(vertx)
   .engine('html', new GroovyTemplateEngine())
+  
   .use(new CookieParser(mac))
   .use(new Session(mac))
-  
+    
   .use(new ErrorHandler(true))
   .use(new GRouter()
 	  .get("/", { YokeRequest request -> 
@@ -38,9 +34,7 @@ new GYoke(vertx)
 	  })
 	  .get("/index", { YokeRequest request, next ->
 		  checkAndSetSessionId(request);
-		  request.put('session', request.getSessionId())
-		  request.put('msg', new Properties())
-		  request.response.render 'views/index.html', next
+		  request.response.end "my session id is ${request.getSessionId()}"
 	  })
 	  .get("/sForm", { YokeRequest request ->
 		  checkAndSetSessionId(request);
