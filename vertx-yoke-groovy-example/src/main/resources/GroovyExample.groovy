@@ -12,14 +12,6 @@ import com.jetdrone.vertx.yoke.engine.GroovyTemplateEngine
 
 
 
-
-final Properties msg  = new Properties()
-
-FileSystem fileSystem = vertx.getFileSystem();
-def propertiesString = fileSystem.readFileSync("translation.properties").toString();
-msg.load(new StringReader(propertiesString));
-
-
 def checkAndSetSessionId = { YokeRequest request ->
 	if(request.getSessionId() == null) {
 		id = UUID.randomUUID().toString();
@@ -33,19 +25,16 @@ Mac mac = Utils.newHmacSHA256("SecretPassword");
 
 new GYoke(vertx)
   .engine('html', new GroovyTemplateEngine())
+  
+  .use(new Translation("translation.properties"))
+  
   .use(new Session(mac))
+  .use(new CookieParser(mac))
+  
   .use(new ErrorHandler(true))
-//  .use("/web", {request, next -> staticHandler.handle(request, next)})
   .use("/static", new Static(".", 0, false, false))
-//  .use(new GRouter()
-//    .get("/hello") { request ->
-//        request.response.end "Hello World!"
-//    }
-
-//  .use {request ->
-//    request.response.end "maybe you should go to /hello or /template!"
-//  }
-  .use("/processLogin", new BodyParser())
+  
+  .use("/login/processLogin", new BodyParser())
   .use(new GRouter()
 	  .get("/", { YokeRequest request -> 
 		  checkAndSetSessionId(request);
@@ -54,7 +43,6 @@ new GYoke(vertx)
 		  checkAndSetSessionId(request);
 		  println "matched index"
           request.put('session', request.getSessionId())
-		  request.put('msg', msg)
           request.response.render 'views/index.html', next
       })
 	  .get("/login", { YokeRequest request, next ->
@@ -62,7 +50,6 @@ new GYoke(vertx)
 		  println "matched login"
 		  request.put('session', request.getSessionId())
 		  request.put('user', "usernameXYZ")
-		  request.put('msg', msg)
 		  request.response.render 'views/login.html', next
 	  })
 	  .post("/login/processLogin", { YokeRequest request, next ->
@@ -81,7 +68,6 @@ new GYoke(vertx)
 		  
 		  request.put('session', request.getSessionId())
 		  request.put('user', "usernameXYZ")
-		  request.put('msg', msg)
 		  request.put('result', result.toString())
 		  request.response.render 'views/loginResult.html', next
 	  })
