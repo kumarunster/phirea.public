@@ -2,6 +2,10 @@ import java.util.Map;
 
 import javax.crypto.Mac;
 
+import model.ModelConverter;
+import model.User;
+import model.types.GenderType;
+
 import org.vertx.groovy.core.file.FileSystem;
 
 import com.jetdrone.vertx.yoke.middleware.*
@@ -28,13 +32,14 @@ new GYoke(vertx)
   
   .use(new Translation("translation.properties"))
   
-  .use(new Session(mac))
   .use(new CookieParser(mac))
+  .use(new Session(mac))
   
   .use(new ErrorHandler(true))
   .use("/static", new Static(".", 0, false, false))
   
   .use("/login/processLogin", new BodyParser())
+  .use("/ajaxRequest", new BodyParser())
   .use(new GRouter()
 	  .get("/", { YokeRequest request -> 
 		  checkAndSetSessionId(request);
@@ -70,6 +75,33 @@ new GYoke(vertx)
 		  request.put('user', "usernameXYZ")
 		  request.put('result', result.toString())
 		  request.response.render 'views/loginResult.html', next
+	  })
+	  .post("/ajaxRequest", { YokeRequest request, next ->
+		  checkAndSetSessionId(request);
+		  println "matched /ajaxRequest"
+
+		  def result = "leer"
+		  
+		  println result
+		  
+		  def body = request.body();
+		  println "body: " + body
+		  
+		  String responseJSON = "";
+		  
+		  if(body != null) {
+		  	User user = ModelConverter.createUser(body.toString());
+			user.setGender(GenderType.MALE);
+			user.setlName("Mustermann!");
+			
+			responseJSON = ModelConverter.createJson(user);
+		  }
+		  
+		  
+		  request.put('session', request.getSessionId())
+		  request.put('user', "usernameXYZ")
+		  request.put('result', result.toString())
+		  request.response.end responseJSON
 	  })
 	  	  	
   )

@@ -1,27 +1,37 @@
 package model.types;
 
 public enum GenderType {
-	MALE("Male"),
-	FEMALE("Female");
 	
-	private String genderCode;
+  MALE("M", "male"),
+  FEMALE("F", "female");
+  
+  String code;
+  String translationCode;
+  
+  private GenderType(String code, String translationCode)
+  {
+    this.code = code;
+    this.translationCode = translationCode;
+  }
 
-	private GenderType(String genderCode) {
-		this.genderCode = genderCode;
-	}
-	
-	public String getGenderCode() {
-		return this.genderCode;
-	}
-	
-	public static GenderType findByValue(String genderCode) {
-		for (GenderType genderType : GenderType.values()) {
-			if(genderType.getGenderCode().equals(genderCode))
-				return genderType;
-		}
-		
-		return null;
-	}
+  public String getCode()
+  {
+    return code;
+  }
+
+  public String getTranslationCode()
+  {
+    return translationCode;
+  }
+  
+  public static GenderType findByCode(String code) {
+	  for(GenderType type : GenderType.values()) {
+		  if(type.getCode().equals(code))
+			  return type;
+	  }
+	  
+	  return null;
+  }
 	
 
 }

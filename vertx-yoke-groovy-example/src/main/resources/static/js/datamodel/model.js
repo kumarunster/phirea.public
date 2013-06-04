@@ -38,6 +38,7 @@ stjs.extend(User, null, [], function(constructor, prototype){
     prototype.lName = null;
     prototype.email = null;
     prototype.gender = null;
+    prototype.passwd = null;
     prototype.getfName = function() {
         return this.fName;
     };
@@ -61,6 +62,12 @@ stjs.extend(User, null, [], function(constructor, prototype){
     };
     prototype.setGender = function(gender) {
         this.gender = gender;
+    };
+    prototype.getPasswd = function() {
+        return this.passwd;
+    };
+    prototype.setPasswd = function(passwd) {
+        this.passwd = passwd;
     };
 	constructor.createFromJSON = function(json) {
         return stjs.parseJSON(json, User);
