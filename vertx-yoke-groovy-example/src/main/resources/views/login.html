@@ -68,10 +68,12 @@
 <!-- 		aria-hidden="true">×</button> -->
 <!-- 	<h3 id="myModalLabel">Modal header</h3> -->
 <!-- </div> -->
+| SessionId: ${session}
 <div class="modal-body" style="max-height: 500px;">
 	<legend>Sign Up</legend>
 	<div class="well">
 		<form id="signup" class="form-horizontal" method="post" action="login/processLogin">
+			<fieldset>
 			<div class="control-group">
 				<label class="control-label">${msg.get('firstName')}</label>
 				<div class="controls">
@@ -110,11 +112,12 @@
 				<div class="controls">
 
 					<p>
-					<div id="gender" name="gender" class="btn-group"
+					<div id="genderGrp" name="gender" class="gender btn-group"
 						data-toggle="buttons-radio">
 						<button type="button" class="btn btn-info">${msg.get('male')}</button>
 						<button type="button" class="btn btn-info">${msg.get('female')}</button>
 					</div>
+					<input type="hidden" id="gender" name="gender"/>
 					</p>
 
 				</div>
@@ -147,6 +150,7 @@
 				</div>
 
 			</div>
+			</fieldset>
 		</form>
 
 	</div>
@@ -164,8 +168,10 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/static/js/jquery-1.7.1.min.js"></script>
+    <script src="/static/js/jquery.validate.min.js"></script>
     <script src="/static/js/bootstrap.js"></script>
     <script src="/static/js/myCode.js"></script>
-    
-  </body>
+	<script src="/static/js/views/login.js"></script>
+
+</body>
 </html>

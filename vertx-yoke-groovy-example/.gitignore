@@ -1,3 +1,6 @@
 /.settings
 /bin
 /build
+/.idea
+/.gradle
+/gradle-app.setting
