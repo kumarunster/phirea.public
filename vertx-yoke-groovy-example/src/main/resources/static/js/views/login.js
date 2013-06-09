@@ -1,4 +1,7 @@
 
+var eb = null;
+
+
 $(document).ready(function() {
 
 	$("#genderGrp button").click(function () {
@@ -27,6 +30,15 @@ $(document).ready(function() {
 //		errorClass : "help-block"
 //
 //	});
+	
+	if(eb == null) {
+		eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
+		
+		eb.onopen = function() {
+			console.log("opened bus");
+		};
+	}
+	
 });
 
 
@@ -37,22 +49,33 @@ var sendAjaxJson = function() {
 	
 	var data = JSON.stringify(user);
 	
-	console.log("sending ajax request with " + data);
+//	console.log("sending ajax request with " + data);
+//	
+//	var request = $.ajax({
+//		url : "ajaxRequest",
+//		type : "POST",
+//		data : data,
+//		contentType: "application/json; charset=utf-8",
+//		dataType : "json"
+//		
+//			
+//	});
+//	
+//	request.done(function(msg, state, response) {
+//		console.log("request done" + msg);
+//		
+//		var userResponse = User.createFromJSON(response.responseText);
+//		console.log("generated user: " + userResponse);
+//	});
 	
-	var request = $.ajax({
-		url : "ajaxRequest",
-		type : "POST",
-		data : data,
-		contentType: "application/json; charset=utf-8",
-		dataType : "json"
-		
-			
-	});
+	var msg = {
+		 body : "ping!"     
+	};
 	
-	request.done(function(msg, state, response) {
-		console.log("request done" + msg);
-		
-		var userResponse = User.createFromJSON(response.responseText);
-		console.log("generated user: " + userResponse);
+	
+	console.log("sending " + msg.body);
+	eb.send('test.handler', msg, function(reply) {
+		console.log("received " + reply.answer);
 	});
+	  
 }

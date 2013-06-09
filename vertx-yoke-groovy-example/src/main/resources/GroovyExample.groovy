@@ -1,17 +1,19 @@
-import java.util.Map;
+import javax.crypto.Mac
 
-import javax.crypto.Mac;
+import model.ModelConverter
+import model.User
+import model.types.GenderType
 
-import model.ModelConverter;
-import model.User;
-import model.types.GenderType;
+import org.vertx.groovy.core.Vertx
+import org.vertx.groovy.core.http.HttpServer
+import org.vertx.groovy.core.http.ServerWebSocket
+import org.vertx.java.core.json.JsonArray
+import org.vertx.java.core.json.JsonObject
 
-import org.vertx.groovy.core.file.FileSystem;
-
-import com.jetdrone.vertx.yoke.middleware.*
-import com.jetdrone.vertx.yoke.util.Utils;
 import com.jetdrone.vertx.yoke.GYoke
 import com.jetdrone.vertx.yoke.engine.GroovyTemplateEngine
+import com.jetdrone.vertx.yoke.middleware.*
+import com.jetdrone.vertx.yoke.util.Utils
 
 
 
@@ -27,7 +29,23 @@ def checkAndSetSessionId = { YokeRequest request ->
 
 Mac mac = Utils.newHmacSHA256("SecretPassword");
 
-new GYoke(vertx)
+
+HttpServer server = ((Vertx)vertx).createHttpServer();
+
+
+Map para1 = [prefix: '/eventbus'];
+List para2 = [
+		// Allow calls to ...
+		[
+		  address: 'test.handler'
+		],
+	] 
+
+JsonObject obj = new JsonObject();
+obj.putString("prefix", "/eventbus");
+ 
+
+GYoke gyoke = new GYoke(vertx)
   .engine('html', new GroovyTemplateEngine())
   
   .use(new Translation("translation.properties"))
@@ -104,5 +122,23 @@ new GYoke(vertx)
 		  request.response.end responseJSON
 	  })
 	  	  	
-  )
-  .listen(8080)
+  ).listen(server);
+
+List<Object> permitted = new ArrayList<>();
+
+//  ((Vertx)vertx).toJavaVertx().createSockJSServer(server.toJavaServer())
+//		  .bridge( obj, new JsonArray(permitted), new JsonArray());
+  
+//		  gyoke.listen(server);
+
+def config = ["prefix": "/eventbus"]
+
+((Vertx)vertx).createSockJSServer(server).bridge(config, [[:]], [[:]])
+
+  
+((Vertx) vertx).eventBus.registerHandler("test.handler") { message ->
+	println "received message"  
+	message.reply([answer: "pong!"])
+}
+
+server.listen(8080);
