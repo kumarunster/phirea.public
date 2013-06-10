@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
   <head>
     <meta charset="utf-8">
     <title>Template &middot; Bootstrap Session:</title>
@@ -70,7 +70,7 @@
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#">About</a></li>
-          <li><a href="javascript:void();" onclick="show_modal_large('../login', function(){console.log('callback after hide modal dialog...')});">Contact</a></li>
+          <li><a ng-controller="LoginCtrl" ng-click="createNewUser()" data-toggle="modal" href="#loginModal">Login</a></li>
         </ul>
         <h3 class="muted">Project name</h3>
       </div>
@@ -116,17 +116,33 @@
       </div>
 
     </div> <!-- /container -->
+    
+    <div class="modal hide fade" ng-include="'login-partial.html'" id="loginModal"></div>
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/static/js/jquery-1.7.1.min.js"></script>
-    <script src="/static/js/jquery.validate.min.js"></script>
-    <script src="/static/js/bootstrap.js"></script>
-    <script src="/static/js/myCode.js"></script>
+    <script src="/static/js/lib/jquery-1.7.1.min.js"></script>
     
+    <script src="/static/js/lib/angular/angular.js"></script>
+    <script src="/static/js/lib/bootstrap.js"></script>
     <script src="/static/js/datamodel/stjs.js"></script>
-    <script src="/static/js/datamodel/model.js"></script>
+  	
+  	<script src="/static/js/app.js"></script>
+	<script src="/static/js/filters.js"></script>
+	<script src="/static/js/directives.js"></script>
+	
+    <script src="/static/js/user/User.model.js"></script>
+	<script src="/static/js/user/User.services.js"></script>
+	<script src="/static/js/user/User.controllers.js"></script>
+  	
+	<script src="/static/js/lib/jquery.validate.min.js"></script>
+    
+<!--     <script src="/static/js/myCode.js"></script> -->
+    <script src="/static/js/lib/sockjs-0.3.min.js"></script>
+    <script src="/static/js/lib/vertxbus.js"></script>
+    <script src="/static/js/common-infrastructure.js"></script>
+    
     
   </body>
 </html>

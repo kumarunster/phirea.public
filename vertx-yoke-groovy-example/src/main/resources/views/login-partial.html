@@ -1,0 +1,94 @@
+
+| SessionId: ${session}
+<div class="modal-body" ng-controller="LoginCtrl" style="max-height: 500px;">
+	<legend>Sign Up</legend>
+	<div class="well">
+		<form id="signup" class="form-horizontal" method="post" action="login/processLogin">
+			<fieldset>
+			<div class="control-group">
+				<label class="control-label">${msg.get('firstName')}</label>
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on">
+							<i class="icon-user"></i>
+						</span> 
+						<input
+							type="text" class="input-xlarge" 
+							ng-model="user.fName"
+							placeholder="${msg.get('firstName')}">
+					</div>
+				</div>
+			</div>
+			<div class="control-group ">
+				<label class="control-label">${msg.get('lastName')}</label>
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on"><i class="icon-user"></i></span> <input
+							type="text" class="input-xlarge" 
+							ng-model="user.lName"
+							placeholder="${msg.get('lastName')}">
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">${msg.get('email')}</label>
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on"><i class="icon-envelope"></i></span> <input
+							type="text" class="input-xlarge" 
+							ng-model="user.email"
+							placeholder="${msg.get('email')}">
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">${msg.get('gender')}</label>
+				<div class="controls">
+
+					<p>
+					<div id="genderGrp" name="gender" class="gender btn-group"
+						data-toggle="buttons-radio">
+						<button type="button" class="btn btn-info">${msg.get('male')}</button>
+						<button type="button" class="btn btn-info">${msg.get('female')}</button>
+					</div>
+					<input type="hidden" ng-model="user.gender"/>
+					</p>
+
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">${msg.get('password')}</label>
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on"><i class="icon-lock"></i></span> <input
+							type="Password" class="input-xlarge" 
+							ng-model="user.passwd"
+							placeholder="${msg.get('password')}">
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">${msg.get('confirmPassword')}</label>
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on"><i class="icon-lock"></i></span> <input
+							type="Password" id="conpasswd" class="input-xlarge"
+							name="conpasswd" placeholder="${msg.get('reEnterPassword')}">
+					</div>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label"></label>
+				<div class="controls">
+					<button ng-click="storeUser()" class="btn btn-success">${msg.get('createMyAccount')}</button>
+				</div>
+
+			</div>
+			</fieldset>
+		</form>
+		
+	</div>
+
+
+</div>
