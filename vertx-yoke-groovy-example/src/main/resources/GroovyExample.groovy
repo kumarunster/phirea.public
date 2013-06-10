@@ -5,6 +5,7 @@ import model.User
 import model.types.GenderType
 
 import org.vertx.groovy.core.Vertx
+import org.vertx.groovy.core.eventbus.Message;
 import org.vertx.groovy.core.http.HttpServer
 import org.vertx.groovy.core.http.ServerWebSocket
 import org.vertx.java.core.json.JsonArray
@@ -136,9 +137,20 @@ def config = ["prefix": "/eventbus"]
 ((Vertx)vertx).createSockJSServer(server).bridge(config, [[:]], [[:]])
 
   
-((Vertx) vertx).eventBus.registerHandler("test.handler") { message ->
-	println "received message"  
-	message.reply([answer: "pong!"])
+((Vertx) vertx).eventBus.registerHandler("user.signup.handler") { Message message ->
+	
+	println "received message" + message.body
+	
+	def userPayload = message.body.user;
+	if(userPayload != null) {
+		User user = ModelConverter.createUser(userPayload);
+		user.setGender(GenderType.MALE);
+		user.setlName("Mustermann with SockJS!");
+		
+		message.reply([answer: user])
+	}
+	else
+		message.reply([answer: null])
 }
 
 server.listen(8080);

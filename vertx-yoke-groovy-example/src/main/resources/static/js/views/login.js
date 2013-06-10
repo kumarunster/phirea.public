@@ -49,33 +49,45 @@ var sendAjaxJson = function() {
 	
 	var data = JSON.stringify(user);
 	
-//	console.log("sending ajax request with " + data);
-//	
-//	var request = $.ajax({
-//		url : "ajaxRequest",
-//		type : "POST",
-//		data : data,
-//		contentType: "application/json; charset=utf-8",
-//		dataType : "json"
-//		
-//			
-//	});
-//	
-//	request.done(function(msg, state, response) {
-//		console.log("request done" + msg);
-//		
-//		var userResponse = User.createFromJSON(response.responseText);
-//		console.log("generated user: " + userResponse);
-//	});
+	console.log("ajax: sending request with " + data);
+	
+	var request = $.ajax({
+		url : "ajaxRequest",
+		type : "POST",
+		data : data,
+		contentType: "application/json; charset=utf-8",
+		dataType : "json"	
+	});
+	
+	request.done(function(msg, state, response) {
+		console.log("ajax: request done" + msg);
+		var userResponse = User.createFromJSON(response.responseText);
+		console.log("ajax: responsed user: " + JSON.stringify(userResponse));
+	});
+	  
+}
+
+
+
+var sendSockJsJson = function() {
+	var user = new User();
+	user.fName = "Max";
+	
+	var data = JSON.stringify(user);
 	
 	var msg = {
-		 body : "ping!"     
+		 user : data     
 	};
 	
-	
-	console.log("sending " + msg.body);
-	eb.send('test.handler', msg, function(reply) {
-		console.log("received " + reply.answer);
+	console.log("sockjs: sending request with " + msg.user);
+	eb.send('user.signup.handler', msg, function(reply) {
+		
+		console.log("sockjs: received " + reply.answer);
+		if(reply.answer != null) {
+			var userResponse = User.createFromJSON(JSON.stringify(reply.answer) );
+			console.log("sockjs: responsed user: " + JSON.stringify(userResponse) );
+		}
+		
 	});
 	  
 }
