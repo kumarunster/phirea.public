@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('LoginCtrl', function($scope) {
+  controller('LoginCtrl', function($scope, loginService) {
 	  
 	  $scope.createNewUser = function() {
 		  var newUser = new User();
@@ -15,6 +15,7 @@ angular.module('myApp.controllers', []).
 	  $scope.storeUser = function() {
 		  var jsonUser = JSON.stringify($scope.user);
 		  console.log("storing user: " + jsonUser);
+		  loginService.storeUser($scope.user);
 	  };
   })
   .controller('MyCtrl2', [function() {

@@ -7,9 +7,9 @@
 // In this case it is a simple value service.
 angular.module('myApp.services', [])
 	.value('version', '0.1')
-	.service('blub', function() {
-			var user = new User();
-			user.fName = "Max";
+	.service('loginService', function() {
+		
+		this.storeUser = function(user) {
 			
 			var data = JSON.stringify(user);
 			
@@ -27,5 +27,6 @@ angular.module('myApp.services', [])
 				}
 				
 			});
+		};
 			  
 	});
