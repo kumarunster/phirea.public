@@ -3,7 +3,7 @@
 <div class="modal-body" ng-controller="LoginCtrl" style="max-height: 500px;">
 	<legend>Sign Up</legend>
 	<div class="well">
-		<form id="signup" class="form-horizontal" method="get" action="#">
+		<form id="signup" class="form-horizontal" novalidate>
 			<fieldset>
 			<div class="control-group">
 				<label class="control-label">${msg.get('firstName')}</label>
@@ -15,7 +15,11 @@
 						<input
 							type="text" class="input-xlarge" 
 							ng-model="user.fName"
-							placeholder="${msg.get('firstName')}">
+							placeholder="${msg.get('firstName')}"
+							required />
+						<div class="input-help">
+					      <h4>First name is required, please fill it</h4>
+					    </div>
 					</div>
 				</div>
 			</div>
@@ -23,10 +27,15 @@
 				<label class="control-label">${msg.get('lastName')}</label>
 				<div class="controls">
 					<div class="input-prepend">
-						<span class="add-on"><i class="icon-user"></i></span> <input
+						<span class="add-on"><i class="icon-user"></i></span> 
+						<input
 							type="text" class="input-xlarge" 
 							ng-model="user.lName"
-							placeholder="${msg.get('lastName')}">
+							placeholder="${msg.get('lastName')}"
+							required />
+                        <div class="input-help">
+                          <h4>Last name is required, please fill it</h4>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -34,10 +43,16 @@
 				<label class="control-label">${msg.get('email')}</label>
 				<div class="controls">
 					<div class="input-prepend">
-						<span class="add-on"><i class="icon-envelope"></i></span> <input
-							type="text" class="input-xlarge" 
+						<span class="add-on"><i class="icon-envelope"></i></span> 
+						<input
+							type="email" class="input-xlarge" 
 							ng-model="user.email"
-							placeholder="${msg.get('email')}">
+							placeholder="${msg.get('email')}"
+							required
+							/>
+						<div class="input-help">
+                          <h4>Correct email is required, please fill it</h4>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -60,10 +75,20 @@
 				<label class="control-label">${msg.get('password')}</label>
 				<div class="controls">
 					<div class="input-prepend">
-						<span class="add-on"><i class="icon-lock"></i></span> <input
+						<span class="add-on"><i class="icon-lock"></i></span> 
+						<input
 							type="Password" class="input-xlarge" 
 							ng-model="user.passwd"
-							placeholder="${msg.get('password')}">
+							placeholder="${msg.get('password')}"
+							ph-password-validate />
+						<div class="input-help">
+					      <h4>Password must meet the following requirements:</h4>
+					      <ul>
+					        <li ng-class="pwdHasLetter">At least <strong>one letter</strong></li>
+					        <li ng-class="pwdHasNumber">At least <strong>one number</strong></li>
+					        <li ng-class="pwdValidLength">At least <strong>8 characters long</strong></li>
+					      </ul>
+					    </div>
 					</div>
 				</div>
 			</div>
@@ -71,9 +96,17 @@
 				<label class="control-label">${msg.get('confirmPassword')}</label>
 				<div class="controls">
 					<div class="input-prepend">
-						<span class="add-on"><i class="icon-lock"></i></span> <input
+						<span class="add-on"><i class="icon-lock"></i></span> 
+						<input
 							type="Password" id="conpasswd" class="input-xlarge"
-							name="conpasswd" placeholder="${msg.get('reEnterPassword')}">
+							name="conpasswd" placeholder="${msg.get('reEnterPassword')}" 
+							ng-model="passwdConfirm"
+							ph-password-confirm-validate />
+					   <div class="input-help">
+                          <h4 ng-class="pwdConfirmValid">
+                          	Password confirmation should be the same as the password
+                          </h4>
+                        </div>
 					</div>
 				</div>
 			</div>

@@ -9,6 +9,7 @@ angular.module('myApp.controllers', []).
 		  var newUser = new User();
 		  newUser.fName = "Kolja;)";
 		  $scope.user = newUser; 
+		  $scope.passwdConfirm = undefined;
 		    
 	  };
 	  
