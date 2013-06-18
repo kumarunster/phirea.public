@@ -3,7 +3,7 @@
 <div class="modal-body" ng-controller="LoginCtrl" style="max-height: 500px;">
 	<legend>Sign Up</legend>
 	<div class="well">
-		<form id="signup" class="form-horizontal" novalidate>
+		<form id="signup" name="signupForm" class="form-horizontal" novalidate>
 			<fieldset>
 			<div class="control-group">
 				<label class="control-label">${msg.get('firstName')}</label>
@@ -13,11 +13,12 @@
 							<i class="icon-user"></i>
 						</span> 
 						<input
+                            name="fName"
 							type="text" class="input-xlarge" 
 							ng-model="user.fName"
 							placeholder="${msg.get('firstName')}"
-							required />
-						<div class="input-help">
+							ng-required="true" />
+						<div class="input-help" ng-show="signupForm.fName.$invalid">
 					      <h4>First name is required, please fill it</h4>
 					    </div>
 					</div>

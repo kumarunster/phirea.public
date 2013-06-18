@@ -18,7 +18,8 @@ angular.module('myApp.services', [])
 			};
 			
 			console.log("sockjs: sending request with " + msg.user);
-			eb.send('user.signup.handler', msg, function(reply) {
+			/*
+            eb.send('user.signup.handler', msg, function(reply) {
 				
 				console.log("sockjs: received " + reply.answer);
 				if(reply.answer != null) {
@@ -27,6 +28,7 @@ angular.module('myApp.services', [])
 				}
 				
 			});
+			*/
 		};
 			  
 	});

@@ -14,9 +14,14 @@ angular.module('myApp.controllers', []).
 	  };
 	  
 	  $scope.storeUser = function() {
-		  var jsonUser = JSON.stringify($scope.user);
-		  console.log("storing user: " + jsonUser);
-		  loginService.storeUser($scope.user);
+          if($scope.signupForm.$valid) {
+              var jsonUser = JSON.stringify($scope.user);
+              console.log("storing user: " + jsonUser);
+              loginService.storeUser($scope.user);
+          }
+          else
+            console.log("form is not valid!")
+
 	  };
   })
   .controller('MyCtrl2', [function() {

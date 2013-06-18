@@ -67,20 +67,20 @@ GYoke gyoke = new GYoke(vertx)
 		  checkAndSetSessionId(request);
 		  println "matched index"
           request.put('session', request.getSessionId())
-          request.response.render 'views/index.html', next
+          request.response.render 'static/views/index.html', next
       })
 	  .get("/login", { YokeRequest request, next ->
 		  checkAndSetSessionId(request);
 		  println "matched login"
 		  request.put('session', request.getSessionId())
 		  request.put('user', "usernameXYZ")
-		  request.response.render 'views/login.html', next
+		  request.response.render 'static/views/login.html', next
 	  })
 	  .get("/login-partial.html", { YokeRequest request, next ->
 		  checkAndSetSessionId(request);
 		  println "matched login-partial"
 		  request.put('session', request.getSessionId())
-		  request.response.render 'views/login-partial.html', next
+		  request.response.render 'static/views/login-partial.html', next
 	  })
 	  .post("/login/processLogin", { YokeRequest request, next ->
 		  checkAndSetSessionId(request);
@@ -99,7 +99,7 @@ GYoke gyoke = new GYoke(vertx)
 		  request.put('session', request.getSessionId())
 		  request.put('user', "usernameXYZ")
 		  request.put('result', result.toString())
-		  request.response.render 'views/loginResult.html', next
+		  request.response.render 'static/views/loginResult.html', next
 	  })
 	  .post("/ajaxRequest", { YokeRequest request, next ->
 		  checkAndSetSessionId(request);
