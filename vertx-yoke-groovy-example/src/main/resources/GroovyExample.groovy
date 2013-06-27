@@ -4,6 +4,7 @@ import model.ModelConverter
 import model.User
 import model.types.GenderType
 
+import org.springframework.remoting.rmi.RmiClientInterceptor.DummyURLStreamHandler;
 import org.vertx.groovy.core.Vertx
 import org.vertx.groovy.core.eventbus.Message;
 import org.vertx.groovy.core.http.HttpServer
@@ -17,6 +18,17 @@ import com.jetdrone.vertx.yoke.middleware.*
 import com.jetdrone.vertx.yoke.util.Utils
 
 
+
+
+Map<String, User> userStore = new LinkedHashMap<String, User>();
+
+User dummyUser = new User();
+dummyUser.fName = "Dummy";
+dummyUser.lName = "User";
+dummyUser.passwd = "1";
+dummyUser.email = "test@example.com";
+
+userStore.put(dummyUser.email, dummyUser);
 
 
 def checkAndSetSessionId = { YokeRequest request ->
@@ -151,12 +163,34 @@ def config = ["prefix": "/eventbus"]
 	if(userPayload != null) {
 		User user = ModelConverter.createUser(userPayload);
 		user.setGender(GenderType.MALE);
-		user.setlName("Mustermann with SockJS!");
+		
+		userStore.put(user.getEmail(), user);
+		
+		println "user stored!"
 		
 		message.reply([answer: user])
 	}
 	else
 		message.reply([answer: null])
 }
+
+
+((Vertx) vertx).eventBus.registerHandler("user.service.handler") { Message message ->
+	
+	println "received message" + message.body
+	
+	def actionPayload = message.body.action;
+	if(actionPayload != null) {
+		
+		if('findAllUser'.equals(actionPayload)) {
+			def responseMsg = ModelConverter.createJson(userStore.values());
+			message.reply([answer: responseMsg]);
+		}
+		
+	}
+	else
+		message.reply([answer: null])
+}
+
 
 server.listen(8080);

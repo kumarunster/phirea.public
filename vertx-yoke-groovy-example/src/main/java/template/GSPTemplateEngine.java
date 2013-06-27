@@ -1,6 +1,7 @@
 package template;
 
 import grails.gsp.PageRenderer;
+import groovy.lang.MissingPropertyException;
 import groovy.text.Template;
 
 import java.io.IOException;
@@ -8,16 +9,20 @@ import java.io.Writer;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.codehaus.groovy.control.CompilationFailedException;
 import org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine;
 import org.codehaus.groovy.grails.web.pages.discovery.GrailsConventionGroovyPageLocator;
 import org.vertx.java.core.AsyncResult;
 import org.vertx.java.core.AsyncResultHandler;
 import org.vertx.java.core.Handler;
+import org.vertx.java.core.Vertx;
+import org.vertx.java.core.buffer.Buffer;
 
 import com.jetdrone.vertx.yoke.Engine;
+import com.jetdrone.vertx.yoke.engine.AbstractEngine;
 import com.jetdrone.vertx.yoke.util.YokeAsyncResult;
 
-public class GSPTemplateEngine  extends Engine<Template> {
+public class GSPTemplateEngine  extends AbstractEngine<Template>{
 
 //    private final TemplateEngine engine = new SimpleTemplateEngine();
     private final GroovyPagesTemplateEngine engine = new GroovyPagesTemplateEngine();
@@ -26,14 +31,14 @@ public class GSPTemplateEngine  extends Engine<Template> {
     public GSPTemplateEngine() {
     	pageRenderer.setGroovyPageLocator(new GrailsConventionGroovyPageLocator());
 	}
-
+    
     @Override
-    public void render(final String filename, final Map<String, Object> context, final Handler<AsyncResult<String>> next) {
+    public void render(final String filename, final Map<String, Object> context, final Handler<AsyncResult<Buffer>> next) {
         read(filename, new AsyncResultHandler<String>() {
             @Override
             public void handle(AsyncResult<String> asyncResult) {
                 if (asyncResult.failed()) {
-                    next.handle(new YokeAsyncResult<String>(asyncResult.cause()));
+                    next.handle(new YokeAsyncResult<Buffer>(asyncResult.cause()));
                 } else {
                     try {
 //                        String result = internalRender(compile(filename, asyncResult.result()), context);
@@ -42,9 +47,9 @@ public class GSPTemplateEngine  extends Engine<Template> {
                     	parameter.put("model", context);
                     	String result = pageRenderer.render(parameter);
                     	
-                        next.handle(new YokeAsyncResult<>(result));
+                        next.handle(new YokeAsyncResult<Buffer>( new Buffer(result) ) );
                     } catch (Exception ex) {
-                        next.handle(new YokeAsyncResult<String>(ex));
+                        next.handle(new YokeAsyncResult<Buffer>(ex));
                     }
                 }
             }
@@ -85,4 +90,5 @@ public class GSPTemplateEngine  extends Engine<Template> {
 
         return buffer.toString();
     }
+
 }

@@ -1,6 +1,6 @@
 
 | SessionId: ${session}
-<div class="modal-body" ng-controller="LoginCtrl" style="max-height: 500px;">
+<div class="modal-body" ng-controller="UserCtrl" style="max-height: 500px;">
 	<legend>Sign Up</legend>
 	<div class="well">
 		<form id="signup" name="signupForm" class="form-horizontal" novalidate>
@@ -17,8 +17,8 @@
 							type="text" class="input-xlarge" 
 							ng-model="user.fName"
 							placeholder="${msg.get('firstName')}"
-							ng-required="true" />
-						<div class="input-help" ng-show="signupForm.fName.$invalid">
+							ng-required="true" />	
+						<div class="input-help">
 					      <h4>First name is required, please fill it</h4>
 					    </div>
 					</div>

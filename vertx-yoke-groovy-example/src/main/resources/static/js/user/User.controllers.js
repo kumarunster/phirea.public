@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('LoginCtrl', function($scope, loginService) {
+  controller('UserCtrl', function($scope, loginService, userService) {
 	  
 	  $scope.createNewUser = function() {
 		  var newUser = new User();
@@ -22,6 +22,11 @@ angular.module('myApp.controllers', []).
           else
             console.log("form is not valid!")
 
+	  };
+	  
+	  $scope.findAllUser = function() {
+		  console.log("try to find all users!")
+          return userService.findAllUser();
 	  };
   })
   .controller('MyCtrl2', [function() {

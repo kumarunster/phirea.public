@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import model.types.GenderType;
 
 import org.stjs.server.json.gson.GsonAdapters;
@@ -17,6 +19,15 @@ public class ModelConverter {
 	    Gson gson = gsonBuilder.create();
 	    
 	    return gson.toJson(user);	    
+	}
+	
+	public static String createJson(List<User> users) {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+	    GsonAdapters.addAll(gsonBuilder);
+	    
+	    Gson gson = gsonBuilder.create();
+	    
+	    return gson.toJson(users);	    
 	}
 	
 	public static User createUser(String json) {

@@ -9,6 +9,7 @@ angular.module('myApp.directives', [])
       elm.text(version);
     };
   }])
+  /*
   .directive('phPasswordValidate', function() {
     return {
         require: 'ngModel',
@@ -49,4 +50,6 @@ angular.module('myApp.directives', [])
             });
         }  
     };  
-  });
+  })
+  */
+  ;

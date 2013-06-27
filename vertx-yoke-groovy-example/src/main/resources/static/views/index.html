@@ -73,13 +73,39 @@
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#">About</a></li>
-          <li><a ng-controller="LoginCtrl" ng-click="createNewUser()" ng data-toggle="modal" href="#loginModal">Login</a></li>
+          <li><a ng-controller="UserCtrl" ng-click="createNewUser()" ng data-toggle="modal" href="#loginModal">Login</a></li>
         </ul>
         <h3 class="muted">Project name</h3>
       </div>
 
       <hr>
 	  | SessionId: ${session}
+
+
+		<div class="container-fluid">
+			<div class="row-fluid" ng-controller="UserCtrl">
+				<div class="span2">
+					<!--Sidebar content-->
+
+					Search: <input ng-model="query">
+
+				</div>
+				<div class="span10">
+					<!--Body content-->
+
+					<ul class="phones">
+						<li ng-repeat="user in findAllUser | filter:query">
+							{{user.fName}}, {{user.lName}}, {{user.email}}
+						</li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+
+
+		<!-- 
+      
       <div class="jumbotron">
         <h1>Super awesome marketing speak!</h1>
         <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
@@ -111,7 +137,8 @@
           <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
         </div>
       </div>
-
+      
+	   -->	
       <hr>
 
       <div class="footer">
@@ -143,8 +170,8 @@
 	<script src="../../static/js/lib/jquery.validate.min.js"></script>
     
 <!--     <script src="/static/js/myCode.js"></script> -->
-<!--    <script src="../../static/js/lib/sockjs-0.3.min.js"></script> -->
-<!--    <script src="../../static/js/lib/vertxbus.js"></script> -->
+   <script src="../../static/js/lib/sockjs-0.3.min.js"></script>
+   <script src="../../static/js/lib/vertxbus.js"></script>
     <script src="../../static/js/common-infrastructure.js"></script>
     
     

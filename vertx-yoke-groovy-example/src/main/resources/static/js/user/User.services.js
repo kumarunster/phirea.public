@@ -18,7 +18,7 @@ angular.module('myApp.services', [])
 			};
 			
 			console.log("sockjs: sending request with " + msg.user);
-			/*
+			/* */
             eb.send('user.signup.handler', msg, function(reply) {
 				
 				console.log("sockjs: received " + reply.answer);
@@ -28,7 +28,31 @@ angular.module('myApp.services', [])
 				}
 				
 			});
-			*/
+			
+		};
+			  
+	})
+	.service('userService', function() {
+		
+		this.findAllUser = function() {
+			
+			var msg = {
+				 action : 'findAllUser'     
+			};
+			
+			console.log("sockjs: sending request with " + msg.action);
+			var result = Array();
+			/* */
+            eb.send('user.service.handler', msg, function(reply) {
+				console.log("sockjs: received " + reply.answer);
+				if(reply.answer != null) {
+					for(var i in reply.answer) {
+						result.add(User.createFromJSON( JSON.stringify(reply.answer[i]) ));
+					}
+				}	
+			});
+            
+            return result;
 		};
 			  
 	});
