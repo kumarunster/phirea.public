@@ -1,9 +1,9 @@
 
 | SessionId: ${session}
-<div class="modal-body" ng-controller="UserCtrl" style="max-height: 500px;">
+<div class="modal-body" style="max-height: 500px;">
 	<legend>Sign Up</legend>
 	<div class="well">
-		<form id="signup" name="signupForm" class="form-horizontal" novalidate>
+		<form id="signup" name="signupForm" ng-controller="SignUpCtrl" class="form-horizontal" novalidate>
 			<fieldset>
 			<div class="control-group">
 				<label class="control-label">${msg.get('firstName')}</label>

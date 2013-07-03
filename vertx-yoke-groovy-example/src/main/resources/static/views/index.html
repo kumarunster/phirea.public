@@ -67,13 +67,13 @@
 
   <body>
 
-    <div class="container-narrow">
+    <div class="container-narrow" ng-controller="UserCtrl">
 
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#">About</a></li>
-          <li><a ng-controller="UserCtrl" ng-click="createNewUser()" ng data-toggle="modal" href="#loginModal">Login</a></li>
+          <li><a ng data-toggle="modal" href="#loginModal">Login</a></li>
         </ul>
         <h3 class="muted">Project name</h3>
       </div>
@@ -83,7 +83,7 @@
 
 
 		<div class="container-fluid">
-			<div class="row-fluid" ng-controller="UserCtrl">
+			<div class="row-fluid" >
 				<div class="span2">
 					<!--Sidebar content-->
 
@@ -94,13 +94,15 @@
 					<!--Body content-->
 
 					<ul class="phones">
-						<li ng-repeat="user in findAllUser | filter:query">
+						<li ng-repeat="user in allUser | filter:query">
 							{{user.fName}}, {{user.lName}}, {{user.email}}
 						</li>
 					</ul>
 
 				</div>
 			</div>
+			
+			{{allUser | json}}
 		</div>
 
 
@@ -145,13 +147,17 @@
         <p>&copy; Company 2013</p>
       </div>
 
+      <div class="modal hide fade" ng-include="'login-partial.html'" id="loginModal"></div>
     </div> <!-- /container -->
     
-    <div class="modal hide fade" ng-include="'login-partial.html'" id="loginModal"></div>
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../static/js/lib/sockjs-0.3.min.js"></script>
+   <script src="../../static/js/lib/vertxbus.js"></script>
+    <script src="../../static/js/common-infrastructure.js"></script>
+    
     <script src="../../static/js/lib/jquery-1.7.1.min.js"></script>
     
     <script src="../../static/js/lib/angular/angular.js"></script>
@@ -170,9 +176,7 @@
 	<script src="../../static/js/lib/jquery.validate.min.js"></script>
     
 <!--     <script src="/static/js/myCode.js"></script> -->
-   <script src="../../static/js/lib/sockjs-0.3.min.js"></script>
-   <script src="../../static/js/lib/vertxbus.js"></script>
-    <script src="../../static/js/common-infrastructure.js"></script>
+   
     
     
   </body>

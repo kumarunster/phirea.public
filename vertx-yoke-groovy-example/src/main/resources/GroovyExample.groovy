@@ -183,7 +183,7 @@ def config = ["prefix": "/eventbus"]
 	if(actionPayload != null) {
 		
 		if('findAllUser'.equals(actionPayload)) {
-			def responseMsg = ModelConverter.createJson(userStore.values());
+			def responseMsg = ModelConverter.createJson(userStore.values().asList());
 			message.reply([answer: responseMsg]);
 		}
 		
