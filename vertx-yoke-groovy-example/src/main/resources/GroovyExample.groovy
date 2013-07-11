@@ -88,11 +88,11 @@ GYoke gyoke = new GYoke(vertx)
 		  request.put('user', "usernameXYZ")
 		  request.response.render 'static/views/login.html', next
 	  })
-	  .get("/login-partial.html", { YokeRequest request, next ->
+	  .get("/signup-partial.html", { YokeRequest request, next ->
 		  checkAndSetSessionId(request);
-		  println "matched login-partial"
+		  println "matched signup-partial"
 		  request.put('session', request.getSessionId())
-		  request.response.render 'static/views/login-partial.html', next
+		  request.response.render 'static/views/signup-partial.html', next
 	  })
 	  .post("/login/processLogin", { YokeRequest request, next ->
 		  checkAndSetSessionId(request);

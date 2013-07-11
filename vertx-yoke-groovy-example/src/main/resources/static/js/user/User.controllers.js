@@ -53,7 +53,7 @@ angular.module('myApp.controllers', []).
               console.log("storing user: " + jsonUser);
               loginService.storeUser($scope.user);
               
-              $('#loginModal').modal('hide');
+              $('#signupModal').modal('hide');
               
               $scope.$emit('updateUserList', 'please do it');
               
