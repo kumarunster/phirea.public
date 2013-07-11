@@ -36,14 +36,12 @@ angular.module('myApp.controllers', []).
   })
   .controller('SignUpCtrl', function($scope, $rootScope, loginService, userService) {
 
-	  var user = new User();
-	  user.fName = "Kolja;)";
-	  var passwdConfirm = undefined;
+	  $scope.user = new User();
+	  $scope.passwdConfirm = undefined;
 	  
 	  
 	  $scope.createNewUser = function() {
 		  var newUser = new User();
-		  newUser.fName = "Kolja;)";
 		  $scope.user = newUser; 
 		  $scope.passwdConfirm = undefined;
 		    
@@ -58,6 +56,9 @@ angular.module('myApp.controllers', []).
               $('#loginModal').modal('hide');
               
               $scope.$emit('updateUserList', 'please do it');
+              
+              $scope.user = new User();
+        	  $scope.passwdConfirm = undefined;
           }
           else
             console.log("form is not valid!");

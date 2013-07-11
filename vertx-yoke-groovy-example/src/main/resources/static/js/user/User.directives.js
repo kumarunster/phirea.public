@@ -9,6 +9,17 @@ angular.module('myApp.directives', [])
       elm.text(version);
     };
   }])
+  .directive('genderToggleValue', function() {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function($scope, element, attr, ctrl) {
+            element.bind('click', function() {
+                eval('$scope.'+attr.ngModel + '=' + attr.genderToggleValue);
+            });
+        }
+    };
+  })
   /*
   .directive('phPasswordValidate', function() {
     return {

@@ -64,10 +64,13 @@
 					<p>
 					<div id="genderGrp" name="gender" class="gender btn-group"
 						data-toggle="buttons-radio">
-						<button type="button" class="btn btn-info">${msg.get('male')}</button>
-						<button type="button" class="btn btn-info">${msg.get('female')}</button>
+						<button type="button" class="btn btn-info" ng-model="user.gender" gender-toggle-value="GenderType.MALE">${msg.get('male')}</button>
+						<button type="button" class="btn btn-info" ng-model="user.gender" gender-toggle-value="GenderType.FEMALE">${msg.get('female')}</button>
 					</div>
-					<input type="hidden" ng-model="user.gender"/>
+					<!-- type="hidden" ng-model="user.gender" value="{{genderTypeValues.MALE}}" btn-gender-toggle 
+					<input id="gender" ng-model="user.gender"/> -->
+					
+					<script src="/static/js/views/login.js" type="text/javascript" ></script>
 					</p>
 
 				</div>

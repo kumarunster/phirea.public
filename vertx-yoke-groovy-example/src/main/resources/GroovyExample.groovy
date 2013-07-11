@@ -162,7 +162,6 @@ def config = ["prefix": "/eventbus"]
 	def userPayload = message.body.user;
 	if(userPayload != null) {
 		User user = ModelConverter.createUser(userPayload);
-		user.setGender(GenderType.MALE);
 		
 		userStore.put(user.getEmail(), user);
 		
