@@ -1,0 +1,51 @@
+
+| SessionId: ${session}
+<div class="modal-body" style="max-height: 500px;">
+	<legend>Login</legend>
+	<div class="well">
+		<form id="login" name="loginForm" ng-controller="LoginCtrl" class="form-horizontal" novalidate>
+			<fieldset>
+			<div class="control-group">
+				<label class="control-label">${msg.get('email')}</label>
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on"><i class="icon-envelope"></i></span> 
+						<input
+							type="email" class="input-xlarge" 
+							ng-model="email"
+							placeholder="${msg.get('email')}"
+							required
+							/>
+						<div class="input-help">
+                          <h4>Correct email is required, please fill it</h4>
+                        </div>
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">${msg.get('password')}</label>
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on"><i class="icon-lock"></i></span> 
+						<input
+							type="Password" class="input-xlarge" 
+							ng-model="password"
+							placeholder="${msg.get('password')}" />
+					</div>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label"></label>
+				<div class="controls">
+					<button ng-click="login()" class="btn btn-success">${msg.get('login')}</button>
+				</div>
+
+			</div>
+			</fieldset>
+		</form>
+		
+	</div>
+
+
+</div>

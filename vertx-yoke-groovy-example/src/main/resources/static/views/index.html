@@ -65,7 +65,7 @@
     
   </head>
 
-  <body>
+  <body sessionId="${session}">
 
     <div class="container-narrow" ng-controller="UserCtrl">
 
@@ -73,8 +73,10 @@
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#">About</a></li>
-          <li><a ng data-toggle="modal" href="#signupModal">Sign-Up</a></li>
-          <li><a ng href="#loginModal">Login</a></li>
+          <li ng-show="currentUser == null"><a ng data-toggle="modal" href="#signupModal">Sign-Up</a></li>
+          <li ng-show="currentUser == null"><a ng data-toggle="modal" href="#loginModal">Login</a></li>
+          <li ng-show="currentUser != null"><a ng data-toggle="modal" href="#userProfil">Hello, {{currentUser.fName}} {{currentUser.lName}}</a></li>
+          <li ng-show="currentUser != null"><a ng href="" ng-click="logout()" >Logout</a></li>
         </ul>
         <h3 class="muted">Project name</h3>
       </div>
@@ -106,7 +108,38 @@
                 </div>
 			</div>
 			
-			{{allUser | json}}
+			
+			
+			<div class="row-fluid" ng-controller="ChatCtrl">
+                <div class="span6">
+                    <div class="row" >
+                        <div class="span12">
+                            //TODO
+                            chat history
+                            <div ng-repeat="msg in messages">
+                                {{msg.sender.fName}}, {{msg.sender.lName}}: {{msg.text}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="display: table-cell;vertical-align: bottom;float: none;">
+                        <div class="span12">
+                            //TODO
+                            text area for current user
+                            <input ng-model="message" />
+                            <button ng-click="sendMessage()">Send</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="span4">
+                    //TODO
+                    names of all actually logged in users
+                    <ul ng-repeat="buddy in loggedInUsers">
+                        <li>{{buddy.fName}}, {{buddy.lName}}</li>
+                    </ul>
+                </div>
+            </div>
+			
+			
 		</div>
 
 
@@ -152,6 +185,7 @@
       </div>
 
       <div class="modal hide fade" ng-include="'signup-partial.html'" id="signupModal"></div>
+      <div class="modal hide fade" ng-include="'login-partial.html'" id="loginModal"></div>
     </div> <!-- /container -->
     
 
@@ -165,6 +199,8 @@
     <script src="../../static/js/lib/jquery-1.7.1.min.js"></script>
     
     <script src="../../static/js/lib/angular/angular.js"></script>
+    <script src="../../static/js/lib/angular/angular-cookies.js"></script>
+    
     <script src="../../static/js/lib/bootstrap.js"></script>
     <script src="../../static/js/datamodel/stjs.js"></script>
   	
