@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', ['ngCookies']).
+angular.module('myApp.controllers', ['ngCookies', 'ngSanitize']).
   controller('UserCtrl', function($scope, $rootScope, loginService, userService) {
 	  
 	  $scope.currentUser = null;	  
@@ -139,8 +139,26 @@ angular.module('myApp.controllers', ['ngCookies']).
 		  });
 	  });
 	  
-	  $scope.sendMessage = function() {
-		  chatService.sendMessage($scope.sender, $scope.message);
+	  $scope.sendMessage = function(event) {
+		  var send = false;
+		  
+		  if(event){
+			  if(event.ctrlKey == true && event.keyCode == 13) {
+				  send = true;
+			  }
+		  }
+		  else {
+			  send = true;
+		  }
+		  
+		  if(send) {
+			  chatService.sendMessage($scope.sender, $scope.message);
+			  $scope.message = null;
+		  }
+	  };
+	  
+	  $scope.logEvent = function(event) {
+		  console.log(event);
 	  };
 	  
   });

@@ -31,6 +31,14 @@ dummyUser.email = "test@example.com";
 
 userStore.put(dummyUser.email, dummyUser);
 
+dummyUser = new User();
+dummyUser.fName = "Bilbo";
+dummyUser.lName = "Baggins";
+dummyUser.passwd = "1";
+dummyUser.email = "bb@one.com";
+
+userStore.put(dummyUser.email, dummyUser);
+
 
 def checkAndSetSessionId = { YokeRequest request ->
 	if(request.getSessionId() == null) {
