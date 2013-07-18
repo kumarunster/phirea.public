@@ -1,3 +1,4 @@
 {
-  "main": "GroovyExample.groovy"
+  "main": "GroovyExample.groovy",
+  "auto-redeploy": true
 }

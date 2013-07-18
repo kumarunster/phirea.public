@@ -47,6 +47,10 @@ angular.module('myApp.services', [])
                         deferredListeners.splice(0, length);
                     });
                 };
+                
+                eb.onclose = function() {
+                    console.log("bus is closed!!! WHY???");
+                }
             }
             
             if(state == 'initializing')
