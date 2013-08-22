@@ -1,20 +1,26 @@
 
+<div class="modal-dialog">
+    <div class="modal-content">
+
+    <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="signUpDialogTitle">Sign Up</h4>
+    </div>
+
 | SessionId: ${session}
 <div class="modal-body" style="max-height: 500px;">
-	<legend>Sign Up</legend>
 	<div class="well">
 		<form id="signup" name="signupForm" ng-controller="SignUpCtrl" class="form-horizontal" novalidate>
 			<fieldset>
-			<div class="control-group">
-				<label class="control-label">${msg.get('firstName')}</label>
-				<div class="controls">
-					<div class="input-prepend">
-						<span class="add-on">
-							<i class="icon-user"></i>
+			<div class="form-group">
+				<label class="col-lg-4 control-label">${msg.get('firstName')}</label>
+				<div class="col-lg-8 input-group">
+						<span class="input-group-addon">
+							<i class="glyphicon glyphicon-user"></i>
 						</span> 
 						<input
                             name="fName"
-							type="text" class="input-xlarge" 
+							type="text" class="form-control" 
 							ng-model="user.fName"
 							placeholder="${msg.get('firstName')}"
 							ng-required="true" />	
@@ -22,31 +28,27 @@
 					      <h4>First name is required, please fill it</h4>
 					    </div>
 					</div>
-				</div>
 			</div>
-			<div class="control-group ">
-				<label class="control-label">${msg.get('lastName')}</label>
-				<div class="controls">
-					<div class="input-prepend">
-						<span class="add-on"><i class="icon-user"></i></span> 
+			<div class="form-group ">
+				<label class="col-lg-4 control-label">${msg.get('lastName')}</label>
+				<div class="col-lg-8 input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
 						<input
-							type="text" class="input-xlarge" 
+							type="text" class="form-control" 
 							ng-model="user.lName"
 							placeholder="${msg.get('lastName')}"
 							required />
                         <div class="input-help">
                           <h4>Last name is required, please fill it</h4>
                         </div>
-					</div>
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label">${msg.get('email')}</label>
-				<div class="controls">
-					<div class="input-prepend">
-						<span class="add-on"><i class="icon-envelope"></i></span> 
+			<div class="form-group">
+				<label class="col-lg-4 control-label">${msg.get('email')}</label>
+				<div class="col-lg-8 input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span> 
 						<input
-							type="email" class="input-xlarge" 
+							type="email" class="form-control" 
 							ng-model="user.email"
 							placeholder="${msg.get('email')}"
 							required
@@ -54,12 +56,11 @@
 						<div class="input-help">
                           <h4>Correct email is required, please fill it</h4>
                         </div>
-					</div>
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label">${msg.get('gender')}</label>
-				<div class="controls">
+			<div class="form-group">
+				<label class="col-lg-4 control-label">${msg.get('gender')}</label>
+				<div class="col-lg-8 input-group">
 
 					<p>
 					<div id="genderGrp" name="gender" class="gender btn-group"
@@ -75,13 +76,12 @@
 
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label">${msg.get('password')}</label>
-				<div class="controls">
-					<div class="input-prepend">
-						<span class="add-on"><i class="icon-lock"></i></span> 
+			<div class="form-group">
+				<label class="col-lg-4 control-label">${msg.get('password')}</label>
+				<div class="col-lg-8 input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> 
 						<input
-							type="Password" class="input-xlarge" 
+							type="Password" class="form-control" 
 							ng-model="user.passwd"
 							placeholder="${msg.get('password')}"
 							ph-password-validate />
@@ -93,16 +93,14 @@
 					        <li ng-class="pwdValidLength">At least <strong>8 characters long</strong></li>
 					      </ul>
 					    </div>
-					</div>
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label">${msg.get('confirmPassword')}</label>
-				<div class="controls">
-					<div class="input-prepend">
-						<span class="add-on"><i class="icon-lock"></i></span> 
+			<div class="form-group">
+				<label class="col-lg-4 control-label">${msg.get('confirmPassword')}</label>
+				<div class="col-lg-8 input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> 
 						<input
-							type="Password" id="conpasswd" class="input-xlarge"
+							type="Password" id="conpasswd" class="form-control"
 							name="conpasswd" placeholder="${msg.get('reEnterPassword')}" 
 							ng-model="passwdConfirm"
 							ph-password-confirm-validate />
@@ -111,13 +109,12 @@
                           	Password confirmation should be the same as the password
                           </h4>
                         </div>
-					</div>
 				</div>
 			</div>
 
-			<div class="control-group">
-				<label class="control-label"></label>
-				<div class="controls">
+			<div class="form-group">
+				<label class="col-lg-4 control-label"></label>
+				<div class="col-lg-8 input-group">
 					<button ng-click="storeUser()" class="btn btn-success">${msg.get('createMyAccount')}</button>
 				</div>
 
@@ -128,4 +125,7 @@
 	</div>
 
 
+</div>
+
+</div>
 </div>

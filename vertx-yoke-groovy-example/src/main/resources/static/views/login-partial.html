@@ -1,17 +1,25 @@
 
+<div class="modal-dialog">
+    <div class="modal-content">
+
+    <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="loginDialogTitle">Login</h4>
+    </div>
+
+
 | SessionId: ${session}
 <div class="modal-body" style="max-height: 500px;">
-	<legend>Login</legend>
 	<div class="well">
 		<form id="login" name="loginForm" ng-controller="LoginCtrl" class="form-horizontal" novalidate>
 			<fieldset>
-			<div class="control-group">
-				<label class="control-label">${msg.get('email')}</label>
-				<div class="controls">
-					<div class="input-prepend">
-						<span class="add-on"><i class="icon-envelope"></i></span> 
+			<div class="form-group">
+				<label class="col-lg-4 control-label">${msg.get('email')}</label>
+				
+					<div class="col-lg-8 input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span> 
 						<input
-							type="email" class="input-xlarge" 
+							type="email" class="form-control" 
 							ng-model="email"
 							placeholder="${msg.get('email')}"
 							required
@@ -20,24 +28,21 @@
                           <h4>Correct email is required, please fill it</h4>
                         </div>
 					</div>
-				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label">${msg.get('password')}</label>
-				<div class="controls">
-					<div class="input-prepend">
-						<span class="add-on"><i class="icon-lock"></i></span> 
+			<div class="form-group">
+				<label class="col-lg-4 control-label">${msg.get('password')}</label>
+					<div class="col-lg-8 input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> 
 						<input
-							type="Password" class="input-xlarge" 
+							type="Password" class="form-control" 
 							ng-model="password"
 							placeholder="${msg.get('password')}" />
 					</div>
-				</div>
 			</div>
 
-			<div class="control-group">
-				<label class="control-label"></label>
-				<div class="controls">
+			<div class="form-group">
+				<label class="col-lg-4 control-label"></label>
+				<div class="col-lg-8 input-group">
 					<button ng-click="login()" class="btn btn-success">${msg.get('login')}</button>
 				</div>
 
@@ -48,4 +53,7 @@
 	</div>
 
 
+</div>
+
+</div>
 </div>
