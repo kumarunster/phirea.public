@@ -30,6 +30,7 @@ dummyUser.passwd = "1";
 dummyUser.email = "test@example.com";
 
 userStore.put(dummyUser.email, dummyUser);
+loggedInUserStore.put("29f13ffa-5b0d-4173-8554-ccc852629a19", dummyUser);
 
 dummyUser = new User();
 dummyUser.fName = "Bilbo";

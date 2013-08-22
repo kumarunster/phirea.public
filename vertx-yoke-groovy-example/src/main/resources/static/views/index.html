@@ -12,7 +12,7 @@
     <link href="../../static/bootstrap/css/bootstrap.css" rel="stylesheet">
     
     <!-- Custom styles for this template -->
-    <link href="../../static/css/jumbotron-narrow.css" rel="stylesheet">
+    <!-- <link href="../../static/css/jumbotron-narrow.css" rel="stylesheet"> -->
     
     <link href="../../static/css/form-validation.css" rel="stylesheet" />
 
@@ -54,57 +54,82 @@
     
 		<div class="container">
 			<div class="row" >
-				<div class="col-lg-12">
-					<!--Sidebar content-->
-					<div class="input-group">
-                        <input class="form-control" ng-model="query" placeholder="Filter">
-                        <span class="input-group-addon">
-                           <i class="glyphicon glyphicon-search"></i>
-                        </span> 
+				
+                <div class="col-lg-8">
+                    <div class="panel panel-default" ng-show="currentUser != null" ng-controller="ChatCtrl" >
+                        <div class="panel-heading">
+                            <h3>Chat</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group" >
+                                <div>
+                                    <!-- //TODO chat history -->
+                                    
+                                    <div class="form-group" ng-repeat="msg in messages">
+                                        <h4 class="label label-default">{{msg.sender.fName}}</h4>: 
+                                        <span class="alert alert-info" ng-bind-html="msg.text | newlines"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <% //its groovy %>
+                                <% def ngEvent = "\$" + "event" %>
+                                <textarea rows="2" class="form-control" ng-model="message" ng-keydown="sendMessage(${ngEvent})" 
+                                        placeholder="Tip your message here. Send it with Ctrl+Enter">
+                                </textarea>
+                            </div>
+                            <div class="form-group">
+                                <button class="col-lg-offset-10 col-lg-2 btn btn-primary" ng-click="sendMessage(null)">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+				<div class="col-lg-4">
+				    
+				    <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <h3>Actually logged in</h3>
+                      </div>
+                      <div class="panel-body" ng-controller="ChatCtrl" >
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="buddy in loggedInUsers">
+                                {{buddy.fName}}, {{buddy.lName}}
+                            </li>
+                        </ul>
+                      </div>
                     </div>
                     
-                    <ul id="usersList" class="list-unstyled">
-                        <li ng-repeat="user in allUser | filter:query">
-                            {{user.fName}}, {{user.lName}}, {{user.email}}, {{user.gender.getCode()}} 
-                        </li>
-                    </ul>
-				</div>
+                </div>
 				
 			</div>
 			
 			
 			
 			
-			<div class="row" ng-controller="ChatCtrl" ng-show="currentUser != null">
-                <div class="col-md-6">
-                    <div class="row" >
-                        <div class="col-md-12">
-                            //TODO
-                            chat history
-                            <div ng-repeat="msg in messages">
-                                {{msg.sender.fName}}, {{msg.sender.lName}}: <span ng-bind-html="msg.text | newlines"></span>
-                            </div>
-                        </div>
+			<div class="row" >
+			    <div class="col-lg-8">
+                    <!--Sidebar content-->
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <h3>Users in System</h3>
+                          <div class="input-group">
+                            <input class="form-control" ng-model="query" placeholder="Filter">
+                            <span class="input-group-addon">
+                               <i class="glyphicon glyphicon-search"></i>
+                            </span> 
+                          </div>
+                      </div>
+                      <div class="panel-body">  
+                        <ul id="usersList" class="list-group">
+                            <li class="list-group-item" ng-repeat="user in allUser | filter:query">
+                                {{user.fName}}, {{user.lName}}, {{user.email}}, {{user.gender.getCode()}} 
+                            </li>
+                        </ul>
+                      </div>
                     </div>
-                    <div class="row" style="display: table-cell;vertical-align: bottom;float: none;">
-                        <div class="col-md-12">
-                            //TODO
-                            text area for current user
-                            <% //its groovy %>
-                            <% def ngEvent = "\$" + "event" %>
-                            <textarea rows="2" ng-model="message" ng-keydown="sendMessage(${ngEvent})">
-                            </textarea>    
-                            <button class="btn btn-primary" ng-click="sendMessage(null)">Send</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    //TODO
-                    names of all actually logged in users
-                    <ul ng-repeat="buddy in loggedInUsers">
-                        <li>{{buddy.fName}}, {{buddy.lName}}</li>
-                    </ul>
-                </div>
+                    
+                </div>                
             </div>
 			
 			
