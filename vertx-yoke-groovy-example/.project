@@ -6,11 +6,6 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
-			<name>com.aptana.ide.core.unifiedBuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
 			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
 			<triggers>full,incremental,</triggers>
 			<arguments>
@@ -26,8 +21,13 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.zeroturnaround.eclipse.rebelXmlBuilder</name>
+			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+			<triggers>full,incremental,</triggers>
 			<arguments>
+				<dictionary>
+					<key>LaunchConfigHandle</key>
+					<value>&lt;project&gt;/.externalToolBuilders/vertx-yoke-groovy-example [Builder] Run Test.launch</value>
+				</dictionary>
 			</arguments>
 		</buildCommand>
 	</buildSpec>

@@ -37,8 +37,9 @@ angular.module('myApp.controllers', ['ngCookies', 'ngSanitize']).
 	  $scope.logout = function() {
 		  var result = loginService.logoutUserFromCurrentSession();
 		  result.then(function(promise) {
-			  if(promise==true)
-				  $scope.currentUser = null;		  
+			  if(promise==true) { 
+				  $rootScope.$broadcast('loginUser', null);
+			  }
 		  });
 	  };
 	  
@@ -103,8 +104,9 @@ angular.module('myApp.controllers', ['ngCookies', 'ngSanitize']).
           userPromise.then(function(user){
         	  if(user) {
         		  $('#loginModal').modal('hide');
-        		  //fires asynchronously an "updateUserList"-event
+        		  //fires asynchronously events
         		  $rootScope.$broadcast('loginUser', user);
+        		  $rootScope.$broadcast('buddy-logged-in');
         		  
         		  $scope.email = undefined;
         		  $scope.password = undefined;
@@ -122,15 +124,24 @@ angular.module('myApp.controllers', ['ngCookies', 'ngSanitize']).
 	  
 	  $scope.$on('loginUser', function(event, user) {
 		  if(user) {
-			  var promiseAllUsers = userService.findLoggedInUser();
-			  promiseAllUsers.then(function(promise){
-				  $scope.loggedInUsers = promise;
-			  });
-			  
 			  $scope.sender = user;
-			  
 			  chatService.startChat();
+			  chatService.notificateBuddiesLoggedIn();
 		  }
+		  else {
+			  chatService.notificateBuddiesLoggedIn();
+			  chatService.stopChat();
+			  $scope.loggedInUsers = new Array();
+			  $scope.messages = new Array();
+		  }
+		  
+	  });
+	  
+	  $scope.$on('buddy-logged-in', function(event) {
+		  var promiseAllUsers = userService.findLoggedInUser();
+		  promiseAllUsers.then(function(promise){
+			  $scope.loggedInUsers = promise;
+		  });
 	  });
 	  
 	  $scope.$on('chat-message-arrived', function(event, message) {

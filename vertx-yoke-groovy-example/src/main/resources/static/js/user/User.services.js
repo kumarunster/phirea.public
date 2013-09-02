@@ -279,25 +279,32 @@ angular.module('myApp.services', [])
 	})
 	.service('chatService', function($rootScope, $q, eventBusService) {
         
-
-        this.startChat = function() {
+		var that = this;
+		
+		that._chatHandler = function(message) {
+            console.log("sockjs: chat.handler received " + message);
+            $rootScope.$broadcast('chat-message-arrived', message);
+        };
+        
+        that._chatHandlerNoticeBuddiesLogin = function(message) {
+        	console.log("sockjs: chat.handler.notice.buddy.logged.in received " + message);
+            $rootScope.$broadcast('buddy-logged-in');
+        };
+			
+        that.startChat = function() {
             //TODO use service to get sessionId
             var currentSessionId = $('body').attr('sessionId');
                         
             /* */
-            var ebPromise = eventBusService.getEventBus();    
+            var ebPromise = eventBusService.getEventBus();
             ebPromise.then(function(eb) {
-                eb.registerHandler('chat.handler', function(message) {
-                    
-                    console.log("sockjs: chat.handler received " + message);
-                    
-                    $rootScope.$broadcast('chat-message-arrived', message);
-                    
-                });
+                eb.registerHandler('chat.handler', that._chatHandler);
+                eb.registerHandler('chat.handler.notice.buddy.logged.in', that._chatHandlerNoticeBuddiesLogin);
             });
+            
         }; 
         
-        this.sendMessage = function(user, text) {
+        that.sendMessage = function(user, text) {
             
             var msg = {
                 "sender" : user,
@@ -306,11 +313,36 @@ angular.module('myApp.services', [])
             
             /* */
             var ebPromise = eventBusService.getEventBus();
-            
             ebPromise.then(function(eb) {
                 eb.publish('chat.handler', msg);
             });
             
+        };
+        
+        
+        that.stopChat = function() {
+            //TODO use service to get sessionId
+            var currentSessionId = $('body').attr('sessionId');
+                        
+            /* */
+            var ebPromise = eventBusService.getEventBus();
+            ebPromise.then(function(eb) {
+                eb.unregisterHandler('chat.handler', that._chatHandler);
+                eb.unregisterHandler('chat.handler.notice.buddy.logged.in', that._chatHandlerNoticeBuddiesLogin);
+            });
+        }; 
+        
+        
+        that.notificateBuddiesLoggedIn = function() {
+            //TODO use service to get sessionId
+            var currentSessionId = $('body').attr('sessionId');
+            
+            var msg = {};
+            
+            var ebPromise = eventBusService.getEventBus();
+            ebPromise.then(function(eb) {
+                eb.publish('chat.handler.notice.buddy.logged.in', msg);
+            });
         };
         
               

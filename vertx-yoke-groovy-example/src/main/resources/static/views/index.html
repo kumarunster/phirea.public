@@ -53,10 +53,10 @@
 	  | SessionId: ${session}
     
 		<div class="container">
-			<div class="row" >
+			<div class="row" ng-controller="ChatCtrl" >
 				
                 <div class="col-lg-8">
-                    <div class="panel panel-default" ng-show="currentUser != null" ng-controller="ChatCtrl" >
+                    <div class="panel panel-default" ng-show="currentUser != null" >
                         <div class="panel-heading">
                             <h3>Chat</h3>
                         </div>
@@ -91,7 +91,7 @@
                       <div class="panel-heading">
                           <h3>Actually logged in</h3>
                       </div>
-                      <div class="panel-body" ng-controller="ChatCtrl" >
+                      <div class="panel-body">
                         <ul class="list-group">
                             <li class="list-group-item" ng-repeat="buddy in loggedInUsers">
                                 {{buddy.fName}}, {{buddy.lName}}
