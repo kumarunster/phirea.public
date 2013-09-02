@@ -15,6 +15,8 @@
     <!-- <link href="../../static/css/jumbotron-narrow.css" rel="stylesheet"> -->
     
     <link href="../../static/css/form-validation.css" rel="stylesheet" />
+    
+    <link href="../../static/css/custom-style.css" rel="stylesheet" />
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -43,7 +45,7 @@
           <li><a href="#">About</a></li>
           <li ng-show="currentUser == null"><a ng data-toggle="modal" href="#signupModal">Sign-Up</a></li>
           <li ng-show="currentUser == null"><a ng data-toggle="modal" href="#loginModal">Login</a></li>
-          <li ng-show="currentUser != null"><a ng data-toggle="modal" href="#myModal">Hello, {{currentUser.fName}} {{currentUser.lName}}</a></li>
+          <li ng-show="currentUser != null"><a ng data-toggle="modal" href="#TODO">Hello, {{currentUser.fName}} {{currentUser.lName}}</a></li>
           <li ng-show="currentUser != null"><a ng href="" ng-click="logout()" >Logout</a></li>
         </ul>
         <h3 class="text-muted">Project name</h3>
@@ -53,21 +55,21 @@
 	  | SessionId: ${session}
     
 		<div class="container">
-			<div class="row" >
+			<div class="row" ng-controller="ChatCtrl" >
 				
                 <div class="col-lg-8">
-                    <div class="panel panel-default" ng-show="currentUser != null" ng-controller="ChatCtrl" >
+                    <div class="panel panel-default" ng-show="currentUser != null" >
                         <div class="panel-heading">
                             <h3>Chat</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group" >
+                            <div class="form-group scrollable-chart-panel" scroll-glue ng-model="glued">
                                 <div>
                                     <!-- //TODO chat history -->
                                     
                                     <div class="form-group" ng-repeat="msg in messages">
-                                        <h4 class="label label-default">{{msg.sender.fName}}</h4>: 
-                                        <span class="alert alert-info" ng-bind-html="msg.text | newlines"></span>
+                                        <h4 class="col-lg-2 label label-default">{{msg.sender.fName}}:</h4> 
+                                        <span class="   col-lg-offset-1 col-lg-8 alert alert-info" ng-bind-html="msg.text | newlines"></span>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +81,10 @@
                                 </textarea>
                             </div>
                             <div class="form-group">
-                                <button class="col-lg-offset-10 col-lg-2 btn btn-primary" ng-click="sendMessage(null)">Send</button>
+                                <button class="col-lg-offset-10 col-lg-2 btn btn-primary" ng-click="sendMessage(null)">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                    Send
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -91,7 +96,7 @@
                       <div class="panel-heading">
                           <h3>Actually logged in</h3>
                       </div>
-                      <div class="panel-body" ng-controller="ChatCtrl" >
+                      <div class="panel-body" >
                         <ul class="list-group">
                             <li class="list-group-item" ng-repeat="buddy in loggedInUsers">
                                 {{buddy.fName}}, {{buddy.lName}}
@@ -192,47 +197,6 @@
                     aria-labelledby="loginDialogTitle" 
                     aria-hidden="true" ></div>
       
-     <!-- sample modal content -->
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Modal Heading</h4>
-          </div>
-          <div class="modal-body">
-            <h4>Text in a modal</h4>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-
-            <h4>Popover in a modal</h4>
-            <p>This <a href="#" role="button" class="btn btn-default popover-test" title="A Title" data-content="And here's some amazing content. It's very engaging. right?">button</a> should trigger a popover on click.</p>
-
-            <h4>Tooltips in a modal</h4>
-            <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> should have tooltips on hover.</p>
-
-            <hr>
-
-            <h4>Overflowing text to show scroll behavior</h4>
-            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-      
     </div> <!-- /container -->
     
     
@@ -250,6 +214,8 @@
     <script src="../../static/js/lib/angular/angular.js"></script>
     <script src="../../static/js/lib/angular/angular-cookies.js"></script>
     <script src="../../static/js/lib/angular/angular-sanitize.js"></script>
+    <!-- <script src="../../static/js/lib/angular-scroll-glue.js"></script> -->
+    
     
     <script src="../../static/bootstrap/js/bootstrap.js"></script>
     <script src="../../static/js/datamodel/stjs.js"></script>

@@ -118,6 +118,7 @@ angular.module('myApp.controllers', ['ngCookies', 'ngSanitize']).
   })
   .controller('ChatCtrl', function($scope, $rootScope, $cookieStore, chatService, userService) {
 
+	  $scope.glued = true;
 	  $scope.messages = new Array();
 	  
 	  $scope.$on('loginUser', function(event, user) {

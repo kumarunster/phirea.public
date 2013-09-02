@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+
+
+.scrollable-chart-panel {
+
+	max-height: 300px;
+	overflow-x: auto;
+}

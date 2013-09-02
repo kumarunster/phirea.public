@@ -20,6 +20,38 @@ angular.module('myApp.directives', [])
         }
     };
   })
+  .directive('scrollGlue', function(){
+        /**
+         * Found on https://github.com/Luegg/angularjs-scroll-glue/blob/master/src/scrollglue.js
+         */
+        return {
+            priority: 1,
+            require: ['?ngModel'],
+            restrict: 'A',
+            link: function(scope, $el, attrs, ctrls){
+                var el = $el[0],
+                    ngModel = ctrls[0] || fakeNgModel(true);
+    
+                function scrollToBottom(){
+                    el.scrollTop = el.scrollHeight;
+                }
+    
+                function shouldActivateAutoScroll(){
+                    return el.scrollTop + el.clientHeight == el.scrollHeight;
+                }
+    
+                scope.$watch(function(){
+                    if(ngModel.$viewValue){
+                        scrollToBottom();
+                    }
+                });
+    
+                $el.bind('scroll', function(){
+                    scope.$apply(ngModel.$setViewValue.bind(ngModel, shouldActivateAutoScroll()));
+                });
+            }
+        };
+    });
   /*
   .directive('phPasswordValidate', function() {
     return {

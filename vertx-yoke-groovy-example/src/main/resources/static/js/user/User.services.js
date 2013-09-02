@@ -279,8 +279,13 @@ angular.module('myApp.services', [])
 	})
 	.service('chatService', function($rootScope, $q, eventBusService) {
         
+        this._chatState = false;
 
         this.startChat = function() {
+        
+            if(this._chatState == true)
+                return;
+            
             //TODO use service to get sessionId
             var currentSessionId = $('body').attr('sessionId');
                         
@@ -295,6 +300,8 @@ angular.module('myApp.services', [])
                     
                 });
             });
+            
+            this._chatState = true;
         }; 
         
         this.sendMessage = function(user, text) {
