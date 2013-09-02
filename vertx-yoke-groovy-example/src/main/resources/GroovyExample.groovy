@@ -21,12 +21,22 @@ import com.jetdrone.vertx.yoke.util.Utils
 
 
 Map<String, User> userStore = new LinkedHashMap<String, User>();
+Map<String, User> loggedInUserStore = new LinkedHashMap<String, User>();
 
 User dummyUser = new User();
 dummyUser.fName = "Dummy";
 dummyUser.lName = "User";
 dummyUser.passwd = "1";
 dummyUser.email = "test@example.com";
+
+userStore.put(dummyUser.email, dummyUser);
+loggedInUserStore.put("29f13ffa-5b0d-4173-8554-ccc852629a19", dummyUser);
+
+dummyUser = new User();
+dummyUser.fName = "Bilbo";
+dummyUser.lName = "Baggins";
+dummyUser.passwd = "1";
+dummyUser.email = "bb@one.com";
 
 userStore.put(dummyUser.email, dummyUser);
 
@@ -93,6 +103,12 @@ GYoke gyoke = new GYoke(vertx)
 		  println "matched signup-partial"
 		  request.put('session', request.getSessionId())
 		  request.response.render 'static/views/signup-partial.html', next
+	  })
+	  .get("/login-partial.html", { YokeRequest request, next ->
+		  checkAndSetSessionId(request);
+		  println "matched login-partial"
+		  request.put('session', request.getSessionId())
+		  request.response.render 'static/views/login-partial.html', next
 	  })
 	  .post("/login/processLogin", { YokeRequest request, next ->
 		  checkAndSetSessionId(request);
@@ -174,6 +190,42 @@ def config = ["prefix": "/eventbus"]
 }
 
 
+((Vertx) vertx).eventBus.registerHandler("user.login.handler") { Message message ->
+	
+	println "received message" + message.body
+	
+	def sessionId = message.body.sessionId;
+	def email = message.body.email;
+	def password = message.body.password;
+	if(email != null && email != null && sessionId != null) {
+		
+		User user = userStore.get(email);
+		if(user != null && user.passwd.equals(password)) {
+			println "user found! and logged in"
+			message.reply([answer: user])
+		}
+		
+		loggedInUserStore.put(sessionId, user);		
+	}
+	else
+		message.reply([answer: null])
+}
+
+
+((Vertx) vertx).eventBus.registerHandler("user.logout.handler") { Message message ->
+	
+	println "received message" + message.body
+	
+	def sessionId = message.body.sessionId;
+	if(sessionId != null) {
+		loggedInUserStore.remove(sessionId);
+		message.reply([answer: true]);	
+	}
+	else
+		message.reply([answer: false]);
+}
+
+
 ((Vertx) vertx).eventBus.registerHandler("user.service.handler") { Message message ->
 	
 	println "received message" + message.body
@@ -183,6 +235,25 @@ def config = ["prefix": "/eventbus"]
 		
 		if('findAllUser'.equals(actionPayload)) {
 			def responseMsg = ModelConverter.createJson(userStore.values().asList());
+			message.reply([answer: responseMsg]);
+		}
+		
+		if('findUserForSession'.equals(actionPayload)) {
+			def sessionId = message.body.sessionId;
+			def responseUser = null;
+			if(sessionId != null)
+				responseUser = loggedInUserStore.get(sessionId);
+			
+			message.reply([answer: responseUser]);
+		}
+		
+		if('findLoggedInUser'.equals(actionPayload)) {
+			Map<String, User> result = new LinkedHashMap<String, User>();
+			loggedInUserStore.values().each {
+				if(!result.containsKey(it.email))
+					result.put(it.email, it);
+			}
+			def responseMsg = ModelConverter.createJson(result.values().asList());
 			message.reply([answer: responseMsg]);
 		}
 		
