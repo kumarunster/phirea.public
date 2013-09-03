@@ -18,7 +18,7 @@ public class ModelConverter {
 	    
 	    Gson gson = gsonBuilder.create();
 	    
-	    return gson.toJson(user);	    
+	    return gson.toJson(user);
 	}
 	
 	public static String createJson(List<User> users) {
