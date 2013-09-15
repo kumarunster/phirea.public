@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import org.vertx.java.core.Handler;
 import org.vertx.java.core.Vertx;
+import org.vertx.java.core.logging.Logger;
 
 import com.jetdrone.vertx.yoke.Middleware;
 import com.jetdrone.vertx.yoke.middleware.YokeRequest;
@@ -20,14 +21,11 @@ public class Translation extends Middleware {
 		this.fileName = fileName;
 	}
 	
-	
-	
-	
-
 	@Override
-	public Middleware setVertx(Vertx vertx) {
-		super.setVertx(vertx);
+	public Middleware init(Vertx vertx, Logger logger) {
+		super.init(vertx, logger);
 		
+
 		String sProperties = vertx.fileSystem().readFileSync(fileName).toString();
 		
 		translationProperties = new Properties();
@@ -40,8 +38,6 @@ public class Translation extends Middleware {
 		
 		return this;
 	}
-
-
 
 
 

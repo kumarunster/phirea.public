@@ -4,13 +4,13 @@ import model.ModelConverter
 import model.User
 import model.types.GenderType
 
-import org.springframework.remoting.rmi.RmiClientInterceptor.DummyURLStreamHandler;
 import org.vertx.groovy.core.Vertx
-import org.vertx.groovy.core.eventbus.Message;
+import org.vertx.groovy.core.eventbus.Message
 import org.vertx.groovy.core.http.HttpServer
-import org.vertx.groovy.core.http.ServerWebSocket
-import org.vertx.java.core.json.JsonArray
+import org.vertx.groovy.platform.Container;
 import org.vertx.java.core.json.JsonObject
+import org.vertx.java.core.logging.Logger
+import org.vertx.java.core.logging.impl.LoggerFactory
 
 import com.jetdrone.vertx.yoke.GYoke
 import com.jetdrone.vertx.yoke.engine.GroovyTemplateEngine
@@ -30,7 +30,7 @@ dummyUser.passwd = "1";
 dummyUser.email = "test@example.com";
 
 userStore.put(dummyUser.email, dummyUser);
-loggedInUserStore.put("29f13ffa-5b0d-4173-8554-ccc852629a19", dummyUser);
+loggedInUserStore.put("fbd5050d-5eb7-44d3-b447-a2bd42d571b6", dummyUser);
 
 dummyUser = new User();
 dummyUser.fName = "Bilbo";
@@ -68,7 +68,14 @@ JsonObject obj = new JsonObject();
 obj.putString("prefix", "/eventbus");
  
 
-GYoke gyoke = new GYoke(vertx)
+Logger logger = LoggerFactory.getLogger("GroovyVertxYokeExample");
+
+println "do we have container? " + container;
+println "container has a logger? " + ((Container) container).getLogger();
+
+Logger vertxLogger = ((Container) container).getLogger();
+
+GYoke gyoke = new GYoke(vertx, vertxLogger)
   .engine('html', new GroovyTemplateEngine())
   
   .use(new Translation("translation.properties"))
