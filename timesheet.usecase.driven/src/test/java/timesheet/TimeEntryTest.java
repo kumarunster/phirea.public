@@ -24,6 +24,29 @@ public class TimeEntryTest {
 		assertEquals(1, timeEntries.size());
 		assertSame(timeEntry, timeEntries.get(0));
 	}
+
+	
+	@Test
+	public void canFindEntriesForActualWeek() {
+		
+		TimeEntry timeEntry = new TimeEntry();
+		
+		Calendar today = Calendar.getInstance();
+		Day day = new Day(today.getTime());
+		timeEntry.setDay(day);
+		
+		Timesheet timeSheet = new TimeRepository();
+		timeSheet.add(timeEntry);
+		
+		Filter filter = StandardFilter.ACTUAL_WEEK;
+		
+		List<TimeEntry> timeEntries = timeSheet.findEntries(filter);
+		assertNotNull(timeEntries);
+		assertEquals(1, timeEntries.size());
+		assertSame(timeEntry, timeEntries.get(0));
+		
+	}
+	
 	
 	@Test
 	public void canFindEntriesForLastWeek() {
@@ -66,6 +89,31 @@ public class TimeEntryTest {
 		timeSheet.add(timeEntry);
 		
 		Filter filter = StandardFilter.LAST_MONTH;
+		
+		List<TimeEntry> timeEntries = timeSheet.findEntries(filter);
+		assertNotNull(timeEntries);
+		assertEquals(1, timeEntries.size());
+		assertSame(timeEntry, timeEntries.get(0));
+		
+	}
+	
+	
+	@Test
+	public void canFindEntriesForLastYear() {
+		
+		TimeEntry timeEntry = new TimeEntry();
+		
+		Calendar today = Calendar.getInstance();
+		Calendar workCal = (Calendar) today.clone();
+		workCal.add(Calendar.YEAR, -1);
+		
+		Day day = new Day(workCal.getTime());
+		timeEntry.setDay(day);
+		
+		Timesheet timeSheet = new TimeRepository();
+		timeSheet.add(timeEntry);
+		
+		Filter filter = StandardFilter.LAST_YEAR;
 		
 		List<TimeEntry> timeEntries = timeSheet.findEntries(filter);
 		assertNotNull(timeEntries);

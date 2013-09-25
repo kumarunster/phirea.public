@@ -12,4 +12,6 @@ public interface Timesheet {
 
 	List<TimeEntry> findEntries(Filter filter);
 
+	TimeEntry set(TimeEntry timeEntry);
+
 }

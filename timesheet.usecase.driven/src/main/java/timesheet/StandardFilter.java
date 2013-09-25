@@ -4,6 +4,22 @@ import java.util.Calendar;
 
 public enum StandardFilter implements Filter {
 
+	ACTUAL_WEEK() {
+
+		public Day getFromDay() {
+			Calendar calendar = Calendar.getInstance();
+			calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+			
+			return new Day(calendar.getTime());
+		}
+
+		public Day getToDay() {
+			Calendar calendar = Calendar.getInstance();
+			
+			return new Day(calendar.getTime());
+		}
+	},
+	
 	LAST_WEEK() {
 		public Day getFromDay() {
 			Calendar calendar = Calendar.getInstance();
@@ -33,6 +49,26 @@ public enum StandardFilter implements Filter {
 		public Day getToDay() {
 			Calendar calendar = Calendar.getInstance();
 			calendar.add(Calendar.MONTH, -1);
+			int lastDay = calendar.getMaximum(Calendar.DAY_OF_MONTH);
+			calendar.set(Calendar.DAY_OF_MONTH, lastDay);
+			return new Day(calendar.getTime());
+		}
+	}, 
+	LAST_YEAR() {
+	
+		public Day getFromDay() {
+			Calendar calendar = Calendar.getInstance();
+			calendar.add(Calendar.YEAR, -1);
+			calendar.set(Calendar.MONTH, Calendar.JANUARY);
+			calendar.set(Calendar.DAY_OF_MONTH, 1);
+			
+			return new Day(calendar.getTime());
+		}
+
+		public Day getToDay() {
+			Calendar calendar = Calendar.getInstance();
+			calendar.add(Calendar.YEAR, -1);
+			calendar.set(Calendar.MONTH, Calendar.DECEMBER);			
 			int lastDay = calendar.getMaximum(Calendar.DAY_OF_MONTH);
 			calendar.set(Calendar.DAY_OF_MONTH, lastDay);
 			return new Day(calendar.getTime());

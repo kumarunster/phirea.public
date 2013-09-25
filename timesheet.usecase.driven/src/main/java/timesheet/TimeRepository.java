@@ -64,4 +64,21 @@ public class TimeRepository implements Timesheet {
 		return result;
 	}
 
+	public TimeEntry set(TimeEntry timeEntry) {
+		List<TimeEntry> timeEntries = getTimeEntries(timeEntry.getDay());
+		int indexOf = 0;
+		for (TimeEntry entry : timeEntries) {
+			if(entry.getId().equals(timeEntry.getId())) {
+				break;
+			}
+			indexOf++;
+		}
+		
+		timeEntries.set(indexOf, timeEntry);
+		
+		return timeEntry;
+	}
+	
+	
+
 }
