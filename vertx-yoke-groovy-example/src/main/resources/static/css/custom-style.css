@@ -6,3 +6,10 @@
 	max-height: 300px;
 	overflow-x: auto;
 }
+
+.messages .popover {
+display: block;
+position: relative;
+width: 90%;
+margin: 0 10px 10px;
+}

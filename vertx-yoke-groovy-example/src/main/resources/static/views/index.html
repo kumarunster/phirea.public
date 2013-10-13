@@ -63,15 +63,29 @@
                             <h3>Chat</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group scrollable-chart-panel" scroll-glue ng-model="glued">
-                                <div>
+                            <div class="box messages body scrollable-chart-panel" scroll-glue ng-model="glued">
+                                
                                     <!-- //TODO chat history -->
                                     
-                                    <div class="form-group" ng-repeat="msg in messages">
-                                        <h4 class="col-lg-2 label label-default">{{msg.sender.fName}}:</h4> 
+                                    <div class="media" ng-repeat="msg in messages">
+                                        <!-- <h4 class="col-lg-2 label label-default">{{msg.sender.fName}}:</h4> 
                                         <span class="   col-lg-offset-1 col-lg-8 alert alert-info" ng-bind-html="msg.text | newlines"></span>
+                                         -->
+                                        
+                                            <a href="#" class="pull-left">{{msg.sender.fName}}</a>
+                                            <div class="media-body">
+                                                <div class="popover right">
+                                                    <div class="arrow"></div>
+                                                    <!-- <h3 class="popover-title">Message Title</h3> -->
+                                                    <div class="popover-content">
+                                                        <span ng-bind-html="msg.text | newlines"></span>                
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                        
                                     </div>
-                                </div>
+                                
                             </div>
                             <div class="form-group">
                                 <% //its groovy %>
