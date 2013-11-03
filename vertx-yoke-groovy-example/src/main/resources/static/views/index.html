@@ -71,14 +71,31 @@
                                         <!-- <h4 class="col-lg-2 label label-default">{{msg.sender.fName}}:</h4> 
                                         <span class="   col-lg-offset-1 col-lg-8 alert alert-info" ng-bind-html="msg.text | newlines"></span>
                                          -->
-                                        
-                                            <a href="#" class="pull-left">{{msg.sender.fName}}</a>
-                                            <div class="media-body">
-                                                <div class="popover right">
-                                                    <div class="arrow"></div>
-                                                    <!-- <h3 class="popover-title">Message Title</h3> -->
-                                                    <div class="popover-content">
-                                                        <span ng-bind-html="msg.text | newlines"></span>                
+                                            
+                                            <div ng-if="msg.sender.fName  == currentUser.fName">
+                                                <div class="pull-right">
+                                                    <a href="#" >{{msg.sender.fName}}</a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="popover left popover-right">
+                                                        <div class="arrow"></div>
+                                                        <!-- <h3 class="popover-title">Message Title</h3> -->
+                                                        <div class="popover-content">
+                                                            <span ng-bind-html="msg.text | newlines"></span>                
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div ng-if="msg.sender.fName  != currentUser.fName">
+                                                <a href="#" class="pull-left">{{msg.sender.fName}}</a>
+                                                <div class="media-body">
+                                                    <div class="popover right popover-left">
+                                                        <div class="arrow"></div>
+                                                        <!-- <h3 class="popover-title">Message Title</h3> -->
+                                                        <div class="popover-content">
+                                                            <span ng-bind-html="msg.text | newlines"></span>                
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

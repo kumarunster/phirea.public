@@ -7,11 +7,24 @@
 	overflow-x: auto;
 }
 
-.messages .popover {
+.popover-left {
 display: block;
 position: relative;
+float:left;
 width: 90%;
 margin: 0 10px 10px;
+}
+
+.popover-right {
+display: block;
+float:right;
+position: relative;
+width: 90%;
+margin: 0 10px 10px 100px;
+}
+
+.messages .pull-right {
+float:right;	
 }
 
 
