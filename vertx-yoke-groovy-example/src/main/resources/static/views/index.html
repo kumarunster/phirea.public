@@ -67,7 +67,7 @@
                                 
                                     <!-- //TODO chat history -->
                                     
-                                    <div class="media" ng-repeat="msg in messages">
+                                    <div class="media repeat-animation" ng-repeat="msg in messages">
                                         <!-- <h4 class="col-lg-2 label label-default">{{msg.sender.fName}}:</h4> 
                                         <span class="   col-lg-offset-1 col-lg-8 alert alert-info" ng-bind-html="msg.text | newlines"></span>
                                          -->
@@ -141,7 +141,7 @@
                       </div>
                       <div class="panel-body">  
                         <ul id="usersList" class="list-group">
-                            <li class="list-group-item" ng-repeat="user in allUser | filter:query">
+                            <li class="list-group-item repeat-animation" ng-repeat="user in allUser | filter:query">
                                 {{user.fName}}, {{user.lName}}, {{user.email}}, {{user.gender.getCode()}} 
                             </li>
                         </ul>
@@ -225,9 +225,12 @@
     
     <script src="../../static/js/lib/jquery-1.7.1.min.js"></script>
     
-    <script src="../../static/js/lib/angular/angular.js"></script>
-    <script src="../../static/js/lib/angular/angular-cookies.js"></script>
-    <script src="../../static/js/lib/angular/angular-sanitize.js"></script>
+    <script src="../../static/js/lib/angular12/angular.js"></script>
+    
+    <script src="../../static/js/lib/angular12/angular-cookies.js"></script>
+    <script src="../../static/js/lib/angular12/angular-sanitize.js"></script>
+    <script src="../../static/js/lib/angular12/angular-route.js"></script>
+    <script src="../../static/js/lib/angular12/angular-animate.js"></script>
     <!-- <script src="../../static/js/lib/angular-scroll-glue.js"></script> -->
     
     
