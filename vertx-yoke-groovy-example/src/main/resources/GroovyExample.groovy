@@ -7,7 +7,7 @@ import model.types.GenderType
 import org.vertx.groovy.core.Vertx
 import org.vertx.groovy.core.eventbus.Message
 import org.vertx.groovy.core.http.HttpServer
-import org.vertx.groovy.platform.Container;
+import org.vertx.groovy.platform.Container
 import org.vertx.java.core.json.JsonObject
 import org.vertx.java.core.logging.Logger
 import org.vertx.java.core.logging.impl.LoggerFactory
@@ -42,9 +42,9 @@ userStore.put(dummyUser.email, dummyUser);
 
 
 def checkAndSetSessionId = { YokeRequest request ->
-	if(request.getSessionId() == null) {
+	if(request.sessionId() == null) {
 		id = UUID.randomUUID().toString();
-		request.setSessionId(id);
+		request.createSession(id);
 		println "session id does not exist, created new: '${id}'"
 	}
 }
@@ -84,7 +84,7 @@ GYoke gyoke = new GYoke(vertx, vertxLogger)
   .use(new Session(mac))
   
   .use(new ErrorHandler(true))
-  .use("/static", new Static(".", 0, false, false))
+  .use("/static", new Static("static", 0, false, false))
   
   .use("/login/processLogin", new BodyParser())
   .use("/ajaxRequest", new BodyParser())

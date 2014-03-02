@@ -68,7 +68,7 @@ dependencies {
 	  exclude group: 'org.slf4j'
   }
   compile "javax.servlet:javax.servlet-api:3.0.1"
-  compile "com.jetdrone:yoke:1.0.2-SNAPSHOT@jar"
+  compile "com.jetdrone:yoke:1.0.4"
   compile "com.google.code.gson:gson:2.2.4"
   compile "org.st-js:js-lib:1.3.1"
   compile "org.st-js:server:1.3.1"
@@ -145,4 +145,9 @@ def configurePom(def pom) {
 	}
 	
   }
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.9'
 }

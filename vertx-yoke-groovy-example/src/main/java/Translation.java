@@ -22,8 +22,8 @@ public class Translation extends Middleware {
 	}
 	
 	@Override
-	public Middleware init(Vertx vertx, Logger logger) {
-		super.init(vertx, logger);
+	public Middleware init(Vertx vertx, Logger logger, String mount) {
+		super.init(vertx, logger, mount);
 		
 
 		String sProperties = vertx.fileSystem().readFileSync(fileName).toString();
