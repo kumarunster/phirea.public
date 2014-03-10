@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="FileUploadApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Template &middot; Bootstrap Session:</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../../static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <!-- <link href="../../static/css/jumbotron-narrow.css" rel="stylesheet"> -->
+    
+    <link href="../../static/css/form-validation.css" rel="stylesheet" />
+    
+    <link href="../../static/css/custom-style.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../static/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../static/assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../static/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../../static/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../../static/assets/ico/favicon.png">
+                                   
+    <link rel="stylesheet" href="../../static/css/form-validation.css" >
+    
+  </head>
+
+  <body sessionId="${session}">
+  
+  	<div class="container" ng-controller="FileUploadCtrl">
+  		  <input type="text" ng-model="myModelObj">
+		  
+		  <% //its groovy %>
+          <% def filesAttr = "\$" + "files" %>
+          
+		  <input type="file" ng-file-select="onFileSelect(${filesAttr})" >
+		  <input type="file" ng-file-select="onFileSelect(${filesAttr})" multiple>
+		  
+		  <div ng-file-drop="onFileSelect(${filesAttr})" ng-file-drag-over-class="optional-css-class"
+		        ng-show="dropSupported">drop files here</div>
+		  <div ng-file-drop-available="dropSupported=true" 
+		        ng-show="!dropSupported">HTML5 Drop File is not supported!</div>
+		  <button ng-click="upload.abort()">Cancel Upload</button>
+  	
+  	</div>
+  
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../static/js/lib/sockjs-0.3.js"></script>
+   <script src="../../static/js/lib/vertxbus.js"></script>
+    <script src="../../static/js/common-infrastructure.js"></script>
+    
+    <script src="../../static/js/lib/jquery-1.7.1.min.js"></script>
+    
+    <script src="../../static/js/lib/ng-file-upload/angular-file-upload-shim.min.js"></script>
+     
+    
+    <script src="../../static/js/lib/angular12/angular.js"></script>
+    
+    <script src="../../static/js/lib/angular12/angular-cookies.js"></script>
+    <script src="../../static/js/lib/angular12/angular-sanitize.js"></script>
+    <script src="../../static/js/lib/angular12/angular-route.js"></script>
+    <script src="../../static/js/lib/angular12/angular-animate.js"></script>
+    <!-- <script src="../../static/js/lib/angular-scroll-glue.js"></script> -->
+    
+    <script src="../../static/js/lib/ng-file-upload/angular-file-upload.min.js"></script> 
+    
+    <script src="../../static/bootstrap/js/bootstrap.js"></script>
+    
+  	<script src="../../static/js/fileupload/Fileupload.js"></script>
+	
+    
+    
+  </body>
+</html>

@@ -7,6 +7,7 @@ import model.types.GenderType
 import org.vertx.groovy.core.Vertx
 import org.vertx.groovy.core.eventbus.Message
 import org.vertx.groovy.core.http.HttpServer
+import org.vertx.groovy.core.http.HttpServerFileUpload
 import org.vertx.groovy.platform.Container
 import org.vertx.java.core.json.JsonObject
 import org.vertx.java.core.logging.Logger
@@ -163,6 +164,38 @@ GYoke gyoke = new GYoke(vertx, vertxLogger)
 		  request.put('result', result.toString())
 		  request.response.end responseJSON
 	  })
+	  .get("/fileupload", { YokeRequest request, next ->
+		  checkAndSetSessionId(request);
+		  println "matched fileupload"
+		  request.put('session', request.getSessionId())
+		  request.response.render 'static/views/fileupload.html', next
+	  })
+	  .post("/fileupload/process", { YokeRequest request, next ->
+		  checkAndSetSessionId(request);
+		  println "matched /fileupload/process"
+		  request.expectMultiPart(true);
+		  
+		  request.uploadHandler({ HttpServerFileUpload upload ->
+			  
+			  println "in upload handler: " + upload.filename;
+			  
+			  upload.streamToFileSystem("upload/" + upload.filename);
+			  
+			  println "uploaded to /upload/ directory in project"
+			  
+		  });
+		  
+		  def filenameParameter = request.getFormParameter("filename");
+		  
+		  
+		  println "filename: " + filenameParameter
+		  
+		  def formAttributes = request.formAttributes();
+		  
+		  println "bla + " + formAttributes
+		  
+		  request.response.end() // "/fileupload"
+	  })
 	  	  	
   ).listen(server);
 
@@ -268,6 +301,27 @@ def config = ["prefix": "/eventbus"]
 	else
 		message.reply([answer: null])
 }
+
+
+
+// TODO make file upload working over the event bus
+//
+//((Vertx) vertx).eventBus.registerHandler("fileupload.handler") { Message message ->
+//	
+//	println "received message" + message.body
+//	
+//	def actionPayload = message.body.action;
+//	if(actionPayload != null) {
+//		
+//		if('fileUpload'.equals(actionPayload)) {
+//			println "fileupload on server"
+//		}
+//		
+//	}
+//	else
+//		message.reply([answer: null])
+//}
+
 
 
 server.listen(8080);

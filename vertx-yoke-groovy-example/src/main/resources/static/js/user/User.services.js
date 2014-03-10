@@ -50,7 +50,7 @@ angular.module('myApp.services', [])
                 
                 eb.onclose = function() {
                     console.log("bus is closed!!! WHY???");
-                }
+                };
             }
             
             if(state == 'initializing')
@@ -65,7 +65,9 @@ angular.module('myApp.services', [])
 	    };
 	    
 	})
-	.service('loginService', function($rootScope, $q, eventBusService) {
+	.service('loginService', ['$rootScope', '$q', 'eventBusService',
+	                          function($rootScope, $q, eventBusService) {
+		
 		
 		this.storeUser = function(user) {
 			
@@ -164,7 +166,7 @@ angular.module('myApp.services', [])
             return deferred.promise;
         };
 			  
-	})
+	}])
 	.service('userService', function($rootScope, $q, eventBusService) {
 		
 
